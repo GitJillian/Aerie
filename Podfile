@@ -11,5 +11,7 @@ target 'aerie' do
 	pod 'Firebase/Auth'	
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
-
+	pod 'GoogleSignIn'
+	pod 'GoogleMaps', '4.1.0'
+	pod 'GooglePlaces', '4.1.0'
 end

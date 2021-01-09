@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A29F66325A7F01300D039B8 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F66225A7F01300D039B8 /* Styler.swift */; };
+		2A29F6EC25A81CC200D039B8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F6EB25A81CC200D039B8 /* Model.swift */; };
 		2AE0B4A825A7EB2000FF1F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
 		8314D43322E644CC001D044A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43222E644CC001D044A /* AppDelegate.swift */; };
@@ -16,12 +18,67 @@
 		8314D43C22E644CD001D044A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8314D43B22E644CD001D044A /* Assets.xcassets */; };
 		8314D43F22E644CD001D044A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314D43D22E644CD001D044A /* LaunchScreen.storyboard */; };
 		8314D44722E64515001D044A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D44622E64515001D044A /* SignUpViewController.swift */; };
-		8314D44922E64520001D044A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D44822E64520001D044A /* LoginViewController.swift */; };
 		8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D44A22E6452C001D044A /* HomeViewController.swift */; };
-		8397D20E22E64A7500CB78DD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8397D20D22E64A7500CB78DD /* Utilities.swift */; };
+		B63F7875F51E0FB9AE9277D3 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2A29F6B925A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF96B57ADE05E8909F823BDF6868B3E3;
+			remoteInfo = abseil;
+		};
+		2A29F6BB25A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3FD1B4C1246D643E9476438C28048FA8;
+			remoteInfo = AppAuth;
+		};
+		2A29F6BD25A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CC9178C366942FD6FF6A115604EAD58;
+			remoteInfo = FirebaseCoreDiagnostics;
+		};
+		2A29F6BF25A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 13C8C8B254851998F9289F71229B28A2;
+			remoteInfo = FirebaseInstallations;
+		};
+		2A29F6C125A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 856B5CD56F194FAD26EA91620B66D614;
+			remoteInfo = GoogleDataTransport;
+		};
+		2A29F6C325A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9C7C87B5D0A6752AFA2642F1BCA967A3;
+			remoteInfo = "gRPC-C++-gRPCCertificates-Cpp";
+		};
+		2A29F6C525A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6FD122EA0AB9AB2A8FFA5F676C795DF0;
+			remoteInfo = GTMAppAuth;
+		};
+		2A29F6C725A807B600D039B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3347A1AB6546F0A3977529B8F199DC41;
+			remoteInfo = PromisesObjC;
+		};
 		2AE0B40925A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -50,13 +107,6 @@
 			remoteGlobalIDString = 92000153CD73F7FC2DBAB4AB708269F3;
 			remoteInfo = FirebaseFirestore;
 		};
-		2AE0B41125A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2DA0D814DFCB860D31D7BCD63D795858;
-			remoteInfo = FirebaseInstanceID;
-		};
 		2AE0B41325A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -70,13 +120,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1911113E0FBF13CFF9132E5FF7685228;
 			remoteInfo = "gRPC-C++";
-		};
-		2AE0B41725A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62D4710845EAA3F7EFA2A2E7AF7B457C;
-			remoteInfo = "gRPC-C++-gRPCCertificates";
 		};
 		2AE0B41925A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -111,14 +154,7 @@
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = ADE9E9F3AB08BE55A7B5AA06719284D5;
-			remoteInfo = "Pods-CustomLoginDemo";
-		};
-		2AE0B42325A7E14B00FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C2105C94812B6214B154F54DCEDB72AC;
-			remoteInfo = Protobuf;
+			remoteInfo = "Pods-aerie";
 		};
 		2AE0B43E25A7E15800FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -148,13 +184,6 @@
 			remoteGlobalIDString = 6AE4A3D573DED275B034E20506596C62;
 			remoteInfo = FirebaseAuth;
 		};
-		2AE0B44625A7E15800FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EC0F2618965C875A96BFDBEE5D9734C;
-			remoteInfo = FirebaseAuthInterop;
-		};
 		2AE0B44825A7E15800FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -168,13 +197,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DBA2B63E3A5FE83FE89E731664C9269F;
 			remoteInfo = FirebaseFirestore;
-		};
-		2AE0B44C25A7E15800FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9E25537BF40D1A3B30CF43FD3E6ACD94;
-			remoteInfo = FirebaseInstanceID;
 		};
 		2AE0B44E25A7E15800FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -201,15 +223,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C4B2F4E0424A8D083B00D340DC52FCB7;
-			remoteInfo = "Pods-CustomLoginDemo";
-		};
-		2AE0B45625A7E15800FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 470FE31978DC918618A329D8B55C85FF;
-			remoteInfo = Protobuf;
+			remoteGlobalIDString = B6BA94BA1142A83A9AFF064BF92773CB;
+			remoteInfo = "Pods-aerie";
 		};
 		2AE0B45825A7E15800FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -217,13 +232,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1C5E43B0A9555E7C2E43A6D7C8A23CF6;
 			remoteInfo = "gRPC-C++";
-		};
-		2AE0B45A25A7E15800FF1F15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3989600003BBF317B944EB04C25BBADE;
-			remoteInfo = "gRPC-C++-gRPCCertificates";
 		};
 		2AE0B45C25A7E15800FF1F15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -249,17 +257,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		266E92BF52F2752B81465D0D /* Pods-CustomLoginDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomLoginDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo.release.xcconfig"; sourceTree = "<group>"; };
+		266E92BF52F2752B81465D0D /* Pods-aerie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aerie.release.xcconfig"; path = "Target Support Files/Pods-aerie/Pods-aerie.release.xcconfig"; sourceTree = "<group>"; };
+		2A29F66225A7F01300D039B8 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
+		2A29F6EB25A81CC200D039B8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2AE0B3E525A7E14700FF1F15 /* GoogleAppMeasurement */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleAppMeasurement; path = Pods/GoogleAppMeasurement; sourceTree = "<group>"; };
 		2AE0B3E625A7E14700FF1F15 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Headers; path = Pods/Headers; sourceTree = "<group>"; };
 		2AE0B3E725A7E14800FF1F15 /* leveldb-library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "leveldb-library"; path = "Pods/leveldb-library"; sourceTree = "<group>"; };
 		2AE0B3E825A7E14800FF1F15 /* BoringSSL-GRPC */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "BoringSSL-GRPC"; path = "Pods/BoringSSL-GRPC"; sourceTree = "<group>"; };
 		2AE0B3E925A7E14800FF1F15 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; name = Manifest.lock; path = Pods/Manifest.lock; sourceTree = "<group>"; };
-		2AE0B3EA25A7E14800FF1F15 /* FirebaseInstanceID */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseInstanceID; path = Pods/FirebaseInstanceID; sourceTree = "<group>"; };
-		2AE0B3EB25A7E14800FF1F15 /* FirebaseAuthInterop */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseAuthInterop; path = Pods/FirebaseAuthInterop; sourceTree = "<group>"; };
 		2AE0B3EC25A7E14800FF1F15 /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firebase; path = Pods/Firebase; sourceTree = "<group>"; };
 		2AE0B3ED25A7E14800FF1F15 /* gRPC-Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "gRPC-Core"; path = "Pods/gRPC-Core"; sourceTree = "<group>"; };
-		2AE0B3EE25A7E14900FF1F15 /* Protobuf */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Protobuf; path = Pods/Protobuf; sourceTree = "<group>"; };
 		2AE0B3EF25A7E14900FF1F15 /* FirebaseAuth */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseAuth; path = Pods/FirebaseAuth; sourceTree = "<group>"; };
 		2AE0B3F025A7E14900FF1F15 /* GoogleUtilities */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleUtilities; path = Pods/GoogleUtilities; sourceTree = "<group>"; };
 		2AE0B3F125A7E14900FF1F15 /* gRPC-C++ */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "gRPC-C++"; path = "Pods/gRPC-C++"; sourceTree = "<group>"; };
@@ -273,7 +280,7 @@
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
 		2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		8314D42F22E644CC001D044A /* CustomLoginDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomLoginDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8314D43222E644CC001D044A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8314D43422E644CC001D044A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8314D43622E644CC001D044A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -282,10 +289,9 @@
 		8314D43E22E644CD001D044A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8314D44022E644CD001D044A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8314D44622E64515001D044A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		8314D44822E64520001D044A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8314D44A22E6452C001D044A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8397D20D22E64A7500CB78DD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		ACB20647BFB76A962B3E918B /* Pods-CustomLoginDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomLoginDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		94916B736F779DD7F1B96B6A /* Pods_aerie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aerie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB20647BFB76A962B3E918B /* Pods-aerie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aerie.debug.xcconfig"; path = "Target Support Files/Pods-aerie/Pods-aerie.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B63F7875F51E0FB9AE9277D3 /* Pods_aerie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,29 +309,49 @@
 		256061AB78805D7F9BD3C3ED /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ACB20647BFB76A962B3E918B /* Pods-CustomLoginDemo.debug.xcconfig */,
-				266E92BF52F2752B81465D0D /* Pods-CustomLoginDemo.release.xcconfig */,
+				ACB20647BFB76A962B3E918B /* Pods-aerie.debug.xcconfig */,
+				266E92BF52F2752B81465D0D /* Pods-aerie.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2A29F66925A7FAA600D039B8 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				2A29F6EB25A81CC200D039B8 /* Model.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		2A29F66A25A7FAB400D039B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2AE0B3F525A7E14A00FF1F15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				2A29F6BA25A807B600D039B8 /* absl.framework */,
+				2A29F6BC25A807B600D039B8 /* AppAuth.framework */,
 				2AE0B40A25A7E14B00FF1F15 /* openssl_grpc.framework */,
 				2AE0B40C25A7E14B00FF1F15 /* FirebaseAuth.framework */,
 				2AE0B40E25A7E14B00FF1F15 /* FirebaseCore.framework */,
+				2A29F6BE25A807B600D039B8 /* FirebaseCoreDiagnostics.framework */,
 				2AE0B41025A7E14B00FF1F15 /* FirebaseFirestore.framework */,
-				2AE0B41225A7E14B00FF1F15 /* FirebaseInstanceID.framework */,
+				2A29F6C025A807B600D039B8 /* FirebaseInstallations.framework */,
+				2A29F6C225A807B600D039B8 /* GoogleDataTransport.framework */,
 				2AE0B41425A7E14B00FF1F15 /* GoogleUtilities.framework */,
 				2AE0B41625A7E14B00FF1F15 /* grpcpp.framework */,
-				2AE0B41825A7E14B00FF1F15 /* gRPCCertificates.bundle */,
+				2A29F6C425A807B600D039B8 /* gRPCCertificates-Cpp.bundle */,
 				2AE0B41A25A7E14B00FF1F15 /* grpc.framework */,
+				2A29F6C625A807B600D039B8 /* GTMAppAuth.framework */,
 				2AE0B41C25A7E14B00FF1F15 /* GTMSessionFetcher.framework */,
 				2AE0B41E25A7E14B00FF1F15 /* leveldb.framework */,
 				2AE0B42025A7E14B00FF1F15 /* nanopb.framework */,
-				2AE0B42225A7E14B00FF1F15 /* Pods_CustomLoginDemo.framework */,
-				2AE0B42425A7E14B00FF1F15 /* Protobuf.framework */,
+				2AE0B42225A7E14B00FF1F15 /* Pods_aerie.framework */,
+				2A29F6C825A807B600D039B8 /* FBLPromises.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,10 +363,8 @@
 				2AE0B3EC25A7E14800FF1F15 /* Firebase */,
 				2AE0B42625A7E14B00FF1F15 /* FirebaseAnalytics */,
 				2AE0B3EF25A7E14900FF1F15 /* FirebaseAuth */,
-				2AE0B3EB25A7E14800FF1F15 /* FirebaseAuthInterop */,
 				2AE0B42725A7E14B00FF1F15 /* FirebaseCore */,
 				2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */,
-				2AE0B3EA25A7E14800FF1F15 /* FirebaseInstanceID */,
 				2AE0B3E525A7E14700FF1F15 /* GoogleAppMeasurement */,
 				2AE0B3F025A7E14900FF1F15 /* GoogleUtilities */,
 				2AE0B3F125A7E14900FF1F15 /* gRPC-C++ */,
@@ -351,8 +376,8 @@
 				2AE0B3E925A7E14800FF1F15 /* Manifest.lock */,
 				2AE0B3F325A7E14900FF1F15 /* nanopb */,
 				2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */,
-				2AE0B3EE25A7E14900FF1F15 /* Protobuf */,
 				2AE0B42525A7E14B00FF1F15 /* Target Support Files */,
+				94916B736F779DD7F1B96B6A /* Pods_aerie.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -370,7 +395,7 @@
 		8314D43022E644CC001D044A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8314D42F22E644CC001D044A /* CustomLoginDemo.app */,
+				8314D42F22E644CC001D044A /* aerie.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,6 +403,8 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
+				2A29F66A25A7FAB400D039B8 /* Model */,
+				2A29F66925A7FAA600D039B8 /* Database */,
 				2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */,
 				8314D43222E644CC001D044A /* AppDelegate.swift */,
 				8314D43422E644CC001D044A /* SceneDelegate.swift */,
@@ -395,7 +422,6 @@
 			isa = PBXGroup;
 			children = (
 				8314D44622E64515001D044A /* SignUpViewController.swift */,
-				8314D44822E64520001D044A /* LoginViewController.swift */,
 				8314D44A22E6452C001D044A /* HomeViewController.swift */,
 				8314D43622E644CC001D044A /* ViewController.swift */,
 			);
@@ -405,8 +431,8 @@
 		8397D20F22E64A7D00CB78DD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8397D20D22E64A7500CB78DD /* Utilities.swift */,
 				830C3D8E22E7523E001FA4E7 /* Constants.swift */,
+				2A29F66225A7F01300D039B8 /* Styler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -414,15 +440,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8314D42E22E644CC001D044A /* CustomLoginDemo */ = {
+		8314D42E22E644CC001D044A /* aerie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8314D44322E644CD001D044A /* Build configuration list for PBXNativeTarget "CustomLoginDemo" */;
+			buildConfigurationList = 8314D44322E644CD001D044A /* Build configuration list for PBXNativeTarget "aerie" */;
 			buildPhases = (
 				96261C93D747DB12A9B86BBA /* [CP] Check Pods Manifest.lock */,
 				8314D42B22E644CC001D044A /* Sources */,
 				8314D42C22E644CC001D044A /* Frameworks */,
 				8314D42D22E644CC001D044A /* Resources */,
 				7D48E628917999722CE92F9E /* [CP] Embed Pods Frameworks */,
+				0926ACEAD9A9DC1AF737BE4D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -431,24 +458,20 @@
 				2AE0B44125A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44325A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44525A7E15800FF1F15 /* PBXTargetDependency */,
-				2AE0B44725A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44925A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44B25A7E15800FF1F15 /* PBXTargetDependency */,
-				2AE0B44D25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45125A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45325A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45525A7E15800FF1F15 /* PBXTargetDependency */,
-				2AE0B45725A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45925A7E15800FF1F15 /* PBXTargetDependency */,
-				2AE0B45B25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45D25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B46125A7E15800FF1F15 /* PBXTargetDependency */,
 			);
-			name = CustomLoginDemo;
-			productName = CustomLoginDemo;
-			productReference = 8314D42F22E644CC001D044A /* CustomLoginDemo.app */;
+			name = aerie;
+			productName = aerie;
+			productReference = 8314D42F22E644CC001D044A /* aerie.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -485,12 +508,68 @@
 			);
 			projectRoot = "";
 			targets = (
-				8314D42E22E644CC001D044A /* CustomLoginDemo */,
+				8314D42E22E644CC001D044A /* aerie */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2A29F6BA25A807B600D039B8 /* absl.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = absl.framework;
+			remoteRef = 2A29F6B925A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6BC25A807B600D039B8 /* AppAuth.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AppAuth.framework;
+			remoteRef = 2A29F6BB25A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6BE25A807B600D039B8 /* FirebaseCoreDiagnostics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FirebaseCoreDiagnostics.framework;
+			remoteRef = 2A29F6BD25A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6C025A807B600D039B8 /* FirebaseInstallations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FirebaseInstallations.framework;
+			remoteRef = 2A29F6BF25A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6C225A807B600D039B8 /* GoogleDataTransport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GoogleDataTransport.framework;
+			remoteRef = 2A29F6C125A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6C425A807B600D039B8 /* gRPCCertificates-Cpp.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "gRPCCertificates-Cpp.bundle";
+			remoteRef = 2A29F6C325A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6C625A807B600D039B8 /* GTMAppAuth.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GTMAppAuth.framework;
+			remoteRef = 2A29F6C525A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A29F6C825A807B600D039B8 /* FBLPromises.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBLPromises.framework;
+			remoteRef = 2A29F6C725A807B600D039B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2AE0B40A25A7E14B00FF1F15 /* openssl_grpc.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -519,13 +598,6 @@
 			remoteRef = 2AE0B40F25A7E14B00FF1F15 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2AE0B41225A7E14B00FF1F15 /* FirebaseInstanceID.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FirebaseInstanceID.framework;
-			remoteRef = 2AE0B41125A7E14B00FF1F15 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2AE0B41425A7E14B00FF1F15 /* GoogleUtilities.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -538,13 +610,6 @@
 			fileType = wrapper.framework;
 			path = grpcpp.framework;
 			remoteRef = 2AE0B41525A7E14B00FF1F15 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2AE0B41825A7E14B00FF1F15 /* gRPCCertificates.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = gRPCCertificates.bundle;
-			remoteRef = 2AE0B41725A7E14B00FF1F15 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2AE0B41A25A7E14B00FF1F15 /* grpc.framework */ = {
@@ -575,18 +640,11 @@
 			remoteRef = 2AE0B41F25A7E14B00FF1F15 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2AE0B42225A7E14B00FF1F15 /* Pods_CustomLoginDemo.framework */ = {
+		2AE0B42225A7E14B00FF1F15 /* Pods_aerie.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = Pods_CustomLoginDemo.framework;
+			path = Pods_aerie.framework;
 			remoteRef = 2AE0B42125A7E14B00FF1F15 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2AE0B42425A7E14B00FF1F15 /* Protobuf.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Protobuf.framework;
-			remoteRef = 2AE0B42325A7E14B00FF1F15 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -606,21 +664,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0926ACEAD9A9DC1AF737BE4D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7D48E628917999722CE92F9E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aerie/Pods-aerie-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96261C93D747DB12A9B86BBA /* [CP] Check Pods Manifest.lock */ = {
@@ -638,7 +713,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CustomLoginDemo-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-aerie-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -652,11 +727,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A29F66325A7F01300D039B8 /* Styler.swift in Sources */,
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
-				8397D20E22E64A7500CB78DD /* Utilities.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
-				8314D44922E64520001D044A /* LoginViewController.swift in Sources */,
+				2A29F6EC25A81CC200D039B8 /* Model.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
@@ -686,11 +761,6 @@
 			name = FirebaseAuth;
 			targetProxy = 2AE0B44425A7E15800FF1F15 /* PBXContainerItemProxy */;
 		};
-		2AE0B44725A7E15800FF1F15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseAuthInterop;
-			targetProxy = 2AE0B44625A7E15800FF1F15 /* PBXContainerItemProxy */;
-		};
 		2AE0B44925A7E15800FF1F15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseCore;
@@ -700,11 +770,6 @@
 			isa = PBXTargetDependency;
 			name = FirebaseFirestore;
 			targetProxy = 2AE0B44A25A7E15800FF1F15 /* PBXContainerItemProxy */;
-		};
-		2AE0B44D25A7E15800FF1F15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseInstanceID;
-			targetProxy = 2AE0B44C25A7E15800FF1F15 /* PBXContainerItemProxy */;
 		};
 		2AE0B44F25A7E15800FF1F15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -723,23 +788,13 @@
 		};
 		2AE0B45525A7E15800FF1F15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-CustomLoginDemo";
+			name = "Pods-aerie";
 			targetProxy = 2AE0B45425A7E15800FF1F15 /* PBXContainerItemProxy */;
-		};
-		2AE0B45725A7E15800FF1F15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Protobuf;
-			targetProxy = 2AE0B45625A7E15800FF1F15 /* PBXContainerItemProxy */;
 		};
 		2AE0B45925A7E15800FF1F15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "gRPC-C++";
 			targetProxy = 2AE0B45825A7E15800FF1F15 /* PBXContainerItemProxy */;
-		};
-		2AE0B45B25A7E15800FF1F15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "gRPC-C++-gRPCCertificates";
-			targetProxy = 2AE0B45A25A7E15800FF1F15 /* PBXContainerItemProxy */;
 		};
 		2AE0B45D25A7E15800FF1F15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -894,7 +949,7 @@
 		};
 		8314D44422E644CD001D044A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACB20647BFB76A962B3E918B /* Pods-CustomLoginDemo.debug.xcconfig */;
+			baseConfigurationReference = ACB20647BFB76A962B3E918B /* Pods-aerie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -914,7 +969,7 @@
 		};
 		8314D44522E644CD001D044A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 266E92BF52F2752B81465D0D /* Pods-CustomLoginDemo.release.xcconfig */;
+			baseConfigurationReference = 266E92BF52F2752B81465D0D /* Pods-aerie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -944,7 +999,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8314D44322E644CD001D044A /* Build configuration list for PBXNativeTarget "CustomLoginDemo" */ = {
+		8314D44322E644CD001D044A /* Build configuration list for PBXNativeTarget "aerie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8314D44422E644CD001D044A /* Debug */,

@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  aerie
 //
-//  Created by Christopher Ching on 2019-07-22.
-//  Copyright © 2019 Christopher Ching. All rights reserved.
+//  Created by Gitjillian on 2021/1/6.
+//  Copyright Yejing Li. All rights reserved.
 //
 
 import UIKit
