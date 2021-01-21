@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var passwordConfirm: UITextField!
     
+    public var userField = Constants.userFields.self
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +47,7 @@ class SignUpViewController: UIViewController {
         Styler.styleTextField(emailTextField, Constants.Colors.white.cgColor)
         Styler.styleTextField(passwordTextField, Constants.Colors.white.cgColor)
         Styler.styleTextField(passwordConfirm, Constants.Colors.white.cgColor)
-        Styler.styleFilledButton(signUpButton, Constants.Colors.white, nil,nil,0.2)
+        Styler.styleFilledButton(signUpButton, Constants.Colors.white)
     }
     
     // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
@@ -107,18 +108,16 @@ class SignUpViewController: UIViewController {
                 else {
                     
                     // User was created successfully, now store the first name and last name
-                    let db = Firestore.firestore()
                     
-                    db.collection("users").addDocument(data: ["firstname":firstName, "lastname":lastName, "uid": result!.user.uid ]) { (error) in
-                    print("user id:", result!.user.uid)
-                        if error != nil {
-                            // Show error message
-                            self.showError(Constants.errorMessages.errorToSaveDate)
-                        }
-                    }
-                    // Transition to the home screen
-                    self.SwitchToHomePage()
-                }
+                    let dbOperation = DBOperation()
+                    
+                    
+                    let result = dbOperation.addSetUserDocument(userEmail: email, data: [self.userField.firstName:firstName, self.userField.lastName:lastName, self.userField.emailField: email ])
+                    
+                    if !result{
+                        self.showError(Constants.errorMessages.errorToSaveDate)                    }}
+                    self.SwitchToHomePage(email:email)
+                    
                 
             }
         }
@@ -129,12 +128,13 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-    func SwitchToHomePage() {
+    func SwitchToHomePage(email: String) {
         
-        let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController{
+            homeViewController.email = email
         self.view.window?.rootViewController = homeViewController
         self.view.window?.makeKeyAndVisible()
-        
+        }
     }
     
 }

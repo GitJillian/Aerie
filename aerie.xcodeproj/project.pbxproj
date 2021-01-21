@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2A29F66325A7F01300D039B8 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F66225A7F01300D039B8 /* Styler.swift */; };
-		2A29F6EC25A81CC200D039B8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F6EB25A81CC200D039B8 /* Model.swift */; };
-		2AE0B4A825A7EB2000FF1F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */; };
+		2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F6EB25A81CC200D039B8 /* Filter.swift */; };
+		2A36469C25AFDB6100AB3C3B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469B25AFDB6100AB3C3B /* User.swift */; };
+		2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469E25AFDB8900AB3C3B /* Post.swift */; };
+		2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3646A525AFDBE100AB3C3B /* DBOperation.swift */; };
+		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
+		2AACE2F225B89D1C006392F1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE2F125B89D1C006392F1 /* ListView.swift */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
 		8314D43322E644CC001D044A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43222E644CC001D044A /* AppDelegate.swift */; };
 		8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43422E644CC001D044A /* SceneDelegate.swift */; };
@@ -259,7 +263,12 @@
 /* Begin PBXFileReference section */
 		266E92BF52F2752B81465D0D /* Pods-aerie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aerie.release.xcconfig"; path = "Target Support Files/Pods-aerie/Pods-aerie.release.xcconfig"; sourceTree = "<group>"; };
 		2A29F66225A7F01300D039B8 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
-		2A29F6EB25A81CC200D039B8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2A29F6EB25A81CC200D039B8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		2A36469B25AFDB6100AB3C3B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2A36469E25AFDB8900AB3C3B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		2A3646A525AFDBE100AB3C3B /* DBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBOperation.swift; sourceTree = "<group>"; };
+		2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2AACE2F125B89D1C006392F1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		2AE0B3E525A7E14700FF1F15 /* GoogleAppMeasurement */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleAppMeasurement; path = Pods/GoogleAppMeasurement; sourceTree = "<group>"; };
 		2AE0B3E625A7E14700FF1F15 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Headers; path = Pods/Headers; sourceTree = "<group>"; };
 		2AE0B3E725A7E14800FF1F15 /* leveldb-library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "leveldb-library"; path = "Pods/leveldb-library"; sourceTree = "<group>"; };
@@ -278,7 +287,6 @@
 		2AE0B42725A7E14B00FF1F15 /* FirebaseCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseCore; path = Pods/FirebaseCore; sourceTree = "<group>"; };
 		2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseFirestore; path = Pods/FirebaseFirestore; sourceTree = "<group>"; };
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
-		2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8314D43222E644CC001D044A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -318,7 +326,8 @@
 		2A29F66925A7FAA600D039B8 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				2A29F6EB25A81CC200D039B8 /* Model.swift */,
+				2A29F6EB25A81CC200D039B8 /* Filter.swift */,
+				2A3646A525AFDBE100AB3C3B /* DBOperation.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -326,8 +335,18 @@
 		2A29F66A25A7FAB400D039B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2A36469B25AFDB6100AB3C3B /* User.swift */,
+				2A36469E25AFDB8900AB3C3B /* Post.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2AACE2F025B89D0D006392F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2AACE2F125B89D1C006392F1 /* ListView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2AE0B3F525A7E14A00FF1F15 /* Products */ = {
@@ -403,9 +422,10 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
+				2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */,
+				2AACE2F025B89D0D006392F1 /* View */,
 				2A29F66A25A7FAB400D039B8 /* Model */,
 				2A29F66925A7FAA600D039B8 /* Database */,
-				2AE0B4A725A7EB2000FF1F15 /* GoogleService-Info.plist */,
 				8314D43222E644CC001D044A /* AppDelegate.swift */,
 				8314D43422E644CC001D044A /* SceneDelegate.swift */,
 				8397D20F22E64A7D00CB78DD /* Helpers */,
@@ -655,7 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8314D43F22E644CD001D044A /* LaunchScreen.storyboard in Resources */,
-				2AE0B4A825A7EB2000FF1F15 /* GoogleService-Info.plist in Resources */,
+				2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */,
 				8314D43C22E644CD001D044A /* Assets.xcassets in Resources */,
 				8314D43A22E644CC001D044A /* Main.storyboard in Resources */,
 			);
@@ -731,10 +751,14 @@
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
-				2A29F6EC25A81CC200D039B8 /* Model.swift in Sources */,
+				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
+				2A36469C25AFDB6100AB3C3B /* User.swift in Sources */,
+				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
+				2AACE2F225B89D1C006392F1 /* ListView.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
+				2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,7 +984,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jillian0810.aerie;
+				PRODUCT_BUNDLE_IDENTIFIER = com.honor.aerie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -980,7 +1004,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jillian0810.aerie;
+				PRODUCT_BUNDLE_IDENTIFIER = com.honor.aerie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

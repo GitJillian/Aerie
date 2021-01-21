@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // enable google sign in and firebase sign in
-        GIDSignIn.sharedInstance().clientID = "965234263248-56qb3mkkg80fup190icbtl37ru8uc8ga.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().clientID =
+            "1084848035799-rjlg6su5nc5505mlc6uk3jlbcepkiqlp.apps.googleusercontent.com"
         FirebaseApp.configure()
         return true
     }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>70170097054-ndqp4kiadenvb81p6diqap2pde6bc916.apps.googleusercontent.com</string>
+	<string>1084848035799-rjlg6su5nc5505mlc6uk3jlbcepkiqlp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.70170097054-ndqp4kiadenvb81p6diqap2pde6bc916</string>
+	<string>com.googleusercontent.apps.1084848035799-rjlg6su5nc5505mlc6uk3jlbcepkiqlp</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB_alHsJM24M0KodIYPyZhoGIlGu1lgfhQ</string>
+	<string>AIzaSyDI1j7awo0_78K2IQh7IqVVcHwU0VpTn8Y</string>
 	<key>GCM_SENDER_ID</key>
-	<string>70170097054</string>
+	<string>1084848035799</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.codewithchris.CustomLoginDemo</string>
+	<string>com.honor.aerie</string>
 	<key>PROJECT_ID</key>
-	<string>customlogindemo-adaca</string>
+	<string>aerie-ios</string>
 	<key>STORAGE_BUCKET</key>
-	<string>customlogindemo-adaca.appspot.com</string>
+	<string>aerie-ios.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:70170097054:ios:7b89feb17f150589</string>
-	<key>DATABASE_URL</key>
-	<string>https://customlogindemo-adaca.firebaseio.com</string>
+	<string>1:1084848035799:ios:a883feee540a8c5c36dd92</string>
 </dict>
 </plist>

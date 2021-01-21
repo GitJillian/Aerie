@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import Firebase
+
 
 class ViewController: UIViewController, GIDSignInDelegate{
     
@@ -24,9 +26,12 @@ class ViewController: UIViewController, GIDSignInDelegate{
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    public var userField = Constants.userFields.self
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         init_interface()
+        //attaching sign in feature to GoogleSignIn button
         googleButton.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
     }
     
@@ -40,23 +45,27 @@ class ViewController: UIViewController, GIDSignInDelegate{
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
-            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                print("The user has not signed in before or they have since signed out.")
-            } else {
-                print("\(error.localizedDescription)")
-            }
             return
+        }
+        
+       
+        let dbOperation = DBOperation()
+        guard let currentEmail = user.profile.email else{return}
+        
+        let addResult = dbOperation.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstName: user.profile.givenName ?? "", userField.lastName: user.profile.familyName ?? ""])
+             
+        if !addResult{
+                return
             }
         // once the log in is successful, would switch to home view
-        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
-        }
+        self.switchToHome(email:currentEmail)
+    }
+
+    
     
     // When the Google Sign in Button is clicked, will direct to Google Log in interface
     @objc func signinUserUsingGoogle(_ sender: UIButton) {
@@ -79,18 +88,22 @@ class ViewController: UIViewController, GIDSignInDelegate{
             
             if error != nil {
                 // Couldn't sign in
-                self.errorLabel.textColor = Constants.Colors.black
+                self.errorLabel.textColor = Constants.Colors.white
                 self.errorLabel.text = Constants.errorMessages.loginError
                 self.errorLabel.alpha = 1
             }
             else {
                 
-                let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                self.switchToHome(email: email)
             }
         }
+    }
+    
+    func switchToHome(email: String){
+        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        
+        self.view.window?.rootViewController = homeViewController
+        self.view.window?.makeKeyAndVisible()
     }
 }
     

@@ -20,10 +20,10 @@ struct Constants {
         static let borderColor = UIColor.white.cgColor
         static let black       = UIColor.black
         static let white       = UIColor.white
-        static let transparent:UIColor = .clear
         static let grassGreen  = UIColor.init(red: 0.22, green: 0.77, blue: 0.61, alpha: 1.00)
         static let skyBlue     = UIColor.init(red: 0.27, green: 0.76, blue: 0.95, alpha: 1.00)
         static let tiffany     = UIColor.init(red: 0.40, green: 0.80, blue: 0.80, alpha: 1.00)
+        static let transparent:UIColor = .clear
     }
     
     struct Images{
@@ -38,10 +38,8 @@ struct Constants {
     }
     
     struct BottomLine{
-        
-        static var verticalHeight = CGFloat(2.5)
         static var absoluteX = CGFloat(0)
-        
+        static var verticalHeight = CGFloat(3.5)
     }
     
     struct Texts{
@@ -49,12 +47,30 @@ struct Constants {
     }
     
     struct errorMessages{
-        
-        static var passwordMismatch = "Please make sure your password is at least 8 characters, contains a special character and a number."
-        static var passwordNotEqual = "Your passwords are not the same. Please re-enter and try again."
+        static var loginError = "Login error."
         static var emptyField = "Please fill all fields."
+        static var errorToSaveDate   = "Error saving user data"
+        static var passwordMismatch  = "Password should be at least 8 characters, contains a special character and a number."
+        static var passwordNotEqual  = "Your passwords are not the same. "
         static var failureCreateUser = "Failed to create user."
-        static var errorToSaveDate = "Error saving user data"
-        static var loginError = "Login error. Please re-enter email and password!"
+    }
+    
+    struct dbNames{
+        static var userDB = "users"
+        static var postDB = "posts"
+    }
+    
+    struct userFields{
+        static var age         = "age"
+        static var gender      = "gender"
+        static var postings    = "postings"
+        static var emailField  = "email"
+        static var firstName   = "firstname"
+        static var lastName    = "lastname"
+        static var petFriendly = "petFriendly"
+        static var smokeOrNot  = "smokeOrNot"
+        static var expectedRentUpper = "expectedRentUpper"
+        static var expectedRentLower = "expectedRentLower"
+        static var expectedLocation  = "expectedLocation"
     }
 }

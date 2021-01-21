@@ -6,12 +6,16 @@
 //  Copyright Yejing Li. All rights reserved.
 
 import UIKit
+import FirebaseAuth
+import Firebase
+import SwiftUI
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UITabBarController {
+    var userView: ListView!
+    var email:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        userView.onAppear()
     }
+    
 }
