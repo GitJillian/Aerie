@@ -65,12 +65,13 @@ struct Constants {
         static var gender      = "gender"
         static var postings    = "postings"
         static var emailField  = "email"
-        static var firstName   = "firstname"
-        static var lastName    = "lastname"
+        static var firstname   = "firstname"
+        static var lastname    = "lastname"
         static var petFriendly = "petFriendly"
         static var smokeOrNot  = "smokeOrNot"
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"
+        static var isProfileUploaed = "isProfileUploaded"
     }
 }

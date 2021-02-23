@@ -53,10 +53,10 @@ class ViewController: UIViewController, GIDSignInDelegate{
         }
         
        
-        let dbOperation = DBOperation()
+        let userManagement = UserOperation()
         guard let currentEmail = user.profile.email else{return}
         
-        let addResult = dbOperation.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstName: user.profile.givenName ?? "", userField.lastName: user.profile.familyName ?? ""])
+        let addResult = userManagement.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? ""])
              
         if !addResult{
                 return
@@ -100,11 +100,18 @@ class ViewController: UIViewController, GIDSignInDelegate{
     }
     
     func switchToHome(email: String){
-        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
         
+        if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
+        homeViewController.email = email
         self.view.window?.rootViewController = homeViewController
         self.view.window?.makeKeyAndVisible()
-    }
-}
+        
+        }
+       /*let homeVC = HomeViewController(nibName: Constants.Storyboard.homeViewController, bundle: nil)
+            homeVC.email = email
+
+            navigationController?.pushViewController(homeVC, animated: true)
+    }*/
+    }}
     
 

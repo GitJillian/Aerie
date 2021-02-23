@@ -9,13 +9,19 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import SwiftUI
-
+import SideMenu
 class HomeViewController: UITabBarController {
-    var userView: ListView!
-    var email:String!
+    
+    var email:String = ""
+    var userName:String = ""
+    private var UserViewControl: UserVC!
+    private var PostViewControl: PostVC!
+    private var ChatViewControl: ChatVC!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        userView.onAppear()
+        self.UserViewControl = UserVC()
+        self.PostViewControl = PostVC()
+        self.ChatViewControl = ChatVC()
     }
-    
 }

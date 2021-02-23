@@ -109,10 +109,10 @@ class SignUpViewController: UIViewController {
                     
                     // User was created successfully, now store the first name and last name
                     
-                    let dbOperation = DBOperation()
+                    let userManagement = UserOperation()
                     
                     
-                    let result = dbOperation.addSetUserDocument(userEmail: email, data: [self.userField.firstName:firstName, self.userField.lastName:lastName, self.userField.emailField: email ])
+                    let result = userManagement.addSetUserDocument(userEmail: email, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email ])
                     
                     if !result{
                         self.showError(Constants.errorMessages.errorToSaveDate)                    }}

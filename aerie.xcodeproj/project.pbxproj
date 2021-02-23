@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		2A29F66325A7F01300D039B8 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F66225A7F01300D039B8 /* Styler.swift */; };
 		2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A29F6EB25A81CC200D039B8 /* Filter.swift */; };
-		2A36469C25AFDB6100AB3C3B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469B25AFDB6100AB3C3B /* User.swift */; };
 		2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469E25AFDB8900AB3C3B /* Post.swift */; };
 		2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3646A525AFDBE100AB3C3B /* DBOperation.swift */; };
 		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
-		2AACE2F225B89D1C006392F1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE2F125B89D1C006392F1 /* ListView.swift */; };
+		320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809925E47AA800FBB40A /* MenuListController.swift */; };
+		320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809F25E4C75300FBB40A /* ProfileViewController.swift */; };
+		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
+		320F80A725E4C94100FBB40A /* OwnPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A625E4C94100FBB40A /* OwnPostViewController.swift */; };
+		3229849725C325B500E31EF9 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849625C325B500E31EF9 /* UserVC.swift */; };
+		3229849A25C3274600E31EF9 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849925C3274600E31EF9 /* PostVC.swift */; };
+		3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849C25C3276B00E31EF9 /* ChatVC.swift */; };
+		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
+		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
 		8314D43322E644CC001D044A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43222E644CC001D044A /* AppDelegate.swift */; };
 		8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43422E644CC001D044A /* SceneDelegate.swift */; };
@@ -23,7 +30,6 @@
 		8314D43F22E644CD001D044A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314D43D22E644CD001D044A /* LaunchScreen.storyboard */; };
 		8314D44722E64515001D044A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D44622E64515001D044A /* SignUpViewController.swift */; };
 		8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D44A22E6452C001D044A /* HomeViewController.swift */; };
-		B63F7875F51E0FB9AE9277D3 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,17 +264,99 @@
 			remoteGlobalIDString = D2B5E7DCCBBFB32341D857D01211A1A3;
 			remoteInfo = nanopb;
 		};
+		320F809C25E47AA900FBB40A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 319D06AA0D1D0BA345459C039040A1ED;
+			remoteInfo = SideMenu;
+		};
+		322984C725C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C642AA10FB29936669CC269F42079C6;
+			remoteInfo = AppAuth;
+		};
+		322984C925C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 620E05868772C10B4920DC7E324F2C87;
+			remoteInfo = FirebaseCoreDiagnostics;
+		};
+		322984CB25C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87803597EB3F20FC46472B85392EC4FD;
+			remoteInfo = FirebaseInstallations;
+		};
+		322984CD25C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8627999EF1D5E93E13DAFF580DA8CDCF;
+			remoteInfo = GTMAppAuth;
+		};
+		322984CF25C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C0371EE948D0357B8EE0E34ABB44BF0;
+			remoteInfo = GoogleDataTransport;
+		};
+		322984D125C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
+			remoteInfo = GoogleMaps;
+		};
+		322984D325C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C1885900810601510E0C632060FAF26;
+			remoteInfo = GooglePlaces;
+		};
+		322984D525C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CAD3534FC55B0333104E5117C0A9A324;
+			remoteInfo = GoogleSignIn;
+		};
+		322984D725C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BBF7206D7FAC92C82A042A99C4A98F8;
+			remoteInfo = PromisesObjC;
+		};
+		322984D925C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 73CDC3D182DB953135F62609681B443D;
+			remoteInfo = abseil;
+		};
+		322984DB25C3419100E31EF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B8CAC3956E59F928387D0C6310E3B37;
+			remoteInfo = "gRPC-C++-gRPCCertificates-Cpp";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		266E92BF52F2752B81465D0D /* Pods-aerie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aerie.release.xcconfig"; path = "Target Support Files/Pods-aerie/Pods-aerie.release.xcconfig"; sourceTree = "<group>"; };
 		2A29F66225A7F01300D039B8 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		2A29F6EB25A81CC200D039B8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		2A36469B25AFDB6100AB3C3B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A36469E25AFDB8900AB3C3B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2A3646A525AFDBE100AB3C3B /* DBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBOperation.swift; sourceTree = "<group>"; };
 		2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2AACE2F125B89D1C006392F1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		2AE0B3E525A7E14700FF1F15 /* GoogleAppMeasurement */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleAppMeasurement; path = Pods/GoogleAppMeasurement; sourceTree = "<group>"; };
 		2AE0B3E625A7E14700FF1F15 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Headers; path = Pods/Headers; sourceTree = "<group>"; };
 		2AE0B3E725A7E14800FF1F15 /* leveldb-library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "leveldb-library"; path = "Pods/leveldb-library"; sourceTree = "<group>"; };
@@ -287,6 +375,14 @@
 		2AE0B42725A7E14B00FF1F15 /* FirebaseCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseCore; path = Pods/FirebaseCore; sourceTree = "<group>"; };
 		2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseFirestore; path = Pods/FirebaseFirestore; sourceTree = "<group>"; };
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
+		320F809925E47AA800FBB40A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
+		320F809F25E4C75300FBB40A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
+		320F80A625E4C94100FBB40A /* OwnPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnPostViewController.swift; sourceTree = "<group>"; };
+		3229849625C325B500E31EF9 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		3229849925C3274600E31EF9 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		3229849C25C3276B00E31EF9 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8314D43222E644CC001D044A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -307,7 +403,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63F7875F51E0FB9AE9277D3 /* Pods_aerie.framework in Frameworks */,
+				56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +424,7 @@
 			children = (
 				2A29F6EB25A81CC200D039B8 /* Filter.swift */,
 				2A3646A525AFDBE100AB3C3B /* DBOperation.swift */,
+				32FBF59F25C2784400F7C55E /* UserOperation.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -335,7 +432,6 @@
 		2A29F66A25A7FAB400D039B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2A36469B25AFDB6100AB3C3B /* User.swift */,
 				2A36469E25AFDB8900AB3C3B /* Post.swift */,
 			);
 			path = Model;
@@ -344,7 +440,6 @@
 		2AACE2F025B89D0D006392F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2AACE2F125B89D1C006392F1 /* ListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +466,7 @@
 				2AE0B42025A7E14B00FF1F15 /* nanopb.framework */,
 				2AE0B42225A7E14B00FF1F15 /* Pods_aerie.framework */,
 				2A29F6C825A807B600D039B8 /* FBLPromises.framework */,
+				320F809D25E47AA900FBB40A /* SideMenu.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -444,6 +540,13 @@
 				8314D44622E64515001D044A /* SignUpViewController.swift */,
 				8314D44A22E6452C001D044A /* HomeViewController.swift */,
 				8314D43622E644CC001D044A /* ViewController.swift */,
+				3229849625C325B500E31EF9 /* UserVC.swift */,
+				3229849925C3274600E31EF9 /* PostVC.swift */,
+				3229849C25C3276B00E31EF9 /* ChatVC.swift */,
+				320F809925E47AA800FBB40A /* MenuListController.swift */,
+				320F809F25E4C75300FBB40A /* ProfileViewController.swift */,
+				320F80A225E4C7C200FBB40A /* SignOutViewController.swift */,
+				320F80A625E4C94100FBB40A /* OwnPostViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -474,17 +577,28 @@
 			buildRules = (
 			);
 			dependencies = (
+				322984C825C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B43F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44125A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44325A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44525A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B44925A7E15800FF1F15 /* PBXTargetDependency */,
+				322984CA25C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B44B25A7E15800FF1F15 /* PBXTargetDependency */,
+				322984CC25C3419100E31EF9 /* PBXTargetDependency */,
+				322984CE25C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B44F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45125A7E15800FF1F15 /* PBXTargetDependency */,
+				322984D025C3419100E31EF9 /* PBXTargetDependency */,
+				322984D225C3419100E31EF9 /* PBXTargetDependency */,
+				322984D425C3419100E31EF9 /* PBXTargetDependency */,
+				322984D625C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B45325A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45525A7E15800FF1F15 /* PBXTargetDependency */,
+				322984D825C3419100E31EF9 /* PBXTargetDependency */,
+				322984DA25C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B45925A7E15800FF1F15 /* PBXTargetDependency */,
+				322984DC25C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B45D25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B46125A7E15800FF1F15 /* PBXTargetDependency */,
@@ -501,7 +615,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Christopher Ching";
 				TargetAttributes = {
 					8314D42E22E644CC001D044A = {
@@ -667,6 +781,13 @@
 			remoteRef = 2AE0B42125A7E14B00FF1F15 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		320F809D25E47AA900FBB40A /* SideMenu.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SideMenu.framework;
+			remoteRef = 320F809C25E47AA900FBB40A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -747,17 +868,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
+				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
 				2A29F66325A7F01300D039B8 /* Styler.swift in Sources */,
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
+				320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
-				2A36469C25AFDB6100AB3C3B /* User.swift in Sources */,
+				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
+				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,
+				320F80A725E4C94100FBB40A /* OwnPostViewController.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
-				2AACE2F225B89D1C006392F1 /* ListView.swift in Sources */,
+				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
+				32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */,
 				2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,6 +962,61 @@
 			name = nanopb;
 			targetProxy = 2AE0B46025A7E15800FF1F15 /* PBXContainerItemProxy */;
 		};
+		322984C825C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppAuth;
+			targetProxy = 322984C725C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984CA25C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseCoreDiagnostics;
+			targetProxy = 322984C925C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984CC25C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseInstallations;
+			targetProxy = 322984CB25C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984CE25C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GTMAppAuth;
+			targetProxy = 322984CD25C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984D025C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleDataTransport;
+			targetProxy = 322984CF25C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984D225C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleMaps;
+			targetProxy = 322984D125C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984D425C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GooglePlaces;
+			targetProxy = 322984D325C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984D625C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleSignIn;
+			targetProxy = 322984D525C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984D825C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PromisesObjC;
+			targetProxy = 322984D725C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984DA25C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = abseil;
+			targetProxy = 322984D925C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
+		322984DC25C3419100E31EF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gRPC-C++-gRPCCertificates-Cpp";
+			targetProxy = 322984DB25C3419100E31EF9 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -883,6 +1065,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -943,6 +1126,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -1,19 +1,14 @@
 //
-//  ListView.swift
+//  SwiftUIView.swift
 //  aerie
 //
-//  Created by 液晶宝宝 on 2021/1/20.
+//  Created by jillianli on 2021/1/28.
 //  Copyright © 2021 Christopher Ching. All rights reserved.
 //
 
-import Foundation
-
 import SwiftUI
 
-struct ListView:View{
-    
-    
-    
+struct SwiftUIView: View {
     @ObservedObject private var model = DBOperation()
     var body : some View{
         NavigationView{
@@ -32,6 +27,6 @@ struct ListView:View{
             .onAppear(){self.model.getAllUsers()}
         }
     }
-    
-    
 }
+
+

@@ -14,4 +14,5 @@ target 'aerie' do
 	pod 'GoogleSignIn'
 	pod 'GoogleMaps', '4.1.0'
 	pod 'GooglePlaces', '4.1.0'
+	pod 'SideMenu'
 end

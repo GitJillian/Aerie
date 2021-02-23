@@ -42,5 +42,8 @@ class Styler {
             UIGraphicsEndImageContext()
             view.backgroundColor = UIColor(patternImage: image)
     }
+    static func setBackgroundWithColor(_ view: UIView, _ color: UIColor){
+        view.backgroundColor = color
+    }
 
 }
