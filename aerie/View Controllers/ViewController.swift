@@ -102,16 +102,16 @@ class ViewController: UIViewController, GIDSignInDelegate{
     func switchToHome(email: String){
         
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-        homeViewController.email = email
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
+            homeViewController.email = email
+            let useroperation = UserOperation()
+            useroperation.getUserName(email: email){(name) in
+                homeViewController.userName = name
+                self.view.window?.rootViewController = homeViewController
+                self.view.window?.makeKeyAndVisible()
+            }
+        
         
         }
-       /*let homeVC = HomeViewController(nibName: Constants.Storyboard.homeViewController, bundle: nil)
-            homeVC.email = email
-
-            navigationController?.pushViewController(homeVC, animated: true)
-    }*/
     }}
     
 

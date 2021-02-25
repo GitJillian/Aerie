@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -238,31 +237,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mos-En-kXD">
-                                <rect key="frame" x="28" y="44" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="didTapMenu" destination="37X-04-mGc" eventType="touchDown" id="Mat-5I-eyT"/>
-                                </connections>
-                            </button>
+                            
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="q3o-ZC-Jib"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2xA-Ty-Mn1">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="SMy-D8-b54">
-                            <imageReference key="image" image="line.horizontal.3.decrease" catalog="system" renderingMode="template"/>
-                            <color key="tintColor" red="0.80285602807998657" green="0.94631797075271606" blue="0.92635810375213623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="NO" id="2xA-Ty-Mn1"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="NameField" destination="XYN-aT-6W0" id="B7v-nz-fwn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9i-3M-po5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5444.9275362318849" y="-621.42857142857144"/>
+            <point key="canvasLocation" x="4474" y="-631"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="NdU-ch-ijc">
@@ -327,9 +315,12 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kg7-zW-EJ2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="9oR-Gp-Ya5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6EA-U1-Ojt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="line.horizontal.3.decrease" catalog="system" id="6EA-U1-Ojt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.96396368741989136" green="0.96905940771102905" blue="0.9088473916053772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -338,7 +329,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIn-UL-DbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4534.7826086956529" y="-621.42857142857144"/>
+            <point key="canvasLocation" x="3606" y="-631"/>
         </scene>
     </scenes>
     <resources>

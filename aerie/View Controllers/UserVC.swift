@@ -14,16 +14,14 @@ import SideMenu
 class UserVC: UIViewController, MenuControllerDelegate{
 
     var users: [User] = []
-    var email:String = ""
-    var userName: String = ""
-    
+    private var email:String!
+    lazy var menuBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "line.horizontal.3.decrease")?.withRenderingMode(.alwaysOriginal),style:.done,target:self,action: #selector(didTapMenu))
     private var menu : SideMenuNavigationController?
     private var profileController = ProfileViewController()
     private var ownPostController = OwnPostViewController()
     private var signoutController = SignOutViewController()
     
     @IBOutlet weak var NameField: UILabel!
-    @IBOutlet weak var image: UIImageView!
     
     // This extends the superclass.
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -38,26 +36,35 @@ class UserVC: UIViewController, MenuControllerDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
-        let userOperation = UserOperation()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        
         let tabBar = self.tabBarController as! HomeViewController
         self.email = tabBar.email
+        self.NameField.text = tabBar.userName
+        
         Styler.setBackgroundWithColor(self.view, Constants.Colors.tiffany)
-        userOperation.getUserName(email: self.email){(name) in
-            self.NameField.text = name
-        }
+        menuBarButtonItem.tintColor = Constants.Colors.white
         let menuList = MenuListController(with:SideMenuItem.allCases)
         menuList.delegate = self
-        menu = SideMenuNavigationController(rootViewController: menuList)
+        self.menu = SideMenuNavigationController(rootViewController: menuList)
         // making menu for the left side on User Home view
-        menu?.leftSide = true
+        self.menu?.leftSide = true
+        menuBarButtonItem.tintColor = Constants.Colors.white
+        //navigationItem.setLeftBarButton(menuBarButtonItem, animated: false)
+        self.menu?.setNavigationBarHidden(true, animated: false)
         
-        //set navigation bar invisible
-        menu?.setNavigationBarHidden(true, animated: false)
-        SideMenuManager.default.leftMenuNavigationController = menu
+        self.navigationItem.setLeftBarButton(menuBarButtonItem, animated: false)
+        SideMenuManager.default.leftMenuNavigationController = self.menu
+        
         SideMenuManager.default.addPanGestureToPresent(toView: self.view)
-        addChildControllers()
-
+        self.addChildControllers()
+        
+        
+            
     }
     
     //setting up all child controllers within side menu and add subviews accordingly
@@ -90,6 +97,7 @@ class UserVC: UIViewController, MenuControllerDelegate{
         present(menu!, animated: true, completion: nil)
         
     }
+    
     
     func didSelectMenuItem(ItemName:SideMenuItem){
         menu?.dismiss(animated: true, completion:nil)
