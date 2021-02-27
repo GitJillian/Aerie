@@ -100,25 +100,32 @@ class UserVC: UIViewController, MenuControllerDelegate{
     
     
     func didSelectMenuItem(ItemName:SideMenuItem){
+        let tabBar = self.tabBarController as! HomeViewController
+        
         menu?.dismiss(animated: true, completion:nil)
             title = ItemName.rawValue
             switch ItemName{
                 case .profile:
+                    
+                    tabBar.tabBar.isHidden = true
                     profileController.view.isHidden = false
                     signoutController.view.isHidden = true
                     ownPostController.view.isHidden = true
                 
                 case .yourPost:
+                    tabBar.tabBar.isHidden = true
                     ownPostController.view.isHidden = false
                     profileController.view.isHidden = true
                     signoutController.view.isHidden = true
                     
                 case .signOut:
+                    tabBar.tabBar.isHidden = true
                     signoutController.view.isHidden = false
                     profileController.view.isHidden = true
                     ownPostController.view.isHidden = true
                     
                 case .back:
+                    tabBar.tabBar.isHidden = false
                     signoutController.view.isHidden = true
                     profileController.view.isHidden = true
                     ownPostController.view.isHidden = true

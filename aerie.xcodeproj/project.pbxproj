@@ -471,6 +471,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3214693C25EAE2E600C8735C /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				320F80A225E4C7C200FBB40A /* SignOutViewController.swift */,
+				320F80A625E4C94100FBB40A /* OwnPostViewController.swift */,
+				320F809F25E4C75300FBB40A /* ProfileViewController.swift */,
+				320F809925E47AA800FBB40A /* MenuListController.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		3214693F25EAE34200C8735C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8314D44A22E6452C001D044A /* HomeViewController.swift */,
+				3229849925C3274600E31EF9 /* PostVC.swift */,
+				3229849625C325B500E31EF9 /* UserVC.swift */,
+				3229849C25C3276B00E31EF9 /* ChatVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		4BB4075EEC3AE105084101BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +540,8 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
+				3214693F25EAE34200C8735C /* ViewControllers */,
+				3214693C25EAE2E600C8735C /* SideMenu */,
 				2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */,
 				2AACE2F025B89D0D006392F1 /* View */,
 				2A29F66A25A7FAB400D039B8 /* Model */,
@@ -525,7 +549,7 @@
 				8314D43222E644CC001D044A /* AppDelegate.swift */,
 				8314D43422E644CC001D044A /* SceneDelegate.swift */,
 				8397D20F22E64A7D00CB78DD /* Helpers */,
-				8314D44C22E64531001D044A /* View Controllers */,
+				8314D44C22E64531001D044A /* Authentiacation */,
 				8314D43822E644CC001D044A /* Main.storyboard */,
 				8314D43B22E644CD001D044A /* Assets.xcassets */,
 				8314D43D22E644CD001D044A /* LaunchScreen.storyboard */,
@@ -534,21 +558,13 @@
 			path = aerie;
 			sourceTree = "<group>";
 		};
-		8314D44C22E64531001D044A /* View Controllers */ = {
+		8314D44C22E64531001D044A /* Authentiacation */ = {
 			isa = PBXGroup;
 			children = (
 				8314D44622E64515001D044A /* SignUpViewController.swift */,
-				8314D44A22E6452C001D044A /* HomeViewController.swift */,
 				8314D43622E644CC001D044A /* ViewController.swift */,
-				3229849625C325B500E31EF9 /* UserVC.swift */,
-				3229849925C3274600E31EF9 /* PostVC.swift */,
-				3229849C25C3276B00E31EF9 /* ChatVC.swift */,
-				320F809925E47AA800FBB40A /* MenuListController.swift */,
-				320F809F25E4C75300FBB40A /* ProfileViewController.swift */,
-				320F80A225E4C7C200FBB40A /* SignOutViewController.swift */,
-				320F80A625E4C94100FBB40A /* OwnPostViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Authentiacation;
 			sourceTree = "<group>";
 		};
 		8397D20F22E64A7D00CB78DD /* Helpers */ = {

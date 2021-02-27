@@ -14,6 +14,7 @@ class HomeViewController: UITabBarController {
     
     var email:String = ""
     var userName:String = ""
+    
     private var UserViewControl: UserVC!
     private var PostViewControl: PostVC!
     private var ChatViewControl: ChatVC!

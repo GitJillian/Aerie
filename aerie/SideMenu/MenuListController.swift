@@ -15,7 +15,7 @@ enum SideMenuItem: String, CaseIterable{
     case profile  = "Profile"
     case yourPost = "Your Post"
     case signOut  = "Sign Out"
-    case back     = "Back"
+    case back     = "Home"
 }
 class MenuListController: UITableViewController{
     
