@@ -14,11 +14,11 @@ import Firebase
 class ViewController: UIViewController, GIDSignInDelegate{
     
     
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpButton : UIButton!
     
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton  : UIButton!
     
-    @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var googleButton : UIButton!
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -30,18 +30,14 @@ class ViewController: UIViewController, GIDSignInDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        init_interface()
-        //attaching sign in feature to GoogleSignIn button
-        googleButton.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
-    }
-    
-    func init_interface() {
-        
-        Styler.setBackgroundWithPic(self.view, Constants.Images.backgroundPic)
+        googleButton!.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
+        self.errorLabel?.alpha = 0
+        Styler.setBackgroundWithPic(self.view!, Constants.Images.backgroundPic)
         Styler.styleFilledButton(signUpButton, .clear, Constants.Colors.borderColor, Constants.Buttons.borderWidth)
         Styler.styleFilledButton(loginButton, UIColor.white)
-        errorLabel.alpha = 0
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,18 +47,19 @@ class ViewController: UIViewController, GIDSignInDelegate{
         if error != nil {
             return
         }
-        
        
         let userManagement = UserOperation()
         guard let currentEmail = user.profile.email else{return}
         
-        let addResult = userManagement.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? ""])
-             
-        if !addResult{
+        userManagement.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? ""]){(result) in
+            if !result{
                 return
             }
-        // once the log in is successful, would switch to home view
-        self.switchToHome(email:currentEmail)
+            // once the log in is successful, would switch to home view
+            
+            self.switchToHome(email:currentEmail)
+            
+        }
     }
 
     
@@ -80,21 +77,21 @@ class ViewController: UIViewController, GIDSignInDelegate{
         
         
         // Create cleaned versions of the text field
-        let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = emailTextField?.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordTextField?.text!.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         // Signing in the user
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        Auth.auth().signIn(withEmail: email ?? "", password: password) { (result, error) in
             
             if error != nil {
                 // Couldn't sign in
-                self.errorLabel.textColor = Constants.Colors.white
-                self.errorLabel.text = Constants.errorMessages.loginError
-                self.errorLabel.alpha = 1
+                self.errorLabel?.textColor = Constants.Colors.white
+                self.errorLabel?.text = Constants.errorMessages.loginError
+                self.errorLabel?.alpha = 1
+                
             }
             else {
-                
-                self.switchToHome(email: email)
+                self.switchToHome(email: email ?? "")
             }
         }
     }
@@ -109,9 +106,8 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
             }
-        
-        
         }
-    }}
+    }
+}
     
 

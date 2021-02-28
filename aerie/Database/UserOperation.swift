@@ -2,7 +2,7 @@
 //  UserOperation.swift
 //  aerie
 //
-//  Created by jillianli on 2021/1/27.
+//  Created by Gitjillian on 2021/1/27.
 //  Copyright © 2021 Yejing Li. All rights reserved.
 //
 
@@ -36,23 +36,24 @@ class UserOperation:DBOperation{
     
     var db_name = Constants.dbNames.userDB
     //check whether a user exists in user collection and return a bool value
-    func isUserExist(documentName: String) -> Bool{
+    func isUserExist(documentName: String, completion:@escaping(Bool)->()){
         let userCollection = super.database.collection(db_name)
-        return super.isDocumentExist(documentName: documentName, collection: userCollection)
+        isDocumentExist(documentName: documentName, collection: userCollection){(result) in
+            completion(result)
+        }
     }
     
     //this is used to set or add Document data with given userEmail as its unique id
-    func addSetUserDocument(userEmail:String, data: Dictionary<String, Any>)->Bool{
+    func addSetUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool)->()){
         let userCollection = super.database.collection(db_name)
-        let addUserResult = super.addSetDocument(documentName: userEmail, data: data, collectionRef: userCollection )
-        return addUserResult
+        addSetDocument(documentName: userEmail, data: data, collectionRef: userCollection ){(result) in
+            completion(result)
+        }
     }
     
     func getUserName(email:String, completion: @escaping(String) -> ()){
-        let userCollection = super.database.collection(db_name)
-        userCollection.document(email).getDocument { (doc, err) in
-            guard let user = doc else{return}
-            let username = user.data()?[self.userFields.firstname] as! String
+        getUserDocument(documentName: email) { (data) in
+            let username = data[self.userFields.firstname] as! String
             completion(username)
         }
     }
@@ -84,8 +85,11 @@ class UserOperation:DBOperation{
             }
         }
     }
-    func getUserDocument( documentName: String ) -> DocumentReference {
+    func getUserDocument( documentName: String, completion:@escaping([String:Any])->()) {
         let userCollection = database.collection(Constants.dbNames.userDB)
-        return getDocument(documentName: documentName, collectionRef: userCollection)
+        getDocument(documentName: documentName, collectionRef: userCollection){(data) in
+            completion(data)
+            
+        }
     }
 }

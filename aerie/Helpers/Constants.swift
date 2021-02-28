@@ -44,6 +44,7 @@ struct Constants {
     
     struct Texts{
         static var signUpTitle = "Sign Up"
+        static var signOutText = "Are you sure you want to sign out?"
     }
     
     struct errorMessages{
@@ -53,6 +54,7 @@ struct Constants {
         static var passwordMismatch  = "Password should be at least 8 characters, contains a special character and a number."
         static var passwordNotEqual  = "Your passwords are not the same. "
         static var failureCreateUser = "Failed to create user."
+        static var failureToSignOut  = "Failed to sign out. Please retry later."
     }
     
     struct dbNames{

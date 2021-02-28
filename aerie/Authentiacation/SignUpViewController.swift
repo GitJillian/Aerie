@@ -112,13 +112,14 @@ class SignUpViewController: UIViewController {
                     let userManagement = UserOperation()
                     
                     
-                    let result = userManagement.addSetUserDocument(userEmail: email, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email ])
-                    
-                    if !result{
-                        self.showError(Constants.errorMessages.errorToSaveDate)                    }}
-                    self.SwitchToHomePage(email:email)
-                    
-                
+                    userManagement.addSetUserDocument(userEmail: email, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email ]){(result) in
+                        if !result{
+                            self.showError(Constants.errorMessages.errorToSaveDate)
+                        }
+        
+                        self.SwitchToHomePage(email:email)
+                    }
+                }
             }
         }
     }

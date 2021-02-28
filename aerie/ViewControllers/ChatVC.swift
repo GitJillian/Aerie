@@ -2,7 +2,7 @@
 //  ChatVc.swift
 //  aerie
 //
-//  Created by jillianli on 2021/1/28.
+//  Created by Gitjillian on 2021/1/28.
 //  Copyright © 2021 Yejing Li. All rights reserved.
 //
 

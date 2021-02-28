@@ -2,7 +2,7 @@
 //  MenuListController.swift
 //  aerie
 //
-//  Created by jillianli on 2021/2/22.
+//  Created by Gitjillian on 2021/2/22.
 //  Copyright © 2021 Yejing Li. All rights reserved.
 //  Controlls Three menu items, including Profile, Setting, Sign Out 
 
@@ -11,13 +11,14 @@ import UIKit
 protocol MenuControllerDelegate{
     func didSelectMenuItem(ItemName:SideMenuItem)
 }
+
+//enumerate items with strings
 enum SideMenuItem: String, CaseIterable{
     case profile  = "Profile"
     case yourPost = "Your Post"
     case signOut  = "Sign Out"
     case back     = "Home"
 }
-
 
 
 class MenuListController: UITableViewController{
@@ -37,10 +38,11 @@ class MenuListController: UITableViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
+    //initializing the view and tableView
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 50,left: 5,bottom: 0,right: 0)
-        tableView.separatorColor = .clear
+        tableView.separatorColor = Constants.Colors.transparent
         tableView.backgroundColor = Constants.Colors.white
     }
     
@@ -48,6 +50,7 @@ class MenuListController: UITableViewController{
         return MenuItems.count
     }
     
+    // setting cells respectively
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell{
         let cellName = MenuItems[indexPath.row].rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
