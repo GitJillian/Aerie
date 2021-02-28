@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-class PostVC: UIViewController{
+class PostVC: BaseVC{
     
     var email:String!
     override func viewDidLoad() {

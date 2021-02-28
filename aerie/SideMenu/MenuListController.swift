@@ -17,6 +17,9 @@ enum SideMenuItem: String, CaseIterable{
     case signOut  = "Sign Out"
     case back     = "Home"
 }
+
+
+
 class MenuListController: UITableViewController{
     
     public var delegate:MenuControllerDelegate?
@@ -26,7 +29,7 @@ class MenuListController: UITableViewController{
     init(with MenuItems:[SideMenuItem]){
         self.MenuItems = MenuItems
         super.init(nibName: nil, bundle: nil)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier:"cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier:"basicStyle")
 
     }
     
@@ -36,6 +39,8 @@ class MenuListController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsets(top: 50,left: 5,bottom: 0,right: 0)
+        tableView.separatorColor = .clear
         tableView.backgroundColor = Constants.Colors.white
     }
     
@@ -44,9 +49,10 @@ class MenuListController: UITableViewController{
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell{
+        let cellName = MenuItems[indexPath.row].rawValue
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = MenuItems[indexPath.row].rawValue
+        cell.textLabel?.text = cellName
         cell.textLabel?.textColor = Constants.Colors.tiffany
         cell.backgroundColor = Constants.Colors.white
         return cell

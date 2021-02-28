@@ -24,5 +24,7 @@ class HomeViewController: UITabBarController {
         self.UserViewControl = UserVC()
         self.PostViewControl = PostVC()
         self.ChatViewControl = ChatVC()
+        
     }
+    
 }

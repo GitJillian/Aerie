@@ -9,7 +9,7 @@
 
 import Foundation
 import SwiftUI
-class ChatVC: UIViewController{
+class ChatVC: BaseVC{
     var email:String!
     override func viewDidLoad() {
         super.viewDidLoad()
