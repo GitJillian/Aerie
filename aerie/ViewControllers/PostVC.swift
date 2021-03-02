@@ -17,7 +17,6 @@ class PostVC: BaseVC{
     }
     
     func init_interface(){
-        Styler.setBackgroundWithColor(self.view, Constants.Colors.tiffany)
     }
     
 }

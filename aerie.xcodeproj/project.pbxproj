@@ -17,6 +17,10 @@
 		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
 		320F80A725E4C94100FBB40A /* OwnPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A625E4C94100FBB40A /* OwnPostViewController.swift */; };
 		3214694B25EB0EC500C8735C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214694A25EB0EC500C8735C /* BaseVC.swift */; };
+		321F67F925EC85E10098A866 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F67F825EC85E10098A866 /* String.swift */; };
+		321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F67FC25EC89EC0098A866 /* UIViewController.swift */; };
+		321F680425EDB3480098A866 /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F680325EDB3480098A866 /* UITabBarController.swift */; };
+		321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F680825EDB9430098A866 /* TabAnimationView.swift */; };
 		3229849725C325B500E31EF9 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849625C325B500E31EF9 /* UserVC.swift */; };
 		3229849A25C3274600E31EF9 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849925C3274600E31EF9 /* PostVC.swift */; };
 		3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849C25C3276B00E31EF9 /* ChatVC.swift */; };
@@ -381,6 +385,10 @@
 		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
 		320F80A625E4C94100FBB40A /* OwnPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnPostViewController.swift; sourceTree = "<group>"; };
 		3214694A25EB0EC500C8735C /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		321F67F825EC85E10098A866 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		321F67FC25EC89EC0098A866 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		321F680325EDB3480098A866 /* UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
+		321F680825EDB9430098A866 /* TabAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabAnimationView.swift; sourceTree = "<group>"; };
 		3229849625C325B500E31EF9 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		3229849925C3274600E31EF9 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		3229849C25C3276B00E31EF9 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
@@ -567,6 +575,10 @@
 			children = (
 				830C3D8E22E7523E001FA4E7 /* Constants.swift */,
 				2A29F66225A7F01300D039B8 /* Styler.swift */,
+				321F67F825EC85E10098A866 /* String.swift */,
+				321F67FC25EC89EC0098A866 /* UIViewController.swift */,
+				321F680325EDB3480098A866 /* UITabBarController.swift */,
+				321F680825EDB9430098A866 /* TabAnimationView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -881,10 +893,13 @@
 			files = (
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
+				321F67F925EC85E10098A866 /* String.swift in Sources */,
 				2A29F66325A7F01300D039B8 /* Styler.swift in Sources */,
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
+				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
+				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
 				320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
 				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
@@ -892,6 +907,7 @@
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,
 				320F80A725E4C94100FBB40A /* OwnPostViewController.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
+				321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,

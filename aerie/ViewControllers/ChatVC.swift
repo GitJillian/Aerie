@@ -17,7 +17,6 @@ class ChatVC: BaseVC{
 }
 
     func init_interface(){
-        Styler.setBackgroundWithColor(self.view, Constants.Colors.tiffany)
     }
     
 }

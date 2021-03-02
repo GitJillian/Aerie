@@ -51,10 +51,25 @@ class UserOperation:DBOperation{
         }
     }
     
-    func getUserName(email:String, completion: @escaping(String) -> ()){
+    func getUserFirstName(email:String, completion: @escaping(String) -> ()){
         getUserDocument(documentName: email) { (data) in
-            let username = data[self.userFields.firstname] as! String
-            completion(username)
+            let firstName = data[self.userFields.firstname] as! String
+            completion(firstName.capitalizingFirstLetter())
+        }
+    }
+    
+    func getUserLastName(email:String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: email) { (data) in
+            let lastName = data[self.userFields.lastname] as! String
+            completion(lastName.capitalizingFirstLetter())
+        }
+    }
+    
+    func getUserFullName(email: String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: email) { (data) in
+            let firstName = data[self.userFields.firstname] as! String
+            let lastName = data[self.userFields.lastname] as! String
+            completion(firstName.capitalizingFirstLetter()+" "+lastName.capitalizingFirstLetter())
         }
     }
     

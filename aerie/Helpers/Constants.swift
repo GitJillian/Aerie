@@ -16,6 +16,7 @@ struct Constants {
         static let homeViewController = "HomeVC"
         
     }
+    /*
     struct Colors{
         static let borderColor = UIColor.white.cgColor
         static let black       = UIColor.black
@@ -24,6 +25,10 @@ struct Constants {
         static let skyBlue     = UIColor.init(red: 0.27, green: 0.76, blue: 0.95, alpha: 1.00)
         static let tiffany     = UIColor.init(red: 0.40, green: 0.80, blue: 0.80, alpha: 1.00)
         static let transparent:UIColor = .clear
+    }*/
+    
+    struct AutoColor{
+        
     }
     
     struct Images{
@@ -39,7 +44,7 @@ struct Constants {
     
     struct BottomLine{
         static var absoluteX = CGFloat(0)
-        static var verticalHeight = CGFloat(3.5)
+        static var verticalHeight = CGFloat(4)
     }
     
     struct Texts{

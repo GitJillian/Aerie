@@ -4,6 +4,7 @@
 //
 //  Created by Gitjillian on 2021/1/6.
 //  Copyright Yejing Li. All rights reserved.
+//  The log in controller that contains email field, password field, the option to log in as Google accout, and register an accout using emails
 
 import UIKit
 import FirebaseAuth
@@ -31,10 +32,15 @@ class ViewController: UIViewController, GIDSignInDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         googleButton!.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
+        self.errorLabel?.textColor = UIColor(named:"buttonText")
         self.errorLabel?.alpha = 0
         Styler.setBackgroundWithPic(self.view!, Constants.Images.backgroundPic)
-        Styler.styleFilledButton(signUpButton, .clear, Constants.Colors.borderColor, Constants.Buttons.borderWidth)
-        Styler.styleFilledButton(loginButton, UIColor.white)
+        Styler.styleFilledButton(signUpButton, .clear, UIColor(named:"line")?.cgColor, Constants.Buttons.borderWidth)
+        Styler.styleFilledButton(loginButton,  UIColor(named:"textBackGround") ?? .clear)
+        signUpButton.tintColor = UIColor(named:"line")
+        loginButton.tintColor = UIColor(named:"text")
+        //close keyboard when you click on somewhere else on the screen
+        self.hideKeyboardWhenTappedElseWhere()
         
     }
     
@@ -85,7 +91,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
             
             if error != nil {
                 // Couldn't sign in
-                self.errorLabel?.textColor = Constants.Colors.white
+                self.errorLabel?.textColor = UIColor(named:"text")
                 self.errorLabel?.text = Constants.errorMessages.loginError
                 self.errorLabel?.alpha = 1
                 
@@ -101,7 +107,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
             homeViewController.email = email
             let useroperation = UserOperation()
-            useroperation.getUserName(email: email){(name) in
+            useroperation.getUserFullName(email: email){(name) in
                 homeViewController.userName = name
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
@@ -109,5 +115,16 @@ class ViewController: UIViewController, GIDSignInDelegate{
         }
     }
 }
-    
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField{
+            passwordTextField.becomeFirstResponder()
+        }
+        else if textField == passwordTextField{
+            loginTapped(loginButton!)
+        }
+        return true
+    }
+}
 

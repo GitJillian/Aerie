@@ -41,13 +41,14 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
         self.navigationController?.view.backgroundColor = UIColor.white
         self.navigationItem.title = Constants.Texts.signUpTitle
-        Styler.setBackgroundWithPic(self.view, Constants.Images.backgroundPic)
-        Styler.styleTextField(firstNameTextField, Constants.Colors.white.cgColor)
-        Styler.styleTextField(lastNameTextField, Constants.Colors.white.cgColor)
-        Styler.styleTextField(emailTextField, Constants.Colors.white.cgColor)
-        Styler.styleTextField(passwordTextField, Constants.Colors.white.cgColor)
-        Styler.styleTextField(passwordConfirm, Constants.Colors.white.cgColor)
-        Styler.styleFilledButton(signUpButton, Constants.Colors.white)
+        Styler.setBackgroundWithColor(self.view,  UIColor(named:"background")!)
+        Styler.styleTextField(firstNameTextField, UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
+        Styler.styleTextField(lastNameTextField,  UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
+        Styler.styleTextField(emailTextField,     UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
+        Styler.styleTextField(passwordTextField,  UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
+        Styler.styleTextField(passwordConfirm,    UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
+        Styler.styleFilledButton(signUpButton,    UIColor(named:"button") ?? .clear, UIColor(named:"buttonText")?.cgColor, Constants.Buttons.borderWidth)
+        signUpButton.setTitleColor(UIColor(named:"buttonText"), for: .normal)
     }
     
     // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
@@ -131,11 +132,14 @@ class SignUpViewController: UIViewController {
     
     func SwitchToHomePage(email: String) {
         
-        if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController{
+        if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
             homeViewController.email = email
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
+            let useroperation = UserOperation()
+            useroperation.getUserFullName(email: email){(name) in
+                homeViewController.userName = name
+                self.view.window?.rootViewController = homeViewController
+                self.view.window?.makeKeyAndVisible()
+            }
         }
     }
-    
 }

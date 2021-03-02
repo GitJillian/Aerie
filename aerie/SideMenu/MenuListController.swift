@@ -42,8 +42,8 @@ class MenuListController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 50,left: 5,bottom: 0,right: 0)
-        tableView.separatorColor = Constants.Colors.transparent
-        tableView.backgroundColor = Constants.Colors.white
+        tableView.separatorColor = .clear
+        tableView.backgroundColor = UIColor(named:"menuBack")
     }
     
      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)->Int{
@@ -56,8 +56,8 @@ class MenuListController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
         
         cell.textLabel?.text = cellName
-        cell.textLabel?.textColor = Constants.Colors.tiffany
-        cell.backgroundColor = Constants.Colors.white
+        cell.textLabel?.textColor = UIColor(named:"menuFont")
+        cell.backgroundColor      = UIColor(named:"menuBack")
         return cell
     }
     
