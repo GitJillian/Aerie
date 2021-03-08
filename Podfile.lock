@@ -236,6 +236,9 @@ PODS:
   - Firebase/Firestore (7.7.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 7.7.0)
+  - Firebase/Storage (7.7.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 7.7.0)
   - FirebaseAnalytics (7.7.0):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
@@ -276,6 +279,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
+  - FirebaseStorage (7.7.0):
+    - FirebaseCore (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
   - GoogleAppMeasurement (7.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -360,6 +366,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - Firebase/Storage
   - GoogleMaps (= 4.1.0)
   - GooglePlaces (= 4.1.0)
   - GoogleSignIn
@@ -377,6 +384,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseInstallations
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleMaps
@@ -403,6 +411,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 179bf3831213451c8addd036aca7fcf5492ec154
   FirebaseFirestore: 5e314d8ad3280576d641caf228f399dfb74f7914
   FirebaseInstallations: 42c86e7b02ff75b7f27f85833bf5dcb5f38a9774
+  FirebaseStorage: 9b940765fa33494258fab6131b6180fc7c2d80f5
   GoogleAppMeasurement: 0c3b134b2c0a90c4c24833873894bfe0e42a0384
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
@@ -418,6 +427,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 120fe0556521301c34459025e95f72f07f2d892a
+PODFILE CHECKSUM: 401e7ef5cfb6f636a856102364e311e247a80988
 
 COCOAPODS: 1.10.0

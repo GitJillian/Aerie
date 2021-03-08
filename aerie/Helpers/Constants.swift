@@ -14,21 +14,7 @@ struct Constants {
     struct Storyboard {
         
         static let homeViewController = "HomeVC"
-        
-    }
-    /*
-    struct Colors{
-        static let borderColor = UIColor.white.cgColor
-        static let black       = UIColor.black
-        static let white       = UIColor.white
-        static let grassGreen  = UIColor.init(red: 0.22, green: 0.77, blue: 0.61, alpha: 1.00)
-        static let skyBlue     = UIColor.init(red: 0.27, green: 0.76, blue: 0.95, alpha: 1.00)
-        static let tiffany     = UIColor.init(red: 0.40, green: 0.80, blue: 0.80, alpha: 1.00)
-        static let transparent:UIColor = .clear
-    }*/
-    
-    struct AutoColor{
-        
+        static let profileViewController = "ProfileVC"
     }
     
     struct Images{
@@ -79,6 +65,7 @@ struct Constants {
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"
-        static var isProfileUploaed = "isProfileUploaded"
+        static var isProfileUploaed  = "isProfileUploaded"
+        static var profileUrl        = "profileUrl"
     }
 }

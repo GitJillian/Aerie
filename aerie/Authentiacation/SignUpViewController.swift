@@ -137,6 +137,7 @@ class SignUpViewController: UIViewController {
             let useroperation = UserOperation()
             useroperation.getUserFullName(email: email){(name) in
                 homeViewController.userName = name
+                homeViewController.email    = email
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
             }

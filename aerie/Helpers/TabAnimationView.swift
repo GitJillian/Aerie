@@ -19,7 +19,7 @@ class TabAnimationView : NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let destinationView = transitionContext.view(forKey: .to) else{ return }
         
-        destinationView.transform = CGAffineTransform(translationX: destinationView.frame.width, y: 0)
+        destinationView.transform = CGAffineTransform(translationX: 0, y: destinationView.frame.height)
         transitionContext.containerView.addSubview(destinationView)
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {

@@ -8,9 +8,17 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
+import FirebaseStorage
 
 class ProfileViewController: UIViewController{
+    
+    private var alert:UIAlertController!
+    
+    var email:String!
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
     }
+    
+    
 }

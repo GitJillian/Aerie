@@ -27,6 +27,8 @@ struct User: Identifiable{
     var smokeOrNot: Bool
     var profilePic: Bool
     var postings:[Post]
+    
+    var profilePhotoURL: String
     // TODO: Add GOOGLE MAP API
     
 }
@@ -73,6 +75,13 @@ class UserOperation:DBOperation{
         }
     }
     
+    func getUserProfileUrl(email:String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: email) { (data) in
+            let url = data[self.userFields.profileUrl] as! String
+            completion(url)
+        }
+    }
+    
     func getAllUsers(){
         let userCollection = super.database.collection(db_name)
         userCollection.addSnapshotListener{(querySnapShot, err) in
@@ -94,8 +103,9 @@ class UserOperation:DBOperation{
                 let expectedLocation  = data[self.userFields.expectedLocation] as? String ?? ""
                 let profileUploaded   = data[self.userFields.isProfileUploaed] as? Bool ?? false
                 let postings = data[self.userFields.postings] as? [Post] ?? []
+                let profileUrl  = data[self.userFields.profileUrl] as? String ?? ""
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot, profilePic: profileUploaded,postings: postings)
+                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot, profilePic: profileUploaded, postings: postings, profilePhotoURL: profileUrl)
             
             }
         }
