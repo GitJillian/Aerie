@@ -15,10 +15,13 @@ import UIKit
 class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     private var profileController = ProfileViewController()
-    private var ownPostController = OwnPostViewController()
-    private var signoutController = SignOutViewController()
+    private var SettingController = SettingViewController()
+    
     var users: [User] = []
     private var email:String!
+    private var backButton: UIBarButtonItem!
+    @IBOutlet var profileBtn: UIButton!
+    @IBOutlet var settingBtn: UIButton!
     @IBOutlet var imageView : UIImageView!
     @IBOutlet var NameField: UILabel!
     @IBOutlet var scrollView: UIScrollView!
@@ -37,22 +40,35 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target:self, action:#selector(uploadProfileTapped(_:)))
+        let upLoadTap  = UITapGestureRecognizer(target: self, action:#selector(uploadProfileTapped(_:)))
+        //let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapped(_:)))
+        //let settingTap = UITapGestureRecognizer(target: self, action: #selector(settingTapped(_:)))
+        imageView.addGestureRecognizer(upLoadTap)
+        //profileBtn.addGestureRecognizer(profileTap)
+        //settingBtn.addGestureRecognizer(settingTap)
+
         imageView.layer.borderWidth = 1
         imageView.layer.masksToBounds = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGesture)
+        
         imageView.contentMode = .scaleAspectFit
         imagePickerController.delegate = self
-        
+        settingBtn.layer.cornerRadius = CGFloat(7)
+        profileBtn.layer.cornerRadius = CGFloat(7)
+        //Styler.setBackgroundWithPic(settingBtn!, Constants.Images.backgroundPic)
+        //Styler.setBackgroundWithPic(profileBtn!, Constants.Images.backgroundPic)
+        scrollView.addSubview(imageView)
+        scrollView.addSubview(NameField)
         let tabBar = self.tabBarController as! HomeViewController
         self.email = tabBar.email
         self.NameField?.text = tabBar.userName
         
+        
         self.addChildControllers()
+        
         
         //setting avatars by pulling firebase storage data
         guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
@@ -72,36 +88,57 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         })
         task.resume()
     }
+    @objc func profileTapped(_ sender: Any){
+        self.present(self.profileController, animated: true, completion: nil)
+    }
+    
+    
+    // if the button is clicked, switch to profile setting.
+    @IBAction func setProfile(){
+        if let profileSetController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.profileViewController) as?  ProfileViewController{
+            profileSetController.email = self.email
+                self.view.window?.rootViewController = profileSetController
+                self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    @objc func settingTapped(_ sender: Any){
+        self.present(self.SettingController, animated: true, completion: nil)
+    }
+    
+    // link this action to the 'upload' button
+    @objc func uploadProfileTapped(_ sender: Any){
+        checkPermission()
+        self.imagePickerController.sourceType = .photoLibrary
+        self.present(self.imagePickerController, animated: true, completion: nil)
+    }
     
     //setting up all child controllers within side menu and add subviews accordingly
     private func addChildControllers(){
         
         //add childs to current object
         addChild(profileController)
-        addChild(ownPostController)
-        addChild(signoutController)
+        addChild(SettingController)
+        
         
         //add subviews
         view.addSubview(profileController.view)
-        view.addSubview(ownPostController.view)
-        view.addSubview(signoutController.view!)
+        view.addSubview(SettingController.view)
+        
         
         //set boundaries
         profileController.view.frame = view.bounds
-        ownPostController.view.frame = view.bounds
-        signoutController.view.frame = view.bounds
+        SettingController.view.frame = view.bounds
+        
         
         //set movements
         profileController.didMove(toParent: self)
-        ownPostController.didMove(toParent: self)
-        signoutController.didMove(toParent: self)
+        SettingController.didMove(toParent: self)
+        
         
         //hide the side menu item views as default unless the user clicks on them
         profileController.view.isHidden = true
-        ownPostController.view.isHidden = true
-        signoutController.view.isHidden = true
-        
-        //setting gesture recognizers
+        SettingController.view.isHidden = true
     }
     
     // bug in changing avatar!!!!
@@ -122,29 +159,6 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         })
         
     }
-    
-    
-    
-    @IBAction func signOut(){
-        signoutController.showUpDialog()
-    }
-    
-    // if the button is clicked, switch to profile setting.
-    @IBAction func setProfile(){
-        if let profileSetController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.profileViewController) as?  ProfileViewController{
-            profileSetController.email = self.email
-                self.view.window?.rootViewController = profileSetController
-                self.view.window?.makeKeyAndVisible()
-        }
-    }
-    
-    // link this action to the 'upload' button
-    @objc func uploadProfileTapped(_ sender: Any){
-        checkPermission()
-        self.imagePickerController.sourceType = .photoLibrary
-        self.present(self.imagePickerController, animated: true, completion: nil)
-    }
-    
     
     //this step checks whether it is allowed to access the user's photo library
     func checkPermission(){

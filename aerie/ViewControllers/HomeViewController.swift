@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-import SideMenu
+
 
 class HomeViewController: UITabBarController {
     

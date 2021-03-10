@@ -19,6 +19,7 @@ struct Constants {
     
     struct Images{
         static let backgroundPic = "background_main"
+        static let avaBackPic    = "ava_back"
     }
     
     struct Buttons{

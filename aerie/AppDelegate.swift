@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import SideMenu
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
