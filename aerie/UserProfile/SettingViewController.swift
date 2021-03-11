@@ -10,16 +10,15 @@ import Foundation
 import UIKit
 class SettingViewController: UIViewController{
     
-    private var signoutController = SignOutViewController()
+    
+    @IBOutlet var backBtn : UIBarButtonItem!
     override func viewDidLoad() {
-        addChild(signoutController)
-        view.addSubview(signoutController.view!)
-        self.signoutController.view.frame = view.bounds
-        self.signoutController.didMove(toParent: self)
-        self.signoutController.view.isHidden = true
+        
         super.viewDidLoad()
     }
-    @IBAction func signOut(){
-        self.signoutController.showUpDialog()
+    
+    @IBAction func backToHome(){
+        self.dismiss(animated: true, completion: nil)
+        
     }
 }

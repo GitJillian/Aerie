@@ -13,10 +13,10 @@ import FirebaseAuth
 import UIKit
 
 class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
+    private var signoutController = SignOutViewController()
     private var profileController = ProfileViewController()
     private var SettingController = SettingViewController()
-    
+    @IBOutlet var backImage: UIImageView!
     var users: [User] = []
     private var email:String!
     private var backButton: UIBarButtonItem!
@@ -24,8 +24,9 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet var settingBtn: UIButton!
     @IBOutlet var imageView : UIImageView!
     @IBOutlet var NameField: UILabel!
-    @IBOutlet var scrollView: UIScrollView!
-    private var alert:UIAlertController!
+    private var permissionAlert:UIAlertController!
+    private var contactAlert:UIAlertController!
+    
     var imagePickerController = UIImagePickerController()
     // This extends the superclass.
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -40,14 +41,12 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        backImage?.loadGif(name: "circle-light-cropped2")
+        
+        
         let upLoadTap  = UITapGestureRecognizer(target: self, action:#selector(uploadProfileTapped(_:)))
-        //let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapped(_:)))
-        //let settingTap = UITapGestureRecognizer(target: self, action: #selector(settingTapped(_:)))
         imageView.addGestureRecognizer(upLoadTap)
-        //profileBtn.addGestureRecognizer(profileTap)
-        //settingBtn.addGestureRecognizer(settingTap)
-
-        imageView.layer.borderWidth = 1
         imageView.layer.masksToBounds = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = imageView.frame.height / 2
@@ -56,12 +55,11 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         imageView.contentMode = .scaleAspectFit
         imagePickerController.delegate = self
-        settingBtn.layer.cornerRadius = CGFloat(7)
-        profileBtn.layer.cornerRadius = CGFloat(7)
-        //Styler.setBackgroundWithPic(settingBtn!, Constants.Images.backgroundPic)
-        //Styler.setBackgroundWithPic(profileBtn!, Constants.Images.backgroundPic)
-        scrollView.addSubview(imageView)
-        scrollView.addSubview(NameField)
+        settingBtn.clipsToBounds = true
+        profileBtn.clipsToBounds = true
+        settingBtn.layer.cornerRadius = CGFloat(10)
+        profileBtn.layer.cornerRadius = CGFloat(10)
+        
         let tabBar = self.tabBarController as! HomeViewController
         self.email = tabBar.email
         self.NameField?.text = tabBar.userName
@@ -88,24 +86,16 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         })
         task.resume()
     }
-    @objc func profileTapped(_ sender: Any){
-        self.present(self.profileController, animated: true, completion: nil)
+    
+    @IBAction func showContact(){
+        contactAlert = UIAlertController(title: "Please contact heyjill1129@gmail.com so as to report any technical issue.", message: nil, preferredStyle: .alert)
+        contactAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(self.contactAlert, animated: true, completion: nil)
     }
     
-    
-    // if the button is clicked, switch to profile setting.
-    @IBAction func setProfile(){
-        if let profileSetController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.profileViewController) as?  ProfileViewController{
-            profileSetController.email = self.email
-                self.view.window?.rootViewController = profileSetController
-                self.view.window?.makeKeyAndVisible()
-        }
+    @IBAction func signOut(){
+        self.signoutController.showUpDialog()
     }
-    
-    @objc func settingTapped(_ sender: Any){
-        self.present(self.SettingController, animated: true, completion: nil)
-    }
-    
     // link this action to the 'upload' button
     @objc func uploadProfileTapped(_ sender: Any){
         checkPermission()
@@ -119,26 +109,27 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         //add childs to current object
         addChild(profileController)
         addChild(SettingController)
-        
-        
+        addChild(signoutController)
+
         //add subviews
         view.addSubview(profileController.view)
         view.addSubview(SettingController.view)
-        
+        view.addSubview(signoutController.view!)
         
         //set boundaries
         profileController.view.frame = view.bounds
         SettingController.view.frame = view.bounds
-        
+        signoutController.view.frame = view.bounds
         
         //set movements
         profileController.didMove(toParent: self)
         SettingController.didMove(toParent: self)
-        
+        signoutController.didMove(toParent: self)
         
         //hide the side menu item views as default unless the user clicks on them
         profileController.view.isHidden = true
         SettingController.view.isHidden = true
+        signoutController.view.isHidden = true
     }
     
     // bug in changing avatar!!!!
@@ -178,13 +169,13 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     //ask for authorization to access to user's photo library
     func requestAuthroizationHandler(status: PHAuthorizationStatus){
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized{
-            alert = UIAlertController(title: "Please allow access to photo library in privacy settings.", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK",
+            permissionAlert = UIAlertController(title: "Please allow access to photo library in privacy settings.", message: nil, preferredStyle: .alert)
+            permissionAlert.addAction(UIAlertAction(title: "OK",
                                           style: .default,
                                           handler: nil))
-            alert.addAction(UIAlertAction(title: "Cancel",
+            permissionAlert.addAction(UIAlertAction(title: "Cancel",
                                           style: .cancel, handler:nil))
-            present(alert, animated: true, completion: nil)
+            present(permissionAlert, animated: true, completion: nil)
         }
     }
     
