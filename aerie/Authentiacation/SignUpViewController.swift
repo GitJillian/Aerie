@@ -117,7 +117,6 @@ class SignUpViewController: UIViewController {
                         if !result{
                             self.showError(Constants.errorMessages.errorToSaveDate)
                         }
-        
                         self.SwitchToHomePage(email:email)
                     }
                 }
@@ -132,12 +131,15 @@ class SignUpViewController: UIViewController {
     
     func SwitchToHomePage(email: String) {
         
+        
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-            homeViewController.email = email
+            
             let useroperation = UserOperation()
             useroperation.getUserFullName(email: email){(name) in
-                homeViewController.userName = name
-                homeViewController.email    = email
+                //setting user default like a global variable since it is light weight and used through the whole project
+                UserDefaults.setValue(name, forKey: "username")
+                UserDefaults.setValue(email, forKey: "email")
+                
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
             }

@@ -25,9 +25,9 @@
 		3229849A25C3274600E31EF9 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849925C3274600E31EF9 /* PostVC.swift */; };
 		3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229849C25C3276B00E31EF9 /* ChatVC.swift */; };
 		3233FBD625F964B900E0825B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBD525F964B900E0825B /* UIImage.swift */; };
-		3233FBDA25F9669000E0825B /* circle-light.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBD925F9669000E0825B /* circle-light.gif */; };
 		3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBDC25F9744800E0825B /* UIImageView.swift */; };
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
+		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
@@ -397,9 +397,9 @@
 		3229849925C3274600E31EF9 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		3229849C25C3276B00E31EF9 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		3233FBD525F964B900E0825B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
-		3233FBD925F9669000E0825B /* circle-light.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-light.gif"; sourceTree = "<group>"; };
 		3233FBDC25F9744800E0825B /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
+		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -443,6 +443,7 @@
 				2A29F6EB25A81CC200D039B8 /* Filter.swift */,
 				2A3646A525AFDBE100AB3C3B /* DBOperation.swift */,
 				32FBF59F25C2784400F7C55E /* UserOperation.swift */,
+				3233FBEC25F9E89D00E0825B /* FireStorage.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -553,7 +554,6 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
-				3233FBD925F9669000E0825B /* circle-light.gif */,
 				3214693F25EAE34200C8735C /* ViewControllers */,
 				3214693C25EAE2E600C8735C /* UserProfile */,
 				2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */,
@@ -834,7 +834,6 @@
 				8314D43F22E644CD001D044A /* LaunchScreen.storyboard in Resources */,
 				2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */,
 				8314D43C22E644CD001D044A /* Assets.xcassets in Resources */,
-				3233FBDA25F9669000E0825B /* circle-light.gif in Resources */,
 				8314D43A22E644CC001D044A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,6 +917,7 @@
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
 				320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
+				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
 				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,

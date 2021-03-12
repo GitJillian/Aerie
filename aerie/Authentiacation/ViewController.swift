@@ -31,6 +31,10 @@ class ViewController: UIViewController, GIDSignInDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //before we log in, the default username and email should be nothing
+        UserDefaults.standard.set("no name", forKey:"username")
+        UserDefaults.standard.set("no email",forKey: "email")
+        
         googleButton!.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
         self.errorLabel?.textColor = UIColor(named:"buttonText")
         self.errorLabel?.alpha = 0
@@ -105,11 +109,13 @@ class ViewController: UIViewController, GIDSignInDelegate{
     func switchToHome(email: String){
         
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-            homeViewController.email = email
+            
             let useroperation = UserOperation()
             useroperation.getUserFullName(email: email){(name) in
-                homeViewController.userName = name
-                homeViewController.email    = email
+                
+                //setting user default like a global variable since it is light weight and used through the whole project
+                UserDefaults.standard.set(name, forKey: "username")
+                UserDefaults.standard.set(email, forKey: "email")
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
             }

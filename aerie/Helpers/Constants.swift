@@ -66,7 +66,6 @@ struct Constants {
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"
-        static var isProfileUploaed  = "isProfileUploaded"
         static var profileUrl        = "profileUrl"
     }
 }

@@ -25,10 +25,8 @@ struct User: Identifiable{
     
     var petFriendly: Bool
     var smokeOrNot: Bool
-    var profilePic: Bool
     var postings:[Post]
     
-    var profilePhotoURL: String
     // TODO: Add GOOGLE MAP API
     
 }
@@ -101,11 +99,10 @@ class UserOperation:DBOperation{
                 let expectedRentUpper = data[self.userFields.expectedRentUpper] as? Int ?? 0
                 let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
                 let expectedLocation  = data[self.userFields.expectedLocation] as? String ?? ""
-                let profileUploaded   = data[self.userFields.isProfileUploaed] as? Bool ?? false
                 let postings = data[self.userFields.postings] as? [Post] ?? []
-                let profileUrl  = data[self.userFields.profileUrl] as? String ?? ""
+                
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot, profilePic: profileUploaded, postings: postings, profilePhotoURL: profileUrl)
+                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
             
             }
         }

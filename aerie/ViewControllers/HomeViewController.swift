@@ -12,8 +12,6 @@ import Firebase
 
 class HomeViewController: UITabBarController {
     
-    var email:String = ""
-    var userName:String = ""
     
     //tab bar and tab bar items
     @IBOutlet weak var homeBar: UITabBar!
@@ -27,6 +25,7 @@ class HomeViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.UserViewControl = UserVC()
         self.PostViewControl = PostVC()
         self.ChatViewControl = ChatVC()

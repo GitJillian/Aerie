@@ -18,7 +18,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     private var SettingController = SettingViewController()
     @IBOutlet var backImage: UIImageView!
     var users: [User] = []
-    private var email:String!
+    
     private var backButton: UIBarButtonItem!
     @IBOutlet var profileBtn: UIButton!
     @IBOutlet var settingBtn: UIButton!
@@ -44,7 +44,6 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         backImage?.loadGif(name: "circle-light-cropped2")
         
-        
         let upLoadTap  = UITapGestureRecognizer(target: self, action:#selector(uploadProfileTapped(_:)))
         imageView.addGestureRecognizer(upLoadTap)
         imageView.layer.masksToBounds = false
@@ -60,31 +59,26 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         settingBtn.layer.cornerRadius = CGFloat(10)
         profileBtn.layer.cornerRadius = CGFloat(10)
         
-        let tabBar = self.tabBarController as! HomeViewController
-        self.email = tabBar.email
-        self.NameField?.text = tabBar.userName
-        
+        self.NameField?.text = UserDefaults.standard.value(forKey: "username") as? String
         
         self.addChildControllers()
-        
-        
-        //setting avatars by pulling firebase storage data
-        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
-              let url = URL(string:urlString) else{
+        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let fireStorage = FireStorage()
+        fireStorage.getUrlByPath(path:"image/" + email + "_avatar"){ url in
+            
+            let task = URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
+                guard let data = data, error == nil else{
+                    self.imageView.image = UIImage(named: "ava")
                     return
+                }
+                //adding the task to the main thread
+                DispatchQueue.main.async {
+                    let image = UIImage(data:data)
+                    self.imageView.image = image
+                }
+            })
+            task.resume()
         }
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
-            guard let data = data, error == nil else{
-                self.imageView.image = UIImage(named: "ava")
-                return
-            }
-            //adding the task to the main thread
-            DispatchQueue.main.async {
-                let image = UIImage(data:data)
-                self.imageView.image = image
-            }
-        })
-        task.resume()
     }
     
     @IBAction func showContact(){
@@ -96,6 +90,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBAction func signOut(){
         self.signoutController.showUpDialog()
     }
+    
     // link this action to the 'upload' button
     @objc func uploadProfileTapped(_ sender: Any){
         checkPermission()
@@ -132,24 +127,6 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         signoutController.view.isHidden = true
     }
     
-    // bug in changing avatar!!!!
-    func downloadAvatar(){
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let ref = storageRef.child("image/"+self.email+"_avatar")
-        
-        ref.downloadURL(completion: {url, error in
-            guard let url = url, error == nil else{
-                self.imageView.image = UIImage(named: "ava")
-                return
-            }
-            let urlString = url.absoluteString
-            print("Downloadurl: \(urlString)")
-            UserDefaults.standard.set(urlString, forKey: "url")
-            self.viewDidLoad()
-        })
-        
-    }
     
     //this step checks whether it is allowed to access the user's photo library
     func checkPermission(){
@@ -179,28 +156,55 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         }
     }
     
-    func uploadToCloud(fileurl: URL){
-        let storage    = Storage.storage()
+    // bug in changing avatar!!!!
+    func downloadAvatar(){
+        let storage = Storage.storage()
         let storageRef = storage.reference()
+        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let ref = storageRef.child("image/"+email+"_avatar")
         
-        let photoRef   = storageRef.child("image/"+self.email+"_avatar")
-        let uploadTask = photoRef.putFile(from:fileurl,
-                                          metadata:nil){(metadata, err) in
-                                          guard err == nil else{
-                                                    return
-                                                                }
+        ref.downloadURL(completion: {url, error in
+            guard let url = url, error == nil else{
+                self.imageView.image = UIImage(named: "ava")
+                return
+            }
+            let urlString = url.absoluteString
             
-            self.downloadAvatar()
+            UserDefaults.standard.set(urlString, forKey: "url")
+            URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
+                guard let data = data, error == nil else{
+                    
+                    return
+                }
+                //adding the task to the main thread
+                
+                    let image = UIImage(data:data)
+                    self.imageView.image = image
+                
+            })
+            
         }
-        uploadTask.resume()
+        )
         
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        let firestorage = FireStorage()
+        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let path  = "image/" + email + "_avatar"
         if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL{
-            uploadToCloud(fileurl: url)
+            
+            firestorage.uploadToCloud(fileurl: url, refPath: path)
+            self.downloadAvatar()
         }
-        imagePickerController.dismiss(animated: true, completion: nil)
+        
+       imagePickerController.dismiss(animated: true, completion: nil)
+       
+       /* firestorage.getUrlByPath(path: path) {urlPath in
+            let urlString = urlPath.absoluteString
+            UserDefaults.standard.set(urlString, forKey: "url")
+            self.viewDidLoad()
+        }*/
+        
     }
         
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
