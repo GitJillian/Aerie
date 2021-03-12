@@ -487,6 +487,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backBtn" destination="pFA-it-oiW" id="Bxa-zZ-wcY"/>
+                        <outlet property="backView" destination="0VA-yD-O5m" id="xCB-tP-QbW"/>
                         <outlet property="confirmBtn" destination="e4y-XW-RsQ" id="Wau-oi-oss"/>
                         <outlet property="emailField" destination="X1e-2N-pfN" id="vzb-Fs-t0M"/>
                         <outlet property="imageView" destination="J6J-hH-tYK" id="kxU-jY-edF"/>
@@ -588,7 +589,7 @@
             <color red="0.039000000804662704" green="0.72899997234344482" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="settingBack">
-            <color red="0.88698469990431661" green="0.88698469990431661" blue="0.88698469990431661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.88700002431869507" green="0.88700002431869507" blue="0.88700002431869507" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="settingCell">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
