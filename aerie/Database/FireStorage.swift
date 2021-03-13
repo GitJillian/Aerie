@@ -13,13 +13,14 @@ class FireStorage{
     var storageRef = Storage.storage().reference()
     
     // download the resources from the url path from firestorage
-    func getUrlByPath(path: String, completion:@escaping(URL)->()){
+    func getUrlByPath(path: String, completion:@escaping(String)->()){
         let fileRef = storageRef.child(path)
         fileRef.downloadURL(completion: { url, err in
             if err != nil{
                 return
             }else{
-                completion(url!)
+                UserDefaults.standard.set(url?.absoluteString, forKey: "url")
+                completion(url!.absoluteString)
             }
         })
     }

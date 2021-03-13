@@ -66,6 +66,17 @@ class DBOperation: ObservableObject{
         }
     }
     
+    func updateDocument(documentName: String, data: Dictionary<String, Any>, collectionRef: CollectionReference, completion:@escaping(Bool) -> ()){
+        collectionRef.document(documentName).updateData(data){err in
+            if let err = err{
+                print("error updating document: \(err)")
+                completion(false)
+            }else{
+                completion(true)
+            }
+    }
+    }
+    
     
     //this is used to set or add Document data with given pid as its unique id
     func addSetPostDocument(pid:String, data: Dictionary<String, Any>, completion: @escaping(Bool) -> ()){
@@ -122,7 +133,4 @@ class DBOperation: ObservableObject{
         }
         
     }
-   
-   
-    
-}
+    }

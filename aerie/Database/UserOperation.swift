@@ -43,13 +43,22 @@ class UserOperation:DBOperation{
         }
     }
     
-    //this is used to set or add Document data with given userEmail as its unique id
+    //this is used to set or add Document data with given userEmail as its unique id. Note: this operation will overwrite the whole data
     func addSetUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool)->()){
         let userCollection = super.database.collection(db_name)
         addSetDocument(documentName: userEmail, data: data, collectionRef: userCollection ){(result) in
             completion(result)
         }
     }
+    
+    //this is used to update existing user fields without changing the whole data
+    func updateUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool) ->()){
+        let userCollection = super.database.collection(db_name)
+        updateDocument(documentName: userEmail, data: data, collectionRef: userCollection){ result in
+            completion(result)
+        }
+    }
+    
     
     func getUserFirstName(email:String, completion: @escaping(String) -> ()){
         getUserDocument(documentName: email) { (data) in

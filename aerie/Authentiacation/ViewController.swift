@@ -60,11 +60,15 @@ class ViewController: UIViewController, GIDSignInDelegate{
        
         let userManagement = UserOperation()
         guard let currentEmail = user.profile.email else{return}
-        
-        userManagement.addSetUserDocument(userEmail: currentEmail, data: [userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? ""]){(result) in
-            if !result{
-                return
+        userManagement.isUserExist(documentName: currentEmail){ [self] userExist in
+            if !userExist{
+                userManagement.addSetUserDocument(userEmail: currentEmail, data: [self.userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? ""]){(result) in
+                    if !result{
+                        return
+                    }
+                }
             }
+        
             // once the log in is successful, would switch to home view
             
             self.switchToHome(email:currentEmail)
@@ -101,24 +105,20 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 
             }
             else {
+                
                 self.switchToHome(email: email ?? "")
             }
         }
     }
     
     func switchToHome(email: String){
+        //setting user default like a global variable since it is light weight and used through the whole project
         
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
             
-            let useroperation = UserOperation()
-            useroperation.getUserFullName(email: email){(name) in
-                
-                //setting user default like a global variable since it is light weight and used through the whole project
-                UserDefaults.standard.set(name, forKey: "username")
                 UserDefaults.standard.set(email, forKey: "email")
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
-            }
         }
     }
 }

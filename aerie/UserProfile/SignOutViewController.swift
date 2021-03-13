@@ -28,6 +28,9 @@ class SignOutViewController: UIViewController{
             let initialBoard = sb.instantiateViewController(withIdentifier: "ViewVC") as! ViewController
             self.view.window?.rootViewController = initialBoard
             self.view.window?.makeKeyAndVisible()
+            //UserDefaults.standard.set("no email", forKey: "email")
+            //UserDefaults.standard.set("no username", forKey: "username")
+            //UserDefaults.standard.set("no url", forKey: "url")
             try firebaseAuth.signOut()
         } catch let error  {
             print(error)

@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController {
     public var userField = Constants.userFields.self
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTappedElseWhere()
         // Do any additional setup after loading the view.
         init_interface()
     }
@@ -134,15 +134,11 @@ class SignUpViewController: UIViewController {
         
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
             
-            let useroperation = UserOperation()
-            useroperation.getUserFullName(email: email){(name) in
                 //setting user default like a global variable since it is light weight and used through the whole project
-                UserDefaults.setValue(name, forKey: "username")
-                UserDefaults.setValue(email, forKey: "email")
-                
+                UserDefaults.standard.set(email, forKey: "email")
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
-            }
+            
         }
     }
 }

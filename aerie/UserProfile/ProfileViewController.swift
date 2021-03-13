@@ -14,108 +14,79 @@ import Photos
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     private   var alert:       UIAlertController!
+    
     @IBOutlet var backView :   UIView!
     @IBOutlet var nameField:   UILabel!
     @IBOutlet var emailField:  UILabel!
     @IBOutlet var imageView:   UIImageView!
-    @IBOutlet var firstName:   UITextView!
-    @IBOutlet var lastName:    UITextView!
+    
     @IBOutlet var priceRange:  UISlider!
     @IBOutlet var petFriendly: UISwitch!
     @IBOutlet var smokeOrNot:  UISwitch!
     @IBOutlet var confirmBtn:  UIButton!
-    @IBOutlet var scrollView:  UIScrollView!
+    
+    
     @IBOutlet var backBtn:     UIBarButtonItem!
-    var imagePickerController = UIImagePickerController()
-    var email:String!
-    private var permissionAlert:UIAlertController!
+    @IBOutlet var firstNameField:   UITextField!
+    @IBOutlet var lastNameField:    UITextField!
+    @IBOutlet var buttonBackView: UIView!
+    
+    
+    private var userFieldAlert:  UIAlertController!
+    private var updateDataAlert: UIAlertController!
+    private var permissionAlert: UIAlertController!
+    
+    private var userOperation = UserOperation()
+    private var fireStorage = FireStorage()
+    private var imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let upLoadTap  = UITapGestureRecognizer(target: self, action:#selector(uploadProfileTapped(_:)))
+        self.hideKeyboardWhenTappedElseWhere()
+        userOperation.getUserFirstName(email: UserDefaults.standard.value(forKey: "email") as! String){ firstName in
+            self.firstNameField?.text = firstName
+        }
+        userOperation.getUserLastName(email: UserDefaults.standard.value(forKey: "email") as! String){lastName in
+            self.lastNameField?.text = lastName
+            
+        }
+      
+        confirmBtn?.layer.cornerRadius = CGFloat(12)
         
-        self.confirmBtn?.layer.cornerRadius = CGFloat(12)
-        scrollView?.isScrollEnabled = true
         imageView?.isUserInteractionEnabled = true
         imageView?.layer.masksToBounds = false
         imageView?.layer.borderColor = UIColor.white.cgColor
         imageView?.layer.cornerRadius = imageView.frame.height / 2
         imageView?.clipsToBounds = true
         imageView?.contentMode = .scaleAspectFill
-        imageView?.backgroundColor = UIColor(named:"backgroundReverse")
-        imageView?.addGestureRecognizer(upLoadTap)
-        //setting avatars by pulling firebase storage data
-        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
-              let url = URL(string:urlString) else{
-                    return
-        }
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
-            guard let data = data, error == nil else{
+        
+        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let username = UserDefaults.standard.value(forKey: "username") as! String
+        nameField?.text  = username
+        emailField?.text = email
+        let url = UserDefaults.standard.value(forKey: "url") as! String
+        
+            
+            guard let urlLink = URL(string: url)  else{
                 self.imageView?.image = UIImage(named: "ava")
                 return
             }
-            //adding the task to the main thread
-            DispatchQueue.main.async {
-                let image = UIImage(data:data)
-                self.imageView?.image = image
-            }
-        })
-        task.resume()
-        
-        nameField?.text  = UserDefaults.standard.value(forKey: "username") as? String
-        emailField?.text = UserDefaults.standard.value(forKey: "email") as? String
-    }
-    
-    // when we dismiss this view controller, we go back to the previous page and save the data
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if isBeingDismissed{
-            if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-                //setting user default like a global variable since it is light weight and used through the whole project
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
-                
+            let avatar_path = self.fireStorage.storageRef.child("image/" + email + "_avatar")
+            avatar_path.getData(maxSize: 15*1024*1024){data, err in
+                if let err = err{
+                    return
+                }
+                else{
+                    let image = UIImage(data:data!)
+                    self.imageView?.image = image
+                }
             }
         }
-    }
     
-    //this step checks whether it is allowed to access the user's photo library
-    func checkPermission(){
-        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized{
-            PHPhotoLibrary.requestAuthorization({ (status:
-                PHAuthorizationStatus)-> Void in
-                ()
-                
-            })
-        }
-        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized{
-            PHPhotoLibrary.requestAuthorization(requestAuthroizationHandler)
-        }
-    }
     
-    //ask for authorization to access to user's photo library
-    func requestAuthroizationHandler(status: PHAuthorizationStatus){
-        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized{
-            permissionAlert = UIAlertController(title: "Please allow access to photo library in privacy settings.", message: nil, preferredStyle: .alert)
-            permissionAlert.addAction(UIAlertAction(title: "OK",
-                                          style: .default,
-                                          handler: nil))
-            permissionAlert.addAction(UIAlertAction(title: "Cancel",
-                                          style: .cancel, handler:nil))
-            present(permissionAlert, animated: true, completion: nil)
-        }
-    }
-    // link this action to the 'upload' button
-    @objc func uploadProfileTapped(_ sender: Any){
-        checkPermission()
-        self.imagePickerController.allowsEditing = true
-        self.imagePickerController.delegate = self
-        self.imagePickerController.sourceType = .photoLibrary
-        self.present(self.imagePickerController, animated: true, completion: nil)
-    }
-    
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag){
+    //back to previous page
+    @IBAction func backToHome(){
+        self.dismiss(animated: true){
             if let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
                 //setting user default like a global variable since it is light weight and used through the whole project
                 self.view.window?.rootViewController = homeViewController
@@ -125,40 +96,59 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    @IBAction func backToHome(){
-        if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-            //setting user default like a global variable since it is light weight and used through the whole project
-            self.view.window?.rootViewController = homeViewController
-            self.view.window?.makeKeyAndVisible()
-            
+    //at least first name and last name cannot be nil
+    func validateFields() -> String?{
+        if firstNameField.text?.trimmingCharacters(in: .whitespaces) == "" ||
+            lastNameField.text?.trimmingCharacters(in: .whitespaces) == "" {
+            return Constants.errorMessages.emptyField
         }
-        self.dismiss(animated: true, completion: nil)
+        return nil
     }
     
+    func getUpdatedData() -> Dictionary<String, Any> {
+        var data = Dictionary<String, Any>()
+        let fullName = UserDefaults.standard.value(forKey: "username") as! String
+        let firstNameRemote = fullName.components(separatedBy: " ")[0]
+        let lastNameRemote  = fullName.components(separatedBy: " ")[1]
+        let firstName = firstNameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if firstName != firstNameRemote{
+            data[Constants.userFields.firstname] = firstName.capitalizingFirstLetter()
+        }
+        let lastName  = lastNameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if lastName != lastNameRemote{
+            data[Constants.userFields.lastname] = lastName.capitalizingFirstLetter()
+        }
+        return data
+    }
+    
+    // once submit profile button is clicked, we should update the user's profile via firebase
+    
     @IBAction func submitProfile(){
-        
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-        let firestorage = FireStorage()
-        //we need to get the user email so as to upload the file with correct path and name
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        let path  = "image/" + email + "_avatar"
-        
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else{
-            return
+        let email = UserDefaults.standard.value(forKey: "email") as? String
+        let error = validateFields()
+        if error != nil{
+            let alertNameField = UIAlertController(title: error, message: nil, preferredStyle: .alert)
+            alertNameField.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertNameField, animated: true, completion: nil)
         }
-        guard let imageData = image.pngData() else{
-            return
+        else{
+            let data = self.getUpdatedData()
+            userOperation.updateUserDocument(userEmail: email!, data: data){ [self] result in
+                if !result{
+                    self.updateDataAlert = UIAlertController(title: Constants.errorMessages.errorToSaveDate, message: "Please retry", preferredStyle: .alert)
+                    self.updateDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(self.updateDataAlert, animated: true, completion: nil)
+                }
+                
+            userOperation.getUserFullName(email: email!){ fullname in
+                    UserDefaults.standard.setValue(fullname, forKey: "username")
+                }
+                
+            self.dismiss(animated: true, completion: nil)
+                
+            
+            }
         }
-        firestorage.uploadToCloud(pngData: imageData, refPath: path)
-        
-        imagePickerController.dismiss(animated: true){
-            self.imageView.image = image
-        }
-        
     }
-        
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        imagePickerController.dismiss(animated: true, completion: nil)
-    }
+    
 }
