@@ -54,8 +54,14 @@ struct Constants {
         static var postDB = "posts"
     }
     
+    struct genderStr{
+        static var female = "female"
+        static var male   = "male"
+    }
+    
     struct userFields{
         static var age         = "age"
+        static var birth       = "birthday"
         static var gender      = "gender"
         static var postings    = "postings"
         static var emailField  = "email"
@@ -66,6 +72,6 @@ struct Constants {
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"
-        static var profileUrl        = "profileUrl"
+        
     }
 }

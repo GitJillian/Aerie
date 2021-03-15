@@ -19,9 +19,8 @@ class DBOperation: ObservableObject{
     @Published var posts = [Post]()
     public var userFields = Constants.userFields.self
     
+    
     /**********JUDGING WHETHER A USER EXISTS IN THE COLLECTION REFERENCE************/
-    
-    
     
     //check whether a post exists in post collection and return a bool value
     func isPostExist(documentName: String, completion: @escaping(Bool) -> ()) {
@@ -32,6 +31,14 @@ class DBOperation: ObservableObject{
             }else{
                 completion(true)
             }
+        }
+    }
+    
+    //check whether a field exists in a document, given name and field name
+    func isFieldExist(documentName: String, collectionRef: CollectionReference, fieldName: String, completion: @escaping(Bool)->()){
+        getDocument(documentName: documentName, collectionRef: collectionRef){ data in
+                let fieldExists = data[fieldName] != nil
+                completion(fieldExists)
         }
     }
     

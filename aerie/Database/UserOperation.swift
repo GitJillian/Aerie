@@ -19,6 +19,7 @@ struct User: Identifiable{
     var lastName: String
     var expectedLocation: String
     
+    var dateOfBirth: String
     var age: Int
     var expectedRentUpper: Int
     var expectedRentLower: Int
@@ -42,6 +43,14 @@ class UserOperation:DBOperation{
             completion(result)
         }
     }
+    
+    func isUserFieldExist(documentName: String,fieldName: String, completion:@escaping(Bool)->()){
+        let userCollection = super.database.collection(db_name)
+        isFieldExist(documentName: documentName, collectionRef: userCollection, fieldName: fieldName){result in
+            completion(result)
+        }
+    }
+    
     
     //this is used to set or add Document data with given userEmail as its unique id. Note: this operation will overwrite the whole data
     func addSetUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool)->()){
@@ -82,10 +91,15 @@ class UserOperation:DBOperation{
         }
     }
     
-    func getUserProfileUrl(email:String, completion: @escaping(String) -> ()){
-        getUserDocument(documentName: email) { (data) in
-            let url = data[self.userFields.profileUrl] as! String
-            completion(url)
+    func getUserGender(email: String, completion: @escaping(String) ->()){
+        getUserDocument(documentName: email){ data in
+            completion(data[self.userFields.gender] as! String)
+        }
+    }
+    
+    func getUserBirthDate(email: String, completion:@escaping(String) -> ()){
+        getUserDocument(documentName: email){ data in
+            completion(data[self.userFields.birth] as! String)
         }
     }
     
@@ -98,6 +112,7 @@ class UserOperation:DBOperation{
             self.users = documents.map {(QueryDocumentSnapshot)-> User in
                 
                 let data      = QueryDocumentSnapshot.data()
+                let dateOfBirth = data[self.userFields.birth] as? String ?? ""
                 let age       = data[self.userFields.age]  as? Int ?? 0
                 let email     = data[self.userFields.emailField] as? String ?? ""
                 let gender    = data[self.userFields.gender] as? String ?? "male"
@@ -111,7 +126,7 @@ class UserOperation:DBOperation{
                 let postings = data[self.userFields.postings] as? [Post] ?? []
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
+                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, dateOfBirth: dateOfBirth, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
             
             }
         }

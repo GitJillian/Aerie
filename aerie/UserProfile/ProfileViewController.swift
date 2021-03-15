@@ -19,19 +19,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var nameField:   UILabel!
     @IBOutlet var emailField:  UILabel!
     @IBOutlet var imageView:   UIImageView!
-    
+    @IBOutlet weak var birthDateTxt: UITextField!
     @IBOutlet var priceRange:  UISlider!
     @IBOutlet var petFriendly: UISwitch!
     @IBOutlet var smokeOrNot:  UISwitch!
-    @IBOutlet var confirmBtn:  UIButton!
     
-    
+    @IBOutlet weak var femmeBtn: CheckBox!
+    @IBOutlet weak var hommeBtn: CheckBox!
     @IBOutlet var backBtn:     UIBarButtonItem!
     @IBOutlet var firstNameField:   UITextField!
     @IBOutlet var lastNameField:    UITextField!
     @IBOutlet var buttonBackView: UIView!
     
-    
+    private var datePicker = UIDatePicker()
     private var userFieldAlert:  UIAlertController!
     private var updateDataAlert: UIAlertController!
     private var permissionAlert: UIAlertController!
@@ -40,18 +40,51 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var fireStorage = FireStorage()
     private var imagePickerController = UIImagePickerController()
     
+    override func awakeFromNib() {
+        self.view.layoutIfNeeded()
+        let email = UserDefaults.standard.value(forKey: "email") as! String
+        userOperation.isUserFieldExist(documentName: email, fieldName: Constants.userFields.gender){isGenderExist in
+            if isGenderExist{
+                self.userOperation.getUserGender(email: email){genderStr in
+                    if genderStr == Constants.genderStr.female{
+                        self.femmeBtn.isSelected = true
+                        self.hommeBtn.isSelected = false
+                    }else{
+                        self.femmeBtn.isSelected = false
+                        self.hommeBtn.isSelected = true
+                    }
+                }
+            }else{
+                self.femmeBtn.isSelected = true
+                self.hommeBtn.isSelected = false
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        femmeBtn?.alternateButton = [hommeBtn!]
+        hommeBtn?.alternateButton = [femmeBtn!]
         self.hideKeyboardWhenTappedElseWhere()
-        userOperation.getUserFirstName(email: UserDefaults.standard.value(forKey: "email") as! String){ firstName in
+        userOperation.getUserDocument(documentName: UserDefaults.standard.value(forKey: "email") as! String){ data in
+            let firstName = data[Constants.userFields.firstname] as! String
+            let lastName  = data[Constants.userFields.lastname]  as! String
+            
+            
             self.firstNameField?.text = firstName
-        }
-        userOperation.getUserLastName(email: UserDefaults.standard.value(forKey: "email") as! String){lastName in
-            self.lastNameField?.text = lastName
+            self.lastNameField?.text  = lastName
+            
+            let setBirthAlready = data[Constants.userFields.birth] != nil
+            if setBirthAlready{
+                let birthday = data[Constants.userFields.birth]
+                self.birthDateTxt?.text   = birthday as? String
+            }else{
+                self.birthDateTxt?.text = "Select Birthday"
+            }
             
         }
       
-        confirmBtn?.layer.cornerRadius = CGFloat(12)
+        
         
         imageView?.isUserInteractionEnabled = true
         imageView?.layer.masksToBounds = false
@@ -64,16 +97,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let username = UserDefaults.standard.value(forKey: "username") as! String
         nameField?.text  = username
         emailField?.text = email
-        let url = UserDefaults.standard.value(forKey: "url") as! String
         
+        initializeDatePick()
+        
+        let url = UserDefaults.standard.value(forKey: "url") as! String
             
-            guard let urlLink = URL(string: url)  else{
-                self.imageView?.image = UIImage(named: "ava")
-                return
-            }
+        if url == "no url"{
+            self.imageView?.image = UIImage(named: "ava")
+        }
+        else{
+            //setting image view to the avatar in firebase storage
             let avatar_path = self.fireStorage.storageRef.child("image/" + email + "_avatar")
             avatar_path.getData(maxSize: 15*1024*1024){data, err in
                 if let err = err{
+                    print(err)
                     return
                 }
                 else{
@@ -82,30 +119,44 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
         }
-    
-    
-    //back to previous page
-    @IBAction func backToHome(){
-        self.dismiss(animated: true){
-            if let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
-                //setting user default like a global variable since it is light weight and used through the whole project
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
-                
-            }
-        }
+        
     }
+    
+    //enable user to choose date of birth
+    func initializeDatePick(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(selectDateFinshed))
+        toolBar.setItems([doneBtn], animated: true)
+        
+        birthDateTxt?.inputAccessoryView = toolBar
+        datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())
+        birthDateTxt?.inputView = datePicker
+        datePicker.datePickerMode = .date
+    }
+    
+    @objc func selectDateFinshed(){
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        birthDateTxt?.text = formatter.string(from: datePicker.date)
+        birthDateTxt?.endEditing(true)
+    }
+    
     
     //at least first name and last name cannot be nil
     func validateFields() -> String?{
         if firstNameField.text?.trimmingCharacters(in: .whitespaces) == "" ||
-            lastNameField.text?.trimmingCharacters(in: .whitespaces) == "" {
+            lastNameField.text?.trimmingCharacters(in: .whitespaces) == "" ||
+            birthDateTxt.text?.trimmingCharacters(in: .whitespaces)  == ""{
             return Constants.errorMessages.emptyField
         }
         return nil
     }
     
     func getUpdatedData() -> Dictionary<String, Any> {
+        
         var data = Dictionary<String, Any>()
         let fullName = UserDefaults.standard.value(forKey: "username") as! String
         let firstNameRemote = fullName.components(separatedBy: " ")[0]
@@ -118,6 +169,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if lastName != lastNameRemote{
             data[Constants.userFields.lastname] = lastName.capitalizingFirstLetter()
         }
+        
+        //get selected gender
+        if self.femmeBtn.isSelected {
+            data[Constants.userFields.gender] = Constants.genderStr.female
+        }  else{
+            data[Constants.userFields.gender] = Constants.genderStr.male
+        }
+        //get selected birthday
+        
+        let birthday = birthDateTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let now = Date()
+        let birthdayToDate = Date(birthday)
+        let calendar = Calendar.current
+
+        let ageComponents = calendar.dateComponents([.year], from: birthdayToDate, to: now)
+        let age = ageComponents.year!
+        data[Constants.userFields.age] = age
+        data[Constants.userFields.birth] = birthday
+        
         return data
     }
     

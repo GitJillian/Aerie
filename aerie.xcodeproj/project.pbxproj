@@ -28,7 +28,8 @@
 		3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBDC25F9744800E0825B /* UIImageView.swift */; };
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
 		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
-		32F49FF025FC908E004533BD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F49FEF25FC908E004533BD /* CheckBox.swift */; };
+		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
+		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
@@ -401,7 +402,8 @@
 		3233FBDC25F9744800E0825B /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
 		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
-		32F49FEF25FC908E004533BD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				2A36469E25AFDB8900AB3C3B /* Post.swift */,
+				324B708725FF15D000551BFD /* CheckBox.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -593,7 +596,7 @@
 				321F680825EDB9430098A866 /* TabAnimationView.swift */,
 				3233FBD525F964B900E0825B /* UIImage.swift */,
 				3233FBDC25F9744800E0825B /* UIImageView.swift */,
-				32F49FEF25FC908E004533BD /* CheckBox.swift */,
+				32A4B92F25FFEFF9005DD281 /* Date.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -918,7 +921,6 @@
 				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
 				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
-				32F49FF025FC908E004533BD /* CheckBox.swift in Sources */,
 				320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
 				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
@@ -926,11 +928,13 @@
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,
 				320F80A725E4C94100FBB40A /* SettingViewController.swift in Sources */,
+				32A4B93025FFEFF9005DD281 /* Date.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
 				321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
+				324B708825FF15D000551BFD /* CheckBox.swift in Sources */,
 				3214694B25EB0EC500C8735C /* BaseVC.swift in Sources */,
 				32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */,
 				2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */,
