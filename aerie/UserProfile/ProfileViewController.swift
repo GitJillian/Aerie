@@ -20,9 +20,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var emailField:  UILabel!
     @IBOutlet var imageView:   UIImageView!
     @IBOutlet weak var birthDateTxt: UITextField!
-    @IBOutlet var priceRange:  UISlider!
-    @IBOutlet var petFriendly: UISwitch!
-    @IBOutlet var smokeOrNot:  UISwitch!
     
     @IBOutlet weak var femmeBtn: CheckBox!
     @IBOutlet weak var hommeBtn: CheckBox!
@@ -156,7 +153,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func getUpdatedData() -> Dictionary<String, Any> {
-        
+        // getting the updated data according to the current setting and return it
         var data = Dictionary<String, Any>()
         let fullName = UserDefaults.standard.value(forKey: "username") as! String
         let firstNameRemote = fullName.components(separatedBy: " ")[0]

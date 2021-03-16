@@ -15,4 +15,6 @@ target 'aerie' do
 	pod 'GoogleMaps', '4.1.0'
 	pod 'GooglePlaces', '4.1.0'
 	pod 'Firebase/Storage'
+	pod ‘WARangeSlider’
+	pod 'MessageKit'
 end
