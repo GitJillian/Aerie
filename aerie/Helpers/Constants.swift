@@ -47,6 +47,8 @@ struct Constants {
         static var passwordNotEqual  = "Your passwords are not the same. "
         static var failureCreateUser = "Failed to create user."
         static var failureToSignOut  = "Failed to sign out. Please retry later."
+        static var upperValueError   = "Upper value is invalid. Please retry."
+        static var lowerValueError   = "Lower value is invalid. Please retry."
     }
     
     struct dbNames{

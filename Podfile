@@ -17,4 +17,5 @@ target 'aerie' do
 	pod 'Firebase/Storage'
 	pod ‘WARangeSlider’
 	pod 'MessageKit'
+	pod 'FloatingPanel'
 end

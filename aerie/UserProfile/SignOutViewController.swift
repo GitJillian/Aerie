@@ -19,7 +19,7 @@ class SignOutViewController: UIViewController{
         alert = UIAlertController(title: Constants.Texts.signOutText, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: {action in
-            
+        //google accout is signing out...
         GIDSignIn.sharedInstance().signOut()
         let firebaseAuth = Auth.auth()
         do {
@@ -28,9 +28,7 @@ class SignOutViewController: UIViewController{
             let initialBoard = sb.instantiateViewController(withIdentifier: "ViewVC") as! ViewController
             self.view.window?.rootViewController = initialBoard
             self.view.window?.makeKeyAndVisible()
-            //UserDefaults.standard.set("no email", forKey: "email")
-            //UserDefaults.standard.set("no username", forKey: "username")
-            //UserDefaults.standard.set("no url", forKey: "url")
+            //firebase account is signing out...
             try firebaseAuth.signOut()
         } catch let error  {
             print(error)
