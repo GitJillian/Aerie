@@ -13,11 +13,9 @@
 		2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3646A525AFDBE100AB3C3B /* DBOperation.swift */; };
 		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
 		320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809925E47AA800FBB40A /* MenuListController.swift */; };
-		320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809F25E4C75300FBB40A /* ProfileViewController.swift */; };
 		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
 		320F80A725E4C94100FBB40A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A625E4C94100FBB40A /* SettingViewController.swift */; };
 		3214694B25EB0EC500C8735C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214694A25EB0EC500C8735C /* BaseVC.swift */; };
-		321E492A2601A6B00047A704 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E49292601A6B00047A704 /* LocationManager.swift */; };
 		321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E49342601AC7C0047A704 /* SearchMapController.swift */; };
 		321F67F925EC85E10098A866 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F67F825EC85E10098A866 /* String.swift */; };
 		321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F67FC25EC89EC0098A866 /* UIViewController.swift */; };
@@ -34,6 +32,8 @@
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
+		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
+		32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
@@ -426,11 +426,9 @@
 		2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseFirestore; path = Pods/FirebaseFirestore; sourceTree = "<group>"; };
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
 		320F809925E47AA800FBB40A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
-		320F809F25E4C75300FBB40A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
 		320F80A625E4C94100FBB40A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3214694A25EB0EC500C8735C /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		321E49292601A6B00047A704 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		321E49342601AC7C0047A704 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
 		321F67F825EC85E10098A866 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		321F67FC25EC89EC0098A866 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +445,8 @@
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,7 +500,6 @@
 			children = (
 				2A36469E25AFDB8900AB3C3B /* Post.swift */,
 				324B708725FF15D000551BFD /* CheckBox.swift */,
-				321E49292601A6B00047A704 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,8 +541,8 @@
 			children = (
 				320F80A225E4C7C200FBB40A /* SignOutViewController.swift */,
 				320F80A625E4C94100FBB40A /* SettingViewController.swift */,
-				320F809F25E4C75300FBB40A /* ProfileViewController.swift */,
 				320F809925E47AA800FBB40A /* MenuListController.swift */,
+				32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -566,6 +565,7 @@
 				32A4B98126004B5C005DD281 /* ManageYourPost.swift */,
 				32A4B98426004D6C005DD281 /* LocationViewController.swift */,
 				321E49342601AC7C0047A704 /* SearchMapController.swift */,
+				32D2FB5D2602B6B8003197E3 /* LocationManager.swift */,
 			);
 			path = SettingControl;
 			sourceTree = "<group>";
@@ -1007,17 +1007,17 @@
 			files = (
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
+				32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */,
 				321F67F925EC85E10098A866 /* String.swift in Sources */,
 				2A29F66325A7F01300D039B8 /* Styler.swift in Sources */,
+				32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */,
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
 				3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */,
-				321E492A2601A6B00047A704 /* LocationManager.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
 				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
 				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
-				320F80A025E4C75300FBB40A /* ProfileViewController.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
 				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
 				32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */,

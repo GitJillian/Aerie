@@ -71,6 +71,7 @@ struct Constants {
         static var lastname    = "lastname"
         static var petFriendly = "petFriendly"
         static var smokeOrNot  = "smokeOrNot"
+        static var locationStr = "location"
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"

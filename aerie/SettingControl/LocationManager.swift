@@ -4,7 +4,7 @@
 //
 //  Created by Gitjillian on 2021/3/16.
 //  Copyright © 2021 Yejing Li. All rights reserved.
-//
+//  Basically, location manager allows user to ask the apple location with a string, and it returns a list of places that matches its name
 
 import UIKit
 import Foundation
@@ -15,6 +15,8 @@ struct Location {
     let title: String
     let coordinates: CLLocationCoordinate2D?
 }
+
+
 class LocationManager: NSObject {
     static let shared = LocationManager()
     

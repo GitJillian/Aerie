@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 protocol SearchMapControllerDelegate: AnyObject{
-    func searchMapController(_ vc: SearchMapController, didSelectLocationWith coordinates: CLLocationCoordinate2D?)
+    func searchMapController(_ vc: SearchMapController, didSelectLocationWith location: Location?)
 }
 class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     weak var delegate: SearchMapControllerDelegate?
@@ -91,13 +91,9 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //notify map controller to show pin at selected place
-        let coordinate = locations[indexPath.row].coordinates
+        let place = locations[indexPath.row]
         delegate?.searchMapController(self,
-                                      didSelectLocationWith: coordinate)
+                                      didSelectLocationWith: place)
         
     }
-    
-    
-    
-
 }

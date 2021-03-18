@@ -1,11 +1,3 @@
-//
-//  ProfileViewController.swift
-//  aerie
-//
-//  Created by Gitjillian on 2021/2/23.
-//  Copyright © 2021 Yejing Li. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import FirebaseFirestore
@@ -14,25 +6,20 @@ import Photos
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     private   var alert:       UIAlertController!
-    
-    @IBOutlet var backView :   UIView!
-    @IBOutlet var nameField:   UILabel!
-    @IBOutlet var emailField:  UILabel!
-    @IBOutlet var imageView:   UIImageView!
-    @IBOutlet weak var birthDateTxt: UITextField!
-    
-    @IBOutlet weak var femmeBtn: CheckBox!
-    @IBOutlet weak var hommeBtn: CheckBox!
-    @IBOutlet var backBtn:     UIBarButtonItem!
-    @IBOutlet var firstNameField:   UITextField!
-    @IBOutlet var lastNameField:    UITextField!
-    @IBOutlet var buttonBackView: UIView!
-    
     private var datePicker = UIDatePicker()
     private var userFieldAlert:  UIAlertController!
     private var updateDataAlert: UIAlertController!
     private var permissionAlert: UIAlertController!
-    
+    @IBOutlet var imageView:     UIImageView!
+    @IBOutlet var nameField:     UILabel!
+    @IBOutlet var emailField:    UILabel!
+    @IBOutlet var firstNameField:UITextField!
+    @IBOutlet var lastNameField: UITextField!
+    @IBOutlet var birthDateTxt:  UITextField!
+    @IBOutlet var femmeBtn:      CheckBox!
+    @IBOutlet var hommeBtn:      CheckBox!
+    @IBOutlet var locationField: UITextField!
+    private var locationVC    = LocationViewController()
     private var userOperation = UserOperation()
     private var fireStorage = FireStorage()
     private var imagePickerController = UIImagePickerController()
@@ -60,6 +47,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameField?.numberOfLines  = 0
+        emailField?.numberOfLines = 0
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
         self.hideKeyboardWhenTappedElseWhere()
@@ -77,6 +66,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.birthDateTxt?.text   = birthday as? String
             }else{
                 self.birthDateTxt?.text = "Select Birthday"
+            }
+            let setLocation = data[Constants.userFields.locationStr] != nil
+            if setLocation{
+                let location = data[Constants.userFields.locationStr]
+                self.locationField?.text = location as? String
+            }else{
+                self.locationField?.text = "Select Location"
             }
             
         }
@@ -189,7 +185,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // once submit profile button is clicked, we should update the user's profile via firebase
-    
     @IBAction func submitProfile(){
         let email = UserDefaults.standard.value(forKey: "email") as? String
         let error = validateFields()

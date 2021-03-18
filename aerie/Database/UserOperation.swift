@@ -21,6 +21,7 @@ struct User: Identifiable{
     
     var dateOfBirth: String
     var age: Int
+    var location: String
     var expectedRentUpper: Int
     var expectedRentLower: Int
     
@@ -120,13 +121,14 @@ class UserOperation:DBOperation{
                 let lastName  = data[self.userFields.lastname] as? String ?? ""
                 let petFriendly = data[self.userFields.petFriendly] as? Bool ?? false
                 let smokeOrNot  = data[self.userFields.smokeOrNot] as? Bool ?? false
+                let location    = data[self.userFields.locationStr] as? String ?? ""
                 let expectedRentUpper = data[self.userFields.expectedRentUpper] as? Int ?? 0
                 let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
                 let expectedLocation  = data[self.userFields.expectedLocation] as? String ?? ""
                 let postings = data[self.userFields.postings] as? [Post] ?? []
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, dateOfBirth: dateOfBirth, age: age, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
+                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
             
             }
         }

@@ -11,32 +11,30 @@ import MapKit
 import FloatingPanel
 import CoreLocation
 
-class LocationViewController: UIViewController, UISearchBarDelegate, SearchMapControllerDelegate{
+class LocationViewController: UIViewController, SearchMapControllerDelegate{
     
     let pin   = MKPointAnnotation()
     let panel = FloatingPanelController()
     let searchVC = SearchMapController()
     @IBOutlet weak var myMapView : MKMapView!
-    func searchMapController(_ vc: SearchMapController, didSelectLocationWith coordinates: CLLocationCoordinate2D?) {
-        guard let coordinates = coordinates else{
+    
+    func searchMapController(_ vc: SearchMapController, didSelectLocationWith location: Location?) {
+        guard let location = location, location.coordinates != nil else{
             return
         }
         panel.move(to: .tip, animated: true)
         myMapView.removeAnnotations(myMapView.annotations)
         
-        pin.coordinate = coordinates
+        pin.coordinate = location.coordinates!
         //adding a pin to select location
         myMapView.addAnnotation(pin)
         myMapView.setRegion(MKCoordinateRegion(
-            center: coordinates,
+            center: location.coordinates!,
             span: MKCoordinateSpan(latitudeDelta: 0.7,
             longitudeDelta: 0.7)
         ),
         animated: true)
     }
-    
-    
-    //@IBOutlet weak var searchBtn : UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
