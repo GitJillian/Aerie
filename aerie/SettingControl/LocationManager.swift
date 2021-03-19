@@ -16,7 +16,6 @@ struct Location {
     let coordinates: CLLocationCoordinate2D?
 }
 
-
 class LocationManager: NSObject {
     static let shared = LocationManager()
     
@@ -32,6 +31,7 @@ class LocationManager: NSObject {
             //storing the locations into a list
             let models : [Location] = places.compactMap({ place in
                 var name = ""
+                print("\(place)")
                 if let locationName = place.name{
                     name += locationName
                 }

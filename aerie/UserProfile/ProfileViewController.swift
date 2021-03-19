@@ -3,9 +3,9 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 import Photos
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
-    private   var alert:       UIAlertController!
+    private var alert:       UIAlertController!
     private var datePicker = UIDatePicker()
     private var userFieldAlert:  UIAlertController!
     private var updateDataAlert: UIAlertController!
@@ -18,8 +18,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var birthDateTxt:  UITextField!
     @IBOutlet var femmeBtn:      CheckBox!
     @IBOutlet var hommeBtn:      CheckBox!
-    @IBOutlet var locationField: UITextField!
-    private var locationVC    = LocationViewController()
+    @IBOutlet var locationField: UILabel!
+    //private var locationVC    = LocationViewController()
     private var userOperation = UserOperation()
     private var fireStorage = FireStorage()
     private var imagePickerController = UIImagePickerController()
@@ -47,8 +47,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameField?.numberOfLines  = 0
-        emailField?.numberOfLines = 0
+        
+        UserDefaults.standard.setValue("userLocation", forKey: "locationType")
+        
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
         self.hideKeyboardWhenTappedElseWhere()
@@ -74,7 +75,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }else{
                 self.locationField?.text = "Select Location"
             }
-            
         }
       
         
@@ -112,8 +112,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
         }
-        
     }
+    
+    //@objc func selectUserLocation(){
+    //    self.present(self.locationVC, animated: true, completion: nil)
+    //}
+    
     
     //enable user to choose date of birth
     func initializeDatePick(){

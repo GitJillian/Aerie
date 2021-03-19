@@ -33,6 +33,7 @@
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
+		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
 		32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
@@ -446,6 +447,7 @@
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				3233FBD525F964B900E0825B /* UIImage.swift */,
 				3233FBDC25F9744800E0825B /* UIImageView.swift */,
 				32A4B92F25FFEFF9005DD281 /* Date.swift */,
+				32D6CD7226045081003956A5 /* UIView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
 				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
+				32D6CD7326045081003956A5 /* UIView.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
 				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
 				32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */,

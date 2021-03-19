@@ -92,8 +92,37 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
         tableView.deselectRow(at: indexPath, animated: true)
         //notify map controller to show pin at selected place
         let place = locations[indexPath.row]
+        
+        
         delegate?.searchMapController(self,
                                       didSelectLocationWith: place)
+        var field : String = ""
+        var message: String = ""
+        let setLocationType = UserDefaults.standard.value(forKey: "locationType") as! String
+        if setLocationType == "userLocation"{
+            field   = Constants.userFields.locationStr
+            message = Constants.Texts.setLocation
+        }
+        else{
+            field   = Constants.userFields.expectedLocation
+            message = Constants.Texts.setExpectedLocation
+        }
         
-    }
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: {action in
+            
+            let email = UserDefaults.standard.value(forKey: "email") as! String
+            let userOperation = UserOperation()
+            userOperation.updateUserDocument(userEmail: email, data: [field: place.title]){ result in
+                if !result{
+                    return
+                }
+            }
+            self.dismiss(animated: true, completion: nil)}
+        ))
+        self.present(alert, animated: true, completion: nil)
+        
+        }
+    
 }

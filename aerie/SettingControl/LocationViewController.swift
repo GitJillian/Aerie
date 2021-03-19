@@ -13,12 +13,15 @@ import CoreLocation
 
 class LocationViewController: UIViewController, SearchMapControllerDelegate{
     
-    let pin   = MKPointAnnotation()
-    let panel = FloatingPanelController()
-    let searchVC = SearchMapController()
-    @IBOutlet weak var myMapView : MKMapView!
+    public var pin   = MKPointAnnotation()
+    public var panel = FloatingPanelController()
+    public var searchVC = SearchMapController()
+    
+    @IBOutlet var myMapView : MKMapView!
     
     func searchMapController(_ vc: SearchMapController, didSelectLocationWith location: Location?) {
+        
+        
         guard let location = location, location.coordinates != nil else{
             return
         }
@@ -34,6 +37,8 @@ class LocationViewController: UIViewController, SearchMapControllerDelegate{
             longitudeDelta: 0.7)
         ),
         animated: true)
+        
+        
     }
     
     override func viewDidLoad() {
@@ -41,8 +46,28 @@ class LocationViewController: UIViewController, SearchMapControllerDelegate{
         
         //setting view panels and search controllers
         self.hideKeyboardWhenTappedElseWhere()
+        
         searchVC.delegate = self
         panel.set(contentViewController: searchVC)
         panel.addPanel(toParent: self)
+        if let viewControllers = navigationController?.viewControllers{
+            for viewController in viewControllers {
+                if viewController.isKind(of: ProfileViewController.self){
+                    UserDefaults.standard.setValue("userLocation", forKey: "locationType")
+                    print("set profile")
+                }
+                else if viewController.isKind(of: SettingViewController.self){
+                    UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
+                    print("set expect location")
+                }
+                
+            }
+        }
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
 }
+

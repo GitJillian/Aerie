@@ -14,14 +14,16 @@ class SettingViewController: UIViewController{
     
     @IBOutlet var errorLabel:    UILabel!
     @IBOutlet var saveBtn :      UIBarButtonItem!
-    @IBOutlet var location:      UITextField!
+    @IBOutlet var location:      UILabel!
     @IBOutlet var rangeSlider:   RangeSlider!
     @IBOutlet var lowerLabel:    UITextField!
     @IBOutlet var upperLabel:    UITextField!
-    @IBOutlet var managePostBtn: UIButton!
+    @IBOutlet var petBool:       UILabel!
+    @IBOutlet var smokeBool:     UILabel!
     @IBOutlet var locationBtn  : UIButton!
     @IBOutlet var petSwitch:     UISwitch!
     @IBOutlet var smokeSwitch:   UISwitch!
+    @IBOutlet var backView:      UIView!
     private   var userOperation = UserOperation()
     
     override func viewDidLoad() {
@@ -31,6 +33,11 @@ class SettingViewController: UIViewController{
                 // Always adopt a light interface style.
                 overrideUserInterfaceStyle = .light
             }
+        UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
+        
+        backView?.dropShadow()
+        
+        print("set expect location")
         self.hideKeyboardWhenTappedElseWhere()
         errorLabel?.textColor = UIColor(named:"buttonText")
         errorLabel?.alpha = 0
@@ -39,7 +46,8 @@ class SettingViewController: UIViewController{
         //if the user directly put price range to textfields, the range slider should update
         lowerLabel?.addTarget(self, action: #selector(lowerInputDidChanged(sender:)), for: .editingDidEnd)
         upperLabel?.addTarget(self, action: #selector(upperInputDidChanged(sender:)), for: .editingDidEnd)
-        
+        petSwitch?.addTarget(self, action: #selector(petSwitchChanged(sender:)), for: .touchUpInside)
+        smokeSwitch?.addTarget(self, action: #selector(smokeSwitchChanged(sender:)), for: .touchUpInside)
         //we first read the fields already set in user profile and set them. If not, we are making default settings
         let email = UserDefaults.standard.value(forKey: "email") as! String
         userOperation.getUserDocument(documentName: email){ data in
@@ -80,16 +88,28 @@ class SettingViewController: UIViewController{
             if petFriendlyIsSet{
                 let isPetFriendly = data[Constants.userFields.petFriendly] as! Bool
                 self.petSwitch?.setOn(isPetFriendly, animated: true)
+                if isPetFriendly{
+                    self.petBool?.text = "On"
+                }else{
+                    self.petBool?.text = "Off"
+                }
             }else{
                 self.petSwitch?.setOn(true, animated: true)
+                self.petBool?.text = "On"
             }
             //setting is smoking allowed using UISwitch
             let smokeIsSet = data[Constants.userFields.smokeOrNot] != nil
             if smokeIsSet{
                 let isSmokeAllowed = data[Constants.userFields.smokeOrNot] as! Bool
                 self.smokeSwitch?.setOn(isSmokeAllowed, animated: true)
+                if isSmokeAllowed{
+                    self.smokeBool?.text = "On"
+                }else{
+                    self.smokeBool?.text = "Off"
+                }
             }else{
                 self.smokeSwitch?.setOn(true, animated: true)
+                self.smokeBool?.text = "On"
             }
             //setting desired location using String
             let desiredLocationIsSet = data[Constants.userFields.expectedLocation] != nil
@@ -173,6 +193,22 @@ class SettingViewController: UIViewController{
         }
     }
     
+    @objc func petSwitchChanged(sender: UISwitch){
+        if petSwitch?.isOn == true{
+            petBool?.text = "On"
+        }
+        else{
+            petBool?.text = "Off"
+        }
+    }
+    @objc func smokeSwitchChanged(sender: UISwitch){
+        if smokeSwitch?.isOn == true{
+            smokeBool?.text = "On"
+        }
+        else{
+            smokeBool?.text = "Off"
+        }
+    }
     //if user clicks the save profile button, it would update the data to firebase cloud store and diss miss current controller
     @IBAction func saveProfile(){
         

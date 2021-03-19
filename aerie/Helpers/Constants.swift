@@ -37,6 +37,8 @@ struct Constants {
     struct Texts{
         static var signUpTitle = "Sign Up"
         static var signOutText = "Are you sure you want to sign out?"
+        static var setLocation = "Do you want to pick this place as your location?"
+        static var setExpectedLocation = "Do you want to pick this place as your expected location for residence?"
     }
     
     struct errorMessages{
