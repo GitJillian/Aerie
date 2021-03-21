@@ -12,12 +12,16 @@ import FirebaseStorage
 import FirebaseAuth
 import UIKit
 import Photos
+
+
 class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
     private var signoutController = SignOutViewController()
     private var profileController = ProfileViewController()
     private var SettingController = SettingViewController()
     @IBOutlet var backImage: UIImageView!
-    var users: [User] = []
+    
     private var permissionAlert: UIAlertController!
     private var backButton: UIBarButtonItem!
     @IBOutlet var profileBtn: UIButton!
@@ -26,9 +30,10 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet var NameField: UILabel!
     
     private var contactAlert:UIAlertController!
-    private var fireStorage = FireStorage()
+    private var fireStorage   = FireStorage()
     private var fireBaseCloud = UserOperation()
-    private var imagePickerController = UIImagePickerController()
+    private var imagePickerController   = UIImagePickerController()
+    
     // This extends the superclass.
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

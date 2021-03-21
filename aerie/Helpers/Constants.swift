@@ -79,4 +79,10 @@ struct Constants {
         static var expectedLocation  = "expectedLocation"
         
     }
+    struct postFields{
+        static var pidField = "pid"
+        static var uidField = "uid"
+        static var description = "description"
+        static var timeStamp   = "timestamp"
+    }
 }

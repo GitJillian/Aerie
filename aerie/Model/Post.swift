@@ -13,10 +13,12 @@ struct Post{
     var pid: String
     var uid: String
     var description: String
-    var petFriendly: Bool
-    var gender: String
-    var expectedRentUpper: Int
-    var expectedRentLower: Int
-    var expectedLocation: String
-    
+    var timestamp: Date
+    var dictionary: [String: Any]{
+        return[Constants.postFields.pidField:     pid,
+               Constants.postFields.uidField:     uid,
+               Constants.postFields.description:  description,
+               Constants.postFields.timeStamp:    timestamp
+        ]
+    }
 }

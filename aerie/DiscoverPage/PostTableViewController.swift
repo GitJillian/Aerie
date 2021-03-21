@@ -1,70 +1,41 @@
 //
-//  PostVC.swift
+//  TableOfPostTableViewController.swift
 //  aerie
 //
-//  Created by Gitjillian on 2021/1/28.
+//  Created by Gitjillian on 2021/3/19.
 //  Copyright © 2021 Yejing Li. All rights reserved.
 //
 
-import Foundation
-import Firebase
-class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
-    
-    
-    @IBOutlet var tableView: UITableView!
+import UIKit
+protocol TableOfPostViewControllerDelegate: AnyObject{
+    func tableOfPostViewController(_ vc: PostTableViewController, didSelectLocationWith post: Post?)
+}
+class PostTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    weak var delegate: TableOfPostViewControllerDelegate?
     var postArray = [Post]()
     var postOperation = PostOperation()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        postOperation.getAllPosts(){listOfPost in
-            //getting a list of posts and load them to table view
-            self.postArray = listOfPost
-            print("\(listOfPost)")
-            DispatchQueue.main.async {
-                self.tableView.delegate   = self
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-            }
-        }
+        view.addSubview(tableView)
+        tableView.delegate   = self
+        tableView.dataSource = self
+        self.hideKeyboardWhenTappedElseWhere()
+        loadDataToPostTable()
         checkUpdatedPosts()
-        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    
-    
-    @IBAction func ComposePost(_ sender: Any){
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        let description = "Test if it works"
-        let userOperation = UserOperation()
-        userOperation.getUserPostNumber(email: email){number in
-            
-            let pid = "post_\(number)"
-            let newPost = Post(pid:    pid,
-                               uid:    email,
-                               description: description,
-                               timestamp:   Date())
-            self.postOperation.addSetPostDocument(pid: pid,
-                                                  data: newPost.dictionary)
-            { result in
-                let alert = UIAlertController()
-                if result{
-                    alert.title = "Successfully post!"
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                }
-                else{
-                    alert.title = "Fail to post!"
-                    alert.addAction(UIAlertAction(title: "fine", style: .default, handler: nil))
-                }
-                self.present(alert, animated: true, completion: nil)
-                
-            }
-        }
-        
-    }
-    
+
+    // MARK: - Table view data source
+
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -110,18 +81,13 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
+        }    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         let post = postArray[indexPath.row]
-        
-        
-        //just a tester for showing description. TODO: CHANGE THAT!!!!
-        let alert = UIAlertController(title: "View", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: post.description, style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        delegate?.tableOfPostViewController(self, didSelectLocationWith: post)
         
         
     }
@@ -151,14 +117,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
                 
                 let pid = diff.document.data()[Constants.postFields.pidField]
                 if diff.type == .added{
-                    let data = diff.document.data()
-                    let pid  = data[Constants.postFields.pidField] as! String
-                    let uid  = data[Constants.postFields.uidField] as! String
-                    let description = data[Constants.postFields.description] as! String
-                    let timeStamp   = data[Constants.postFields.timeStamp]   as! Timestamp
-                    let timeStampDate = timeStamp.dateValue()
-                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate)
-                    self.postArray.append(post)
+                    self.postArray.append(Post(dictionary:diff.document.data())!)
                     
                 }
                 else if diff.type == .removed{
@@ -173,5 +132,4 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
-    
 }

@@ -29,11 +29,14 @@
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
 		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
 		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
+		32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838226065EB9006DB2EB /* PostOperation.swift */; };
+		32A4838D2606ED97006DB2EB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838C2606ED97006DB2EB /* Array.swift */; };
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
 		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
+		32D6CD7C260455A9003956A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7B260455A9003956A5 /* User.swift */; };
 		32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
@@ -443,11 +446,14 @@
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
 		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
 		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		32A4838226065EB9006DB2EB /* PostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOperation.swift; sourceTree = "<group>"; };
+		32A4838C2606ED97006DB2EB /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		32D6CD7B260455A9003956A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -493,6 +499,7 @@
 				2A3646A525AFDBE100AB3C3B /* DBOperation.swift */,
 				32FBF59F25C2784400F7C55E /* UserOperation.swift */,
 				3233FBEC25F9E89D00E0825B /* FireStorage.swift */,
+				32A4838226065EB9006DB2EB /* PostOperation.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -502,6 +509,7 @@
 			children = (
 				2A36469E25AFDB8900AB3C3B /* Post.swift */,
 				324B708725FF15D000551BFD /* CheckBox.swift */,
+				32D6CD7B260455A9003956A5 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -660,6 +668,7 @@
 				3233FBDC25F9744800E0825B /* UIImageView.swift */,
 				32A4B92F25FFEFF9005DD281 /* Date.swift */,
 				32D6CD7226045081003956A5 /* UIView.swift */,
+				32A4838C2606ED97006DB2EB /* Array.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1017,6 +1026,7 @@
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
 				3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */,
+				32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
 				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
 				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
@@ -1026,12 +1036,14 @@
 				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
 				32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */,
 				32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */,
+				32A4838D2606ED97006DB2EB /* Array.swift in Sources */,
 				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,
 				320F80A725E4C94100FBB40A /* SettingViewController.swift in Sources */,
 				32A4B93025FFEFF9005DD281 /* Date.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
+				32D6CD7C260455A9003956A5 /* User.swift in Sources */,
 				321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */,

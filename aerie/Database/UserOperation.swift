@@ -7,31 +7,7 @@
 //
 
 import Foundation
-import Firebase
 
-struct User: Identifiable{
-    
-    var id: String = UUID().uuidString
-    var email: String
-    var gender: String
-    
-    var firstName: String
-    var lastName: String
-    var expectedLocation: String
-    
-    var dateOfBirth: String
-    var age: Int
-    var location: String
-    var expectedRentUpper: Int
-    var expectedRentLower: Int
-    
-    var petFriendly: Bool
-    var smokeOrNot: Bool
-    var postings:[Post]
-    
-    // TODO: Add GOOGLE MAP API
-    
-}
 
 class UserOperation:DBOperation{
     //initialize the database and collections
@@ -104,6 +80,27 @@ class UserOperation:DBOperation{
         }
     }
     
+    func getUserPostNumber(email: String, completion:@escaping(Int) ->()){
+        isUserFieldExist(documentName: email, fieldName: self.userFields.postings){ result in
+            if result{
+                self.getUserDocument(documentName: email) {data in
+                    let posts = data[self.userFields.postings] as! [String]
+                    completion(posts.count)
+                    }
+            }
+            else{
+                completion(0)
+            }
+            
+        }
+    }
+    
+    func getUserPosts(email: String, completion:@escaping([String]) -> ()){
+        getUserDocument(documentName: email){data in
+            completion(data[self.userFields.postings] as! [String])
+        }
+    }
+    
     func getAllUsers(){
         let userCollection = super.database.collection(db_name)
         userCollection.addSnapshotListener{(querySnapShot, err) in
@@ -125,7 +122,7 @@ class UserOperation:DBOperation{
                 let expectedRentUpper = data[self.userFields.expectedRentUpper] as? Int ?? 0
                 let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
                 let expectedLocation  = data[self.userFields.expectedLocation] as? String ?? ""
-                let postings = data[self.userFields.postings] as? [Post] ?? []
+                let postings = data[self.userFields.postings] as? [String] ?? []
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
                 return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
