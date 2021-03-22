@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 
 class UserOperation:DBOperation{
     //initialize the database and collections
@@ -41,6 +41,20 @@ class UserOperation:DBOperation{
     func updateUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool) ->()){
         let userCollection = super.database.collection(db_name)
         updateDocument(documentName: userEmail, data: data, collectionRef: userCollection){ result in
+            completion(result)
+        }
+    }
+    
+    // add new pid to user's post string array
+    func addUserPost(userEmail: String, pid: String, completion:@escaping(Bool) -> ()){
+        updateUserDocument(userEmail: userEmail, data: [self.userFields.postings: FieldValue.arrayUnion([pid])]){ result in
+            completion(result)
+        }
+    }
+    
+    //remove pid from user's post string array
+    func removeUserPost(userEmail: String, pid: String, completion:@escaping(Bool) -> ()){
+        updateUserDocument(userEmail: userEmail, data: [self.userFields.postings: FieldValue.arrayRemove([pid])]){ result in
             completion(result)
         }
     }

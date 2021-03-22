@@ -22,7 +22,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
         postOperation.getAllPosts(){listOfPost in
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
-            print("\(listOfPost)")
             DispatchQueue.main.async {
                 self.tableView.delegate   = self
                 self.tableView.dataSource = self
@@ -38,25 +37,29 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
     @IBAction func ComposePost(_ sender: Any){
         let email = UserDefaults.standard.value(forKey: "email") as! String
         let description = "Test if it works"
-        let userOperation = UserOperation()
-        userOperation.getUserPostNumber(email: email){number in
-            
+        
+        postOperation.getAllPosts(){postList in
+            let number = postList.count
             let pid = "post_\(number)"
-            let newPost = Post(pid:    pid,
-                               uid:    email,
-                               description: description,
-                               timestamp:   Date())
+            let newPost: Dictionary<String, Any> = [Constants.postFields.pidField:    pid,
+                           Constants.postFields.uidField:    email,
+                           Constants.postFields.description: description,
+                           Constants.postFields.timeStamp:   Date()]
             self.postOperation.addSetPostDocument(pid: pid,
-                                                  data: newPost.dictionary)
+                                                  data: newPost)
             { result in
+                
                 let alert = UIAlertController()
+                alert.title = "Fail to post!"
+                alert.addAction(UIAlertAction(title: "fine", style: .default, handler: nil))
                 if result{
-                    alert.title = "Successfully post!"
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                }
-                else{
-                    alert.title = "Fail to post!"
-                    alert.addAction(UIAlertAction(title: "fine", style: .default, handler: nil))
+                    let userOperation = UserOperation()
+                    userOperation.addUserPost(userEmail: email, pid: pid){result in
+                        if result{
+                            alert.title = "Successfully post!"
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        }
+                    }
                 }
                 self.present(alert, animated: true, completion: nil)
                 
@@ -145,6 +148,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
     }
     
     func checkUpdatedPosts(){
+        print("I am really running")
         postOperation.getPostUpdates{querySnapShots in
             querySnapShots.documentChanges.forEach{
                 diff in
@@ -159,6 +163,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
                     let timeStampDate = timeStamp.dateValue()
                     let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate)
                     self.postArray.append(post)
+                    print("post has been added, \(diff.document.data())")
                     
                 }
                 else if diff.type == .removed{
