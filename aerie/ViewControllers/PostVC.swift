@@ -8,28 +8,66 @@
 
 import Foundation
 import Firebase
-class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
+class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
-    
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     var postArray = [Post]()
     var postOperation = PostOperation()
-    
+    @IBOutlet var composeBtn : UIButton!
+    @IBOutlet weak var cellHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.loadDataToTable()
+        self.composeBtn.clipsToBounds = true
+        self.composeBtn.layer.cornerRadius = 20
+        self.scrollView.delegate  = self
+        self.tableView.delegate   = self
+        self.tableView.dataSource = self
+    }
+    
+    func loadDataToTable(){
         postOperation.getAllPosts(){listOfPost in
+            //self.scrollView = self.view as? UIScrollView
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 44.5) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 44.5)
+            
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
             DispatchQueue.main.async {
-                self.tableView.delegate   = self
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
+                self.tableView?.reloadData()
             }
         }
-        checkUpdatedPosts()
-        
+    }
+    
+    func updateTableAutomatic(){
+        postOperation.getAllPosts(){listOfPost in
+            //self.scrollView = self.view as? UIScrollView
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 44.5) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 44.5)
+            
+            //getting a list of posts and load them to table view
+            self.postArray = listOfPost
+            
+            self.tableView?.reloadData()
+        }
+    }
+    
+    @IBAction func updateTable(){
+        postOperation.getAllPosts(){listOfPost in
+            //getting a list of posts and load them to table view
+            self.postArray = listOfPost
+            
+            self.tableView.reloadData()
+            
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+           let  off = scrollView.contentOffset.y
+           // make sure the compose button position stays here
+           self.composeBtn.frame = CGRect(x: 353, y:   off + 600, width: composeBtn.frame.size.width, height: composeBtn.frame.size.height)
     }
     
     
@@ -48,23 +86,30 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
             self.postOperation.addSetPostDocument(pid: pid,
                                                   data: newPost)
             { result in
-                
                 let alert = UIAlertController()
-                alert.title = "Fail to post!"
-                alert.addAction(UIAlertAction(title: "fine", style: .default, handler: nil))
+                alert.view.addSubview(UIView())
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alert.pruneNegativeWidthConstraints()
                 if result{
                     let userOperation = UserOperation()
+                    
                     userOperation.addUserPost(userEmail: email, pid: pid){result in
                         if result{
-                            alert.title = "Successfully post!"
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            alert.title = "Successfully post."
+                        }else{
+                            alert.title = "Fail to post."
                         }
                     }
                 }
-                self.present(alert, animated: true, completion: nil)
-                
+                else{
+                    alert.title = "Fail to post."
+                }
+                self.present(alert, animated: false, completion: nil)
+                self.updateTableAutomatic()
             }
         }
+        
+        
         
     }
     
@@ -122,7 +167,11 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
         
         
         //just a tester for showing description. TODO: CHANGE THAT!!!!
-        let alert = UIAlertController(title: "View", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController()
+        
+        alert.view.addSubview(UIView())
+        alert.pruneNegativeWidthConstraints()
+        
         alert.addAction(UIAlertAction(title: post.description, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
@@ -135,48 +184,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    
-    func loadDataToPostTable(){
-        postOperation.getAllPosts(){listOfPost in
-            //getting a list of posts and load them to table view
-            self.postArray = listOfPost
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    func checkUpdatedPosts(){
-        print("I am really running")
-        postOperation.getPostUpdates{querySnapShots in
-            querySnapShots.documentChanges.forEach{
-                diff in
-                
-                let pid = diff.document.data()[Constants.postFields.pidField]
-                if diff.type == .added{
-                    let data = diff.document.data()
-                    let pid  = data[Constants.postFields.pidField] as! String
-                    let uid  = data[Constants.postFields.uidField] as! String
-                    let description = data[Constants.postFields.description] as! String
-                    let timeStamp   = data[Constants.postFields.timeStamp]   as! Timestamp
-                    let timeStampDate = timeStamp.dateValue()
-                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate)
-                    self.postArray.append(post)
-                    print("post has been added, \(diff.document.data())")
-                    
-                }
-                else if diff.type == .removed{
-                    
-                    if let index: Int = self.postArray.firstIndex(where: { $0.pid == pid as! String }){
-                        self.postArray.remove(at: index)
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
     }
     
 }

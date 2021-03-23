@@ -48,7 +48,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         super.viewDidLoad()
         
-        
+        Styler.setBackgroundWithColor(self.view,  UIColor(named:"background")!)
         let upLoadTap  = UITapGestureRecognizer(target: self, action:#selector(uploadProfileTapped(_:)))
         imageView?.addGestureRecognizer(upLoadTap)
         

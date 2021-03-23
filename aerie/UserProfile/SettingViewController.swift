@@ -35,9 +35,7 @@ class SettingViewController: UIViewController{
             }
         UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
         
-        backView?.dropShadow()
         
-        print("set expect location")
         self.hideKeyboardWhenTappedElseWhere()
         errorLabel?.textColor = UIColor(named:"buttonText")
         errorLabel?.alpha = 0

@@ -81,7 +81,8 @@ class PostOperation:DBOperation{
     
     func getPostUpdates(completion:@escaping(QuerySnapshot) -> ()){
         let postDB = database.collection(Constants.dbNames.postDB)
-        postDB.whereField(Constants.postFields.timeStamp, isGreaterThan: Date()).addSnapshotListener{
+        
+        postDB.whereField(Constants.postFields.timeStamp, isGreaterThan: Timestamp(date: Date())).addSnapshotListener{
             querySnapShot, error in
             guard let querySnapShot = querySnapShot, error != nil else{
                 return
