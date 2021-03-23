@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var Header: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     var postArray = [Post]()
@@ -18,9 +20,10 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.composeBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.hideKeyboardWhenTappedElseWhere()
         self.loadDataToTable()
-        self.composeBtn.clipsToBounds = true
-        self.composeBtn.layer.cornerRadius = 20
+        
         self.scrollView.delegate  = self
         self.tableView.delegate   = self
         self.tableView.dataSource = self
@@ -64,10 +67,15 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
+        let transition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
            let  off = scrollView.contentOffset.y
            // make sure the compose button position stays here
-           self.composeBtn.frame = CGRect(x: 353, y:   off + 600, width: composeBtn.frame.size.width, height: composeBtn.frame.size.height)
+           self.composeBtn.frame = CGRect(x: 280, y:   off + 600, width: composeBtn.frame.size.width, height: composeBtn.frame.size.height)
+           self.Header.frame = CGRect(x:0, y: off + 0, width: Header.frame.size.width, height: Header.frame.size.height)
+        if transition.y > 0{
+            self.searchBar.frame = CGRect(x:0, y: off + 105
+                                          , width: searchBar.frame.size.width, height: searchBar.frame.size.height)
+        }
     }
     
     
