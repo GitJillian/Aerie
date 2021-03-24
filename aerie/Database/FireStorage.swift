@@ -26,13 +26,14 @@ class FireStorage{
     }
     
     //uploads local file with fileurl to the fire storage path
-    func uploadToCloud(pngData: Data, refPath: String){
+    func uploadToCloud(pngData: Data, refPath: String, completion:@escaping(Bool) -> ()){
         
         
         let photoRef   = storageRef.child(refPath)
          photoRef.putData(pngData,
-                          metadata:nil, completion: {(metadata, err) in
+                          metadata:nil) {(metadata, err) in
                                           guard err == nil else{
+                                                    completion(false)
                                                     return
                                                                 }
             photoRef.child(refPath).downloadURL(completion: {url, error in
@@ -42,23 +43,23 @@ class FireStorage{
                 let urlString = url.absoluteString
                 UserDefaults.standard.setValue(urlString, forKey: "url")
             })
-        })
+            completion(true)
+        }
     }
     
-    func loadAvatar(imageView: UIImageView, vc: UIViewController){
+    func loadAvatar(completion:@escaping(Data) ->()){
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let email = UserDefaults.standard.value(forKey: "email") as! String
         let ref = storageRef.child("image/"+email+"_avatar")
         ref.getData(maxSize: 15*1024*1024){ data, err in
             if let err = err{
-                print("you bad bad error is here", err.localizedDescription)
+                print("\(err.localizedDescription)")
+                completion(Data())
                 return
             }
             else{
-                    let image = UIImage(data:data!)
-                    imageView.image = image
-                    vc.viewDidLoad()
+                completion(data!)
                     
             }
         }

@@ -13,12 +13,15 @@ struct Post{
     var pid: String
     var uid: String
     var description: String
-    var timestamp: Date
+    var timestamp:   Date
+    var budget:      Int
+    
     var dictionary: [String: Any]{
         return[Constants.postFields.pidField:     pid,
                Constants.postFields.uidField:     uid,
                Constants.postFields.description:  description,
-               Constants.postFields.timeStamp:    timestamp
+               Constants.postFields.timeStamp:    timestamp,
+               Constants.postFields.budget   :    budget
         ]
     }
 }

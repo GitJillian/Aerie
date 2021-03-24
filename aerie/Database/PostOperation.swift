@@ -69,7 +69,8 @@ class PostOperation:DBOperation{
                     let description = data[Constants.postFields.description] as! String
                     let timeStamp   = data[Constants.postFields.timeStamp]     as! Timestamp
                     let timeStampDate = timeStamp.dateValue()
-                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate)
+                    let budget      = data[Constants.postFields.budget] as! Int
+                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget)
                     posts.append(post)
                 }
                 completion(posts)

@@ -84,5 +84,6 @@ struct Constants {
         static var uidField = "uid"
         static var description = "description"
         static var timeStamp   = "timestamp"
+        static var budget      = "budget"
     }
 }

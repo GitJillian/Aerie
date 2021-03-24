@@ -8,9 +8,10 @@
 
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseStorage
+import Photos
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController{
 
     @IBOutlet weak var firstNameTextField: UITextField!
     
@@ -26,6 +27,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var passwordConfirm: UITextField!
     
+    
     public var userField = Constants.userFields.self
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +37,12 @@ class SignUpViewController: UIViewController {
     }
     
     func init_interface() {
-    
         // Hide the error label
         
         errorLabel.alpha = 0
         self.navigationController?.view.backgroundColor = UIColor.white
         self.navigationItem.title = Constants.Texts.signUpTitle
-        Styler.setBackgroundWithColor(self.view,  UIColor(named:"background")!)
+        
         Styler.styleTextField(firstNameTextField, UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
         Styler.styleTextField(lastNameTextField,  UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
         Styler.styleTextField(emailTextField,     UIColor(named:"line")?.cgColor ?? UIColor.white.cgColor)
@@ -50,7 +51,7 @@ class SignUpViewController: UIViewController {
         Styler.styleFilledButton(signUpButton,    UIColor(named:"button") ?? .clear, UIColor(named:"buttonText")?.cgColor, Constants.Buttons.borderWidth)
         signUpButton.setTitleColor(UIColor(named:"buttonText"), for: .normal)
     }
-    
+        
     // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
     func validateFields() -> String? {
         

@@ -12,7 +12,7 @@ import FloatingPanel
 import CoreLocation
 
 class LocationViewController: UIViewController, SearchMapControllerDelegate{
-    
+    // to do: update location struct to user field
     public var pin   = MKPointAnnotation()
     public var panel = FloatingPanelController()
     public var searchVC = SearchMapController()
@@ -54,11 +54,11 @@ class LocationViewController: UIViewController, SearchMapControllerDelegate{
             for viewController in viewControllers {
                 if viewController.isKind(of: ProfileViewController.self){
                     UserDefaults.standard.setValue("userLocation", forKey: "locationType")
-                    print("set profile")
+                   
                 }
                 else if viewController.isKind(of: SettingViewController.self){
                     UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
-                    print("set expect location")
+                    
                 }
                 
             }

@@ -93,30 +93,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         initializeDatePick()
         
-        let url = UserDefaults.standard.value(forKey: "url") as! String
             
-        if url == "no url"{
-            self.imageView?.image = UIImage(named: "ava")
-        }
-        else{
+        
             //setting image view to the avatar in firebase storage
             let avatar_path = self.fireStorage.storageRef.child("image/" + email + "_avatar")
             avatar_path.getData(maxSize: 15*1024*1024){data, err in
                 if let err = err{
                     print(err)
-                    return
+                    self.imageView?.image = UIImage(named: "ava")
+                    
                 }
                 else{
                     let image = UIImage(data:data!)
                     self.imageView?.image = image
                 }
-            }
+            
         }
     }
-    
-    //@objc func selectUserLocation(){
-    //    self.present(self.locationVC, animated: true, completion: nil)
-    //}
     
     
     //enable user to choose date of birth
@@ -127,7 +120,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         toolBar.setItems([doneBtn], animated: true)
         
         birthDateTxt?.inputAccessoryView = toolBar
-        datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())
+        //setting maximum date that the user can pick
+        datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -120, to: Date())
         birthDateTxt?.inputView = datePicker
         datePicker.datePickerMode = .date
     }

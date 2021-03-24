@@ -16,6 +16,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     @IBOutlet var tableView: UITableView!
     var postArray = [Post]()
     var postOperation = PostOperation()
+    //@IBOutlet weak var tableViewCell: UITableViewCell!
     @IBOutlet var composeBtn : UIButton!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -23,7 +24,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         //self.composeBtn.translatesAutoresizingMaskIntoConstraints = false
         self.hideKeyboardWhenTappedElseWhere()
         self.loadDataToTable()
-        
+        self.tableView.isScrollEnabled = false
+        self.tableView.alwaysBounceVertical = false
         self.scrollView.delegate  = self
         self.tableView.delegate   = self
         self.tableView.dataSource = self
@@ -32,8 +34,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func loadDataToTable(){
         postOperation.getAllPosts(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 44.5) )
-            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 44.5)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 146) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 146)
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
@@ -46,8 +48,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func updateTableAutomatic(){
         postOperation.getAllPosts(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 44.5) )
-            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 44.5)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 146) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 146)
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
@@ -66,6 +68,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         }
     }
     
+    //when the scroll view begins scrolling, the compose button should stay the same place
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let transition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
            let  off = scrollView.contentOffset.y
@@ -82,15 +85,16 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     @IBAction func ComposePost(_ sender: Any){
         let email = UserDefaults.standard.value(forKey: "email") as! String
-        let description = "Test if it works"
+        let description = ["Get interested in apartments in south keys", "Looking for a house", "Want to find a roommate"]
         
         postOperation.getAllPosts(){postList in
             let number = postList.count
             let pid = "post_\(number)"
             let newPost: Dictionary<String, Any> = [Constants.postFields.pidField:    pid,
                            Constants.postFields.uidField:    email,
-                           Constants.postFields.description: description,
-                           Constants.postFields.timeStamp:   Date()]
+                           Constants.postFields.description: description[Int.random(in: 0..<2)],
+                           Constants.postFields.timeStamp:   Date(),
+                           Constants.postFields.budget:      Int.random(in: 100..<1000)]
             self.postOperation.addSetPostDocument(pid: pid,
                                                   data: newPost)
             { result in
@@ -131,21 +135,36 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         return postArray.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
     
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
         let postCell = self.postArray[indexPath.row]
-        
-        cell.textLabel?.text = "\(postCell.pid)"
-        cell.textLabel?.numberOfLines = 0
-        cell.backgroundColor = .secondarySystemBackground
-        cell.contentView.backgroundColor = .secondarySystemBackground
-        cell.textLabel?.textColor = UIColor(named: "hintText")
-
-        // Configure the cell...
-
+        let uid = postCell.uid
+        let userOperation = UserOperation()
+        cell.descriptionText?.text = postCell.description
+        userOperation.getUserDocument(documentName: uid){document in
+            
+            let name = "\(document[Constants.userFields.firstname] ?? "first") \( document[Constants.userFields.lastname] ?? "last"), \(document[Constants.userFields.age] ?? "\(0)")"
+            let location = "\(document[Constants.userFields.locationStr] ?? "Canada")"
+            
+            cell.NameLabel?.text = name
+            cell.locationLabel?.text = location
+            
+            let fireStorage = FireStorage()
+            fireStorage.loadAvatar(){data in
+                if data.isEmpty{
+                    cell.avatarImage?.image = UIImage(named:"ava")
+                }else{
+                    let image = UIImage(data: data)
+                    cell.avatarImage?.image = image
+                }
+            }
+        }
         return cell
     }
     

@@ -36,6 +36,7 @@
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
+		32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
 		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
 		32D6CD7C260455A9003956A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7B260455A9003956A5 /* User.swift */; };
@@ -455,6 +456,7 @@
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		32D6CD7B260455A9003956A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -584,6 +586,14 @@
 			path = SettingControl;
 			sourceTree = "<group>";
 		};
+		32C2E39A260AFCEB00ED88AF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		4BB4075EEC3AE105084101BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +642,7 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
+				32C2E39A260AFCEB00ED88AF /* UI */,
 				32A4B97326004B27005DD281 /* SettingControl */,
 				3214693F25EAE34200C8735C /* ViewControllers */,
 				3214693C25EAE2E600C8735C /* UserProfile */,
@@ -1025,6 +1036,7 @@
 			files = (
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
+				32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */,
 				32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */,
 				321F67F925EC85E10098A866 /* String.swift in Sources */,
 				2A29F66325A7F01300D039B8 /* Styler.swift in Sources */,

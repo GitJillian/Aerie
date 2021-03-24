@@ -191,11 +191,14 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         guard let imageData = image.pngData() else{
             return
         }
-        firestorage.uploadToCloud(pngData: imageData, refPath: path)
-        firestorage.getUrlByPath(path: path){ url in
-            
-            self.imagePickerController.dismiss(animated: true){
-                self.imageView.image = image
+        firestorage.uploadToCloud(pngData: imageData, refPath: path){result in
+            if result{
+                firestorage.getUrlByPath(path: path){ url in
+                    
+                    self.imagePickerController.dismiss(animated: true){
+                        self.imageView.image = image
+                    }
+                }
             }
         }
     }
