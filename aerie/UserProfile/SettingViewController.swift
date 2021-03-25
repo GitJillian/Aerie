@@ -112,8 +112,8 @@ class SettingViewController: UIViewController{
             //setting desired location using String
             let desiredLocationIsSet = data[Constants.userFields.expectedLocation] != nil
             if desiredLocationIsSet{
-                let desiredLocation = data[Constants.userFields.expectedLocation] as! String
-                self.location?.text = desiredLocation
+                let desiredLocation = data[Constants.userFields.expectedLocation] as! [String: Any]
+                self.location?.text = desiredLocation["title"] as? String
             }else{
                 self.location?.text = ""
             }
@@ -232,13 +232,12 @@ class SettingViewController: UIViewController{
         
         let isPetFriendly  = petSwitch?.isOn
         let isSmokeing     = smokeSwitch?.isOn
-        let desireLocation = location?.text
+        
         let minPrice       = Int(rangeSlider!.lowerValue)
         let maxPrice       = Int(rangeSlider!.upperValue)
         
         data[Constants.userFields.petFriendly] = isPetFriendly
         data[Constants.userFields.smokeOrNot]  = isSmokeing
-        data[Constants.userFields.expectedLocation] = desireLocation
         data[Constants.userFields.expectedRentLower] = minPrice
         data[Constants.userFields.expectedRentUpper] = maxPrice
         return data

@@ -96,6 +96,10 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
         
         delegate?.searchMapController(self,
                                       didSelectLocationWith: place)
+        var placeToDict : [String: Any] = [String: Any]()
+        placeToDict["title"] = place.title
+        
+        placeToDict["locationDict"] = place.locationDict
         var field : String = ""
         var message: String = ""
         let setLocationType = UserDefaults.standard.value(forKey: "locationType") as! String
@@ -114,7 +118,7 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
             
             let email = UserDefaults.standard.value(forKey: "email") as! String
             let userOperation = UserOperation()
-            userOperation.updateUserDocument(userEmail: email, data: [field: place.title]){ result in
+            userOperation.updateUserDocument(userEmail: email, data: [field: placeToDict]){ result in
                 if !result{
                     return
                 }

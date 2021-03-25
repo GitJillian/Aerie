@@ -14,6 +14,7 @@ import CoreLocation
 struct Location {
     let title: String
     let coordinates: CLLocationCoordinate2D?
+    let locationDict: [String:Any]
 }
 
 class LocationManager: NSObject {
@@ -46,7 +47,13 @@ class LocationManager: NSObject {
                 }
                 
                 let result = Location(title:       name,
-                                      coordinates: place.location?.coordinate)
+                                      coordinates: place.location?.coordinate,
+                                      locationDict: [Constants.location.locationName: "\(String(describing: place.name))" ,
+                                                     Constants.location.adminRegion : "\(String(describing: place.administrativeArea))" ,
+                                                     Constants.location.locality    : "\(String(describing: place.locality))",
+                                                     Constants.location.country     : "\(String(describing: place.country))"
+                                                    ]
+                                      )
                 return result
             })
             completion(models)

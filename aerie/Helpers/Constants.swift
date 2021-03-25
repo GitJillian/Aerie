@@ -15,6 +15,7 @@ struct Constants {
         
         static let homeViewController = "HomeVC"
         static let profileViewController = "ProfileVC"
+        static let sendpostViewController = "SendPostVC"
     }
     
     struct Images{
@@ -77,8 +78,15 @@ struct Constants {
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
         static var expectedLocation  = "expectedLocation"
-        
     }
+    
+    struct location{
+        static var locationName = "locationName"
+        static var adminRegion  = "adminRegion"
+        static var locality     = "locality"
+        static var country      = "country"
+    }
+    
     struct postFields{
         static var pidField = "pid"
         static var uidField = "uid"

@@ -9,17 +9,13 @@
 import UIKit
 extension UIView {
 
-
-  func dropShadow(scale: Bool = true) {
-    layer.cornerRadius = CGFloat(10)
-    layer.masksToBounds = true
-    layer.shadowColor = UIColor.black.cgColor
-    layer.shadowOpacity = 0.5
-    layer.shadowOffset = CGSize(width: -1, height: 1)
-    layer.shadowRadius = 1
-
-    layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-    layer.shouldRasterize = true
-    layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-  }
+    func addShadow() {
+        layer.cornerRadius = 12
+        layer.masksToBounds = true;
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOpacity = 0.8
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 6.0
+        layer.masksToBounds = false
+    }
 }

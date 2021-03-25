@@ -31,7 +31,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     
     private var contactAlert:UIAlertController!
     private var fireStorage   = FireStorage()
-    private var fireBaseCloud = UserOperation()
+    private var userOperation = UserOperation()
     private var imagePickerController   = UIImagePickerController()
     
     // This extends the superclass.
@@ -70,7 +70,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         settingBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         profileBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         let email = UserDefaults.standard.value(forKey: "email") as! String
-        fireBaseCloud.getUserFullName(email: email){name in
+        userOperation.getUserFullName(email: email){name in
             UserDefaults.standard.setValue(name, forKey: "username")
             self.NameField?.text = name
         }

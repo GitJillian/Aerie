@@ -37,6 +37,8 @@
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
 		32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */; };
+		32C2E3A6260C282D00ED88AF /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */; };
+		32C2E3AA260C57DA00ED88AF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A9260C57DA00ED88AF /* MapViewController.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
 		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
 		32D6CD7C260455A9003956A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7B260455A9003956A5 /* User.swift */; };
@@ -457,6 +459,8 @@
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
+		32C2E3A9260C57DA00ED88AF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		32D6CD7B260455A9003956A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -582,16 +586,18 @@
 				32A4B98426004D6C005DD281 /* LocationViewController.swift */,
 				321E49342601AC7C0047A704 /* SearchMapController.swift */,
 				32D2FB5D2602B6B8003197E3 /* LocationManager.swift */,
+				32C2E3A9260C57DA00ED88AF /* MapViewController.swift */,
 			);
 			path = SettingControl;
 			sourceTree = "<group>";
 		};
-		32C2E39A260AFCEB00ED88AF /* UI */ = {
+		32C2E39A260AFCEB00ED88AF /* Postings */ = {
 			isa = PBXGroup;
 			children = (
 				32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */,
+				32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */,
 			);
-			path = UI;
+			path = Postings;
 			sourceTree = "<group>";
 		};
 		4BB4075EEC3AE105084101BD /* Frameworks */ = {
@@ -642,7 +648,7 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
-				32C2E39A260AFCEB00ED88AF /* UI */,
+				32C2E39A260AFCEB00ED88AF /* Postings */,
 				32A4B97326004B27005DD281 /* SettingControl */,
 				3214693F25EAE34200C8735C /* ViewControllers */,
 				3214693C25EAE2E600C8735C /* UserProfile */,
@@ -1064,7 +1070,9 @@
 				32A4B93025FFEFF9005DD281 /* Date.swift in Sources */,
 				8314D43522E644CC001D044A /* SceneDelegate.swift in Sources */,
 				32D6CD7C260455A9003956A5 /* User.swift in Sources */,
+				32C2E3A6260C282D00ED88AF /* SendPostViewController.swift in Sources */,
 				321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */,
+				32C2E3AA260C57DA00ED88AF /* MapViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,

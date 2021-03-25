@@ -19,9 +19,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var femmeBtn:      CheckBox!
     @IBOutlet var hommeBtn:      CheckBox!
     @IBOutlet var locationField: UILabel!
-    //private var locationVC    = LocationViewController()
     private var userOperation = UserOperation()
     private var fireStorage = FireStorage()
+    @IBAction func SetYourLocationClicked(_ sender: Any) {
+    }
+    
     private var imagePickerController = UIImagePickerController()
     
     override func awakeFromNib() {
@@ -66,14 +68,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 let birthday = data[Constants.userFields.birth]
                 self.birthDateTxt?.text   = birthday as? String
             }else{
-                self.birthDateTxt?.text = "Select Birthday"
+                self.birthDateTxt?.text = ""
             }
             let setLocation = data[Constants.userFields.locationStr] != nil
             if setLocation{
-                let location = data[Constants.userFields.locationStr]
-                self.locationField?.text = location as? String
+                let location = data[Constants.userFields.locationStr] as! [String: Any]
+                self.locationField?.text = location["title"] as? String
             }else{
-                self.locationField?.text = "Select Location"
+                self.locationField?.text = ""
             }
         }
       

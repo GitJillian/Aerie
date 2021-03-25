@@ -84,45 +84,11 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     
     @IBAction func ComposePost(_ sender: Any){
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        let description = ["Get interested in apartments in south keys", "Looking for a house", "Want to find a roommate"]
         
-        postOperation.getAllPosts(){postList in
-            let number = postList.count
-            let pid = "post_\(number)"
-            let newPost: Dictionary<String, Any> = [Constants.postFields.pidField:    pid,
-                           Constants.postFields.uidField:    email,
-                           Constants.postFields.description: description[Int.random(in: 0..<2)],
-                           Constants.postFields.timeStamp:   Date(),
-                           Constants.postFields.budget:      Int.random(in: 100..<1000)]
-            self.postOperation.addSetPostDocument(pid: pid,
-                                                  data: newPost)
-            { result in
-                let alert = UIAlertController()
-                alert.view.addSubview(UIView())
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                alert.pruneNegativeWidthConstraints()
-                if result{
-                    let userOperation = UserOperation()
-                    
-                    userOperation.addUserPost(userEmail: email, pid: pid){result in
-                        if result{
-                            alert.title = "Successfully post."
-                        }else{
-                            alert.title = "Fail to post."
-                        }
-                    }
-                }
-                else{
-                    alert.title = "Fail to post."
-                }
-                self.present(alert, animated: false, completion: nil)
-                self.updateTableAutomatic()
-            }
-        }
-        
-        
-        
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.sendpostViewController) as! SendPostViewController
+        self.view.window?.rootViewController = initialBoard
+        self.view.window?.makeKeyAndVisible()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -150,10 +116,11 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         userOperation.getUserDocument(documentName: uid){document in
             
             let name = "\(document[Constants.userFields.firstname] ?? "first") \( document[Constants.userFields.lastname] ?? "last"), \(document[Constants.userFields.age] ?? "\(0)")"
-            let location = "\(document[Constants.userFields.locationStr] ?? "Canada")"
+            let location = document[Constants.userFields.locationStr] as! [String: Any]
+            let locationStr = location["title"] as? String
             
             cell.NameLabel?.text = name
-            cell.locationLabel?.text = location
+            cell.locationLabel?.text = locationStr
             
             let fireStorage = FireStorage()
             fireStorage.loadAvatar(){data in
