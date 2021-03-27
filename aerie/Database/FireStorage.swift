@@ -47,11 +47,11 @@ class FireStorage{
         }
     }
     
-    func loadAvatar(completion:@escaping(Data) ->()){
+    func loadAvatarByPath(path: String, completion:@escaping(Data) ->()){
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        let ref = storageRef.child("image/"+email+"_avatar")
+        
+        let ref = storageRef.child(path)
         ref.getData(maxSize: 15*1024*1024){ data, err in
             if let err = err{
                 print("\(err.localizedDescription)")

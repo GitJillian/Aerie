@@ -77,7 +77,7 @@ struct Constants {
         static var locationStr = "location"
         static var expectedRentUpper = "expectedRentUpper"
         static var expectedRentLower = "expectedRentLower"
-        static var expectedLocation  = "expectedLocation"
+        
     }
     
     struct location{
@@ -93,5 +93,6 @@ struct Constants {
         static var description = "description"
         static var timeStamp   = "timestamp"
         static var budget      = "budget"
+        static var expectedLocation  = "expectedLocation"
     }
 }

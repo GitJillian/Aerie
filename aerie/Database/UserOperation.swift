@@ -44,21 +44,7 @@ class UserOperation:DBOperation{
             completion(result)
         }
     }
-    
-    // add new pid to user's post string array
-    func addUserPost(userEmail: String, pid: String, completion:@escaping(Bool) -> ()){
-        updateUserDocument(userEmail: userEmail, data: [self.userFields.postings: FieldValue.arrayUnion([pid])]){ result in
-            completion(result)
-        }
-    }
-    
-    //remove pid from user's post string array
-    func removeUserPost(userEmail: String, pid: String, completion:@escaping(Bool) -> ()){
-        updateUserDocument(userEmail: userEmail, data: [self.userFields.postings: FieldValue.arrayRemove([pid])]){ result in
-            completion(result)
-        }
-    }
-    
+
     
     func getUserFirstName(email:String, completion: @escaping(String) -> ()){
         getUserDocument(documentName: email) { (data) in
@@ -94,27 +80,6 @@ class UserOperation:DBOperation{
         }
     }
     
-    func getUserPostNumber(email: String, completion:@escaping(Int) ->()){
-        isUserFieldExist(documentName: email, fieldName: self.userFields.postings){ result in
-            if result{
-                self.getUserDocument(documentName: email) {data in
-                    let posts = data[self.userFields.postings] as! [String]
-                    completion(posts.count)
-                    }
-            }
-            else{
-                completion(0)
-            }
-            
-        }
-    }
-    
-    func getUserPosts(email: String, completion:@escaping([String]) -> ()){
-        getUserDocument(documentName: email){data in
-            completion(data[self.userFields.postings] as! [String])
-        }
-    }
-    
     func getAllUsers(){
         let userCollection = super.database.collection(db_name)
         userCollection.addSnapshotListener{(querySnapShot, err) in
@@ -132,14 +97,12 @@ class UserOperation:DBOperation{
                 let lastName  = data[self.userFields.lastname] as? String ?? ""
                 let petFriendly = data[self.userFields.petFriendly] as? Bool ?? false
                 let smokeOrNot  = data[self.userFields.smokeOrNot] as? Bool ?? false
-                let location    = data[self.userFields.locationStr] as? String ?? ""
+                let location    = data[self.userFields.locationStr] as? [String:Any] ?? [String:Any]()
                 let expectedRentUpper = data[self.userFields.expectedRentUpper] as? Int ?? 0
                 let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
-                let expectedLocation  = data[self.userFields.expectedLocation] as? String ?? ""
-                let postings = data[self.userFields.postings] as? [String] ?? []
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, expectedLocation: expectedLocation, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot,  postings: postings)
+                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
             
             }
         }

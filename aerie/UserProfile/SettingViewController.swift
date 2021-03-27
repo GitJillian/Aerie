@@ -33,7 +33,6 @@ class SettingViewController: UIViewController{
                 // Always adopt a light interface style.
                 overrideUserInterfaceStyle = .light
             }
-        UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
         
         
         self.hideKeyboardWhenTappedElseWhere()
@@ -109,14 +108,7 @@ class SettingViewController: UIViewController{
                 self.smokeSwitch?.setOn(true, animated: true)
                 self.smokeBool?.text = "On"
             }
-            //setting desired location using String
-            let desiredLocationIsSet = data[Constants.userFields.expectedLocation] != nil
-            if desiredLocationIsSet{
-                let desiredLocation = data[Constants.userFields.expectedLocation] as! [String: Any]
-                self.location?.text = desiredLocation["title"] as? String
-            }else{
-                self.location?.text = ""
-            }
+            
         }
     }
     

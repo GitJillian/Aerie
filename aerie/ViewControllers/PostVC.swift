@@ -10,25 +10,37 @@ import Foundation
 import Firebase
 class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
+    @IBOutlet weak var refresh: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Header: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     var postArray = [Post]()
     var postOperation = PostOperation()
-    //@IBOutlet weak var tableViewCell: UITableViewCell!
     @IBOutlet var composeBtn : UIButton!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.composeBtn.translatesAutoresizingMaskIntoConstraints = false
-        self.hideKeyboardWhenTappedElseWhere()
         self.loadDataToTable()
-        self.tableView.isScrollEnabled = false
-        self.tableView.alwaysBounceVertical = false
-        self.scrollView.delegate  = self
-        self.tableView.delegate   = self
-        self.tableView.dataSource = self
+        self.tableView?.isScrollEnabled = false
+        self.tableView?.alwaysBounceVertical = false
+        self.scrollView?.delegate  = self
+        self.tableView?.delegate   = self
+        self.tableView?.dataSource = self
+        
+        self.hideKeyboardWhenTappedElseWhere()
+        self.scrollView?.refreshControl = UIRefreshControl()
+        self.scrollView?.refreshControl?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .valueChanged)
+        self.scrollView?.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh posts")
+        
+        self.refresh?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .touchUpInside)
+        
+        
     }
     
     func loadDataToTable(){
@@ -45,7 +57,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         }
     }
     
-    func updateTableAutomatic(){
+    @objc func updateTableAutomatic(_ sender: AnyObject){
         postOperation.getAllPosts(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
             self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 146) )
@@ -53,7 +65,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
-            
+            self.scrollView.refreshControl?.endRefreshing()
             self.tableView?.reloadData()
         }
     }
@@ -123,7 +135,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             cell.locationLabel?.text = locationStr
             
             let fireStorage = FireStorage()
-            fireStorage.loadAvatar(){data in
+            let path = "image/"+postCell.uid+"_avatar"
+            fireStorage.loadAvatarByPath(path: path){data in
                 if data.isEmpty{
                     cell.avatarImage?.image = UIImage(named:"ava")
                 }else{
@@ -141,18 +154,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
-    }
-    
-
-    
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){

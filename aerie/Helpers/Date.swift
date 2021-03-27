@@ -27,4 +27,10 @@ extension Date {
         let age = ageComponents.year!
         return age
     }
+    
+    public func toString() -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, yyyy"
+        return  formatter.string(from: self)
+    }
 }

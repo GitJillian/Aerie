@@ -46,6 +46,36 @@ class PostOperation:DBOperation{
         }
     }
     
+    
+    func getPostsByUser( uid: String, completion:@escaping([Post]) -> ()){
+        database.collection(Constants.dbNames.postDB)
+            .whereField(Constants.postFields.uidField, isEqualTo: uid)
+            .getDocuments(){
+                querySnapshot, err in
+                if let err = err{
+                    print("\(err.localizedDescription)")
+                    completion([Post]())
+                }else{
+                    var posts: [Post] = []
+                    let documents = querySnapshot!.documents
+                    for document in documents{
+                        let data = document.data()
+                        let pid  = data[Constants.postFields.pidField] as! String
+                        let uid  = data[Constants.postFields.uidField] as! String
+                        let description = data[Constants.postFields.description] as! String
+                        let timeStamp   = data[Constants.postFields.timeStamp]     as! Timestamp
+                        let timeStampDate = timeStamp.dateValue()
+                        let budget      = data[Constants.postFields.budget] as! Int
+                        let expectedLocation = data[Constants.postFields.expectedLocation] as! [String:Any]
+                        let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget, expectedLocation: expectedLocation)
+                        posts.append(post)
+                    }
+                    completion(posts)
+                }
+            }
+        
+    }
+    
     //add a post and return its pid and result
     func addPostDocument(data:Dictionary<String, Any>, completion:@escaping(Bool, String)->()){
         let postCollection = database.collection(Constants.dbNames.postDB)
@@ -70,12 +100,11 @@ class PostOperation:DBOperation{
                     let timeStamp   = data[Constants.postFields.timeStamp]     as! Timestamp
                     let timeStampDate = timeStamp.dateValue()
                     let budget      = data[Constants.postFields.budget] as! Int
-                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget)
+                    let expectedLocation = data[Constants.postFields.expectedLocation] as! [String:Any]
+                    let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget, expectedLocation: expectedLocation)
                     posts.append(post)
                 }
                 completion(posts)
-                
-                
             }
         }
     }
@@ -89,6 +118,17 @@ class PostOperation:DBOperation{
                 return
             }
             completion(querySnapShot)
+        }
+    }
+    
+    //remove a post using pid
+    func removePostByPid(pid: String, completion:@escaping(Bool) -> ()){
+        database.collection(Constants.dbNames.postDB).document(pid).delete(){err in
+            if let err = err{
+                print("error deleting your post, \(err.localizedDescription)")
+                completion(false)
+            }
+            completion(true)
         }
     }
 }

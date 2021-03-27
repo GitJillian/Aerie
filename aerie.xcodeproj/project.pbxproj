@@ -43,6 +43,7 @@
 		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
 		32D6CD7C260455A9003956A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7B260455A9003956A5 /* User.swift */; };
 		32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */; };
+		32E7EE8C260E901700BC5110 /* ManagePostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
@@ -465,6 +466,7 @@
 		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		32D6CD7B260455A9003956A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePostViewCell.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -596,6 +598,7 @@
 			children = (
 				32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */,
 				32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */,
+				32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */,
 			);
 			path = Postings;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
 				32D6CD7326045081003956A5 /* UIView.swift in Sources */,
 				2A29F6EC25A81CC200D039B8 /* Filter.swift in Sources */,
+				32E7EE8C260E901700BC5110 /* ManagePostViewCell.swift in Sources */,
 				3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */,
 				32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */,
 				32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */,

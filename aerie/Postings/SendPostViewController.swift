@@ -29,7 +29,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     private var fireStorage = FireStorage()
     private var imagePickerController = UIImagePickerController()
     private var datePicker = UIDatePicker()
-    
+    private var expectedLocationDict = [String: Any]()
     override func awakeFromNib() {
         self.view.layoutIfNeeded()
         profileViewBack.addShadow()
@@ -46,7 +46,6 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
         self.hideKeyboardWhenTappedElseWhere()
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
-        
         
         let email = UserDefaults.standard.value(forKey: "email") as! String
         
@@ -99,13 +98,15 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
                 self.SmokeSwitch?.setOn(true, animated: true)
             }
             //setting desired location using String
-            let desiredLocationIsSet = data[Constants.userFields.expectedLocation] != nil
+            let desiredLocationIsSet = data[Constants.postFields.expectedLocation] != nil
             if desiredLocationIsSet{
-                let desiredLocation = data[Constants.userFields.expectedLocation] as! [String: Any]
+                let desiredLocation = data[Constants.postFields.expectedLocation] as! [String: Any]
                 self.desiredLocationText?.text = desiredLocation["title"] as? String
+                self.expectedLocationDict = desiredLocation
             }else{
                 self.desiredLocationText?.text = ""
             }
+            
         }
         initializeDatePick()
     }
@@ -119,6 +120,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     }
     
     @objc func setDesiredlocationClicked(){
+        print("setting desired location")
         UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let initialBoard = sb.instantiateViewController(withIdentifier: "MapVC") as! MapViewController
@@ -209,21 +211,12 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
         return data
     }
     
-    
-        
-        
-       
-    
-    
     @IBAction func sendPost(){
+        //if all fields looks correct
         if validateFields(){
             let email = UserDefaults.standard.value(forKey: "email") as! String
             let pid = "post_\(email)_\(Date())"
-            var userData = getUpdatedUserProfile()
-            userData[Constants.userFields.postings] = FieldValue.arrayUnion([pid])
-            
-            
-            let userOperation = UserOperation()
+            let userData = getUpdatedUserProfile()
             
             var postData = Dictionary<String, Any>()
             let budget = budgetText?.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -234,17 +227,17 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
             postData[Constants.postFields.timeStamp] = Date()
             postData[Constants.postFields.description] = description
             postData[Constants.postFields.budget]   = Int(budget ?? "0")
-            
+            postData[Constants.postFields.expectedLocation] = self.expectedLocationDict
             self.postOperation.addSetPostDocument(pid: pid,
                                                       data: postData)
                 { result in
                     let alert = UIAlertController()
                     alert.view.addSubview(UIView())
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    alert.pruneNegativeWidthConstraints()
+                    
                     if result{
                         
-                        
+                        let userOperation = UserOperation()
                         userOperation.updateUserDocument(userEmail: email, data: userData){result in
                             if result{
                                 alert.title = "Successfully post."
@@ -256,7 +249,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
                     else{
                         alert.title = "Fail to post."
                     }
-                    self.present(alert, animated: false, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                     }
                 }
             

@@ -108,7 +108,7 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
             message = Constants.Texts.setLocation
         }
         else{
-            field   = Constants.userFields.expectedLocation
+            field   = Constants.postFields.expectedLocation
             message = Constants.Texts.setExpectedLocation
         }
         
@@ -117,13 +117,17 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
         alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: {action in
             
             let email = UserDefaults.standard.value(forKey: "email") as! String
-            let userOperation = UserOperation()
-            userOperation.updateUserDocument(userEmail: email, data: [field: placeToDict]){ result in
-                if !result{
-                    return
+            
+                let userOperation = UserOperation()
+                userOperation.updateUserDocument(userEmail: email, data: [field: placeToDict]){ result in
+                    if !result{
+                        return
+                    }
                 }
-            }
-            self.dismiss(animated: true, completion: nil)}
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }
         ))
         self.present(alert, animated: true, completion: nil)
         
