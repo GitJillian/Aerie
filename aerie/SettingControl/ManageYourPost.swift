@@ -10,11 +10,8 @@ import UIKit
 
 class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
-    @IBOutlet weak var finishBtn: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     var postArray = [Post]()
@@ -105,7 +102,13 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.view.addSubview(UIView())
         alert.pruneNegativeWidthConstraints()
         
-        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {action in
+        
+        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
+            UserDefaults.standard.setValue(pid, forKey: "pid")
+            let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+            let initialBoard = sb.instantiateViewController(withIdentifier: "EditPostVC") as! EditPostViewController
+            self.view.window?.rootViewController = initialBoard
+            self.view.window?.makeKeyAndVisible()
             
         }
         ))
@@ -121,6 +124,25 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         }))
         self.present(alert, animated: true, completion: nil)
         
+        
+    }
+    
+    @IBAction func gobackToPrevious(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as! HomeViewController
+        
+        self.view.window?.rootViewController = initialBoard
+        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
+        initialBoard.view.addSubview(snapshot)
+        UIView.transition(with: snapshot,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              snapshot.layer.opacity = 0
+                          },
+                          completion: { status in
+                              snapshot.removeFromSuperview()
+                          })
         
     }
 }

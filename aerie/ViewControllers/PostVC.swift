@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
-    @IBOutlet weak var refresh: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Header: UIView!
     @IBOutlet var scrollView: UIScrollView!
@@ -37,9 +36,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         self.scrollView?.refreshControl = UIRefreshControl()
         self.scrollView?.refreshControl?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .valueChanged)
         self.scrollView?.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh posts")
-        
-        self.refresh?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .touchUpInside)
-        
         
     }
     

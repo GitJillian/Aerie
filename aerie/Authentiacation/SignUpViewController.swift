@@ -31,6 +31,7 @@ class SignUpViewController: UIViewController{
     public var userField = Constants.userFields.self
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.adjustTextFieldWhenEditing()
         self.hideKeyboardWhenTappedElseWhere()
         // Do any additional setup after loading the view.
         init_interface()

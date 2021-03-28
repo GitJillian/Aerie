@@ -16,6 +16,7 @@ struct Constants {
         static let homeViewController = "HomeVC"
         static let profileViewController = "ProfileVC"
         static let sendpostViewController = "SendPostVC"
+        static let managePostViewController = "ManagePostVC"
     }
     
     struct Images{

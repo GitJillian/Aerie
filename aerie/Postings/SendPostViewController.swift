@@ -42,7 +42,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
         
         setOwnLocationBtn.addTarget(self,  action: #selector(setOwnlocationClicked),     for: .touchUpInside)
         setDesiredLocation.addTarget(self, action: #selector(setDesiredlocationClicked), for: .touchUpInside)
-        
+        self.adjustTextFieldWhenEditing()
         self.hideKeyboardWhenTappedElseWhere()
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
@@ -120,7 +120,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     }
     
     @objc func setDesiredlocationClicked(){
-        print("setting desired location")
+        
         UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let initialBoard = sb.instantiateViewController(withIdentifier: "MapVC") as! MapViewController

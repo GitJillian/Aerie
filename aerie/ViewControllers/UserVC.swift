@@ -135,6 +135,23 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.present(self.imagePickerController, animated: true, completion: nil)
     }
     
+    @IBAction func showPosts(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
+        
+        self.view.window?.rootViewController = initialBoard
+        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
+        initialBoard.view.addSubview(snapshot)
+        UIView.transition(with: snapshot,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              snapshot.layer.opacity = 0
+                          },
+                          completion: { status in
+                              snapshot.removeFromSuperview()
+                          })
+    }
     //if user clicks on 'Help Center', it shows a dialog asking the user to contact the author
     @IBAction func showContact(){
         contactAlert = UIAlertController(title: "Please contact heyjill1129@gmail.com so as to report any technical issue.", message: nil, preferredStyle: .alert)

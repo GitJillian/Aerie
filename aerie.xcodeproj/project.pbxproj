@@ -12,6 +12,7 @@
 		2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469E25AFDB8900AB3C3B /* Post.swift */; };
 		2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3646A525AFDBE100AB3C3B /* DBOperation.swift */; };
 		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
+		320AD1FE261025C900FAF090 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320AD1FD261025C900FAF090 /* EditPostViewController.swift */; };
 		320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809925E47AA800FBB40A /* MenuListController.swift */; };
 		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
 		320F80A725E4C94100FBB40A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A625E4C94100FBB40A /* SettingViewController.swift */; };
@@ -435,6 +436,7 @@
 		2AE0B42725A7E14B00FF1F15 /* FirebaseCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseCore; path = Pods/FirebaseCore; sourceTree = "<group>"; };
 		2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseFirestore; path = Pods/FirebaseFirestore; sourceTree = "<group>"; };
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
+		320AD1FD261025C900FAF090 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		320F809925E47AA800FBB40A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
 		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
 		320F80A625E4C94100FBB40A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */,
 				32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */,
 				32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */,
+				320AD1FD261025C900FAF090 /* EditPostViewController.swift */,
 			);
 			path = Postings;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 				32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */,
 				8314D43722E644CC001D044A /* ViewController.swift in Sources */,
 				8314D43322E644CC001D044A /* AppDelegate.swift in Sources */,
+				320AD1FE261025C900FAF090 /* EditPostViewController.swift in Sources */,
 				3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */,
 				32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
