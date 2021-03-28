@@ -16,6 +16,7 @@ import Photos
 
 class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var testTableBtn: UIButton!
     
     private var signoutController = SignOutViewController()
     private var profileController = ProfileViewController()
@@ -100,6 +101,24 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         }
     }
     
+    @objc func toTestTable(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
+        
+        self.view.window?.rootViewController = initialBoard
+        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
+        initialBoard.view.addSubview(snapshot)
+        UIView.transition(with: snapshot,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              snapshot.layer.opacity = 0
+                          },
+                          completion: { status in
+                              snapshot.removeFromSuperview()
+                          })
+    }
+    
     //this step checks whether it is allowed to access the user's photo library
     func checkPermission(){
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized{
@@ -133,6 +152,24 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.imagePickerController.delegate = self
         self.imagePickerController.sourceType = .photoLibrary
         self.present(self.imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func showTestTable(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: "TestTable") as! TestTable
+        
+        self.view.window?.rootViewController = initialBoard
+        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
+        initialBoard.view.addSubview(snapshot)
+        UIView.transition(with: snapshot,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              snapshot.layer.opacity = 0
+                          },
+                          completion: { status in
+                              snapshot.removeFromSuperview()
+                          })
     }
     
     @IBAction func showPosts(){

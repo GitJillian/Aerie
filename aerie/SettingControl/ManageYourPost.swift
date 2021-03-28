@@ -9,11 +9,12 @@
 import UIKit
 
 class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
-    
+    var refreshControl = UIRefreshControl()
+    @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
+    
     var postArray = [Post]()
     var postOperation = PostOperation()
     var userOperation = UserOperation()
@@ -21,7 +22,6 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         self.tableView.isScrollEnabled = false
         self.tableView.alwaysBounceVertical = false
-        self.scrollView.delegate  = self
         self.tableView.delegate   = self
         self.tableView.dataSource = self
         self.hideKeyboardWhenTappedElseWhere()
@@ -32,9 +32,8 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         let email = UserDefaults.standard.value(forKey: "email") as! String
         
         postOperation.getPostsByUser(uid:email){listOfPost in
-            //self.scrollView = self.view as? UIScrollView
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 116) )
-            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 116)
+            
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 115 )
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
@@ -46,7 +45,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //return height of each row
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 115
     }
     
     //return count of the table view
@@ -90,6 +89,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
     //    handle events when selecting a row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
@@ -106,26 +106,30 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
             UserDefaults.standard.setValue(pid, forKey: "pid")
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            let initialBoard = sb.instantiateViewController(withIdentifier: "EditPostVC") as! EditPostViewController
-            self.view.window?.rootViewController = initialBoard
-            self.view.window?.makeKeyAndVisible()
+            let editVC = sb.instantiateViewController(withIdentifier: "EditPostVC") as! EditPostViewController
             
+            self.present(editVC, animated: true, completion: nil)
         }
         ))
-        alert.addAction(UIAlertAction(title: "Delete", style: .cancel, handler: {[self] action in
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {[self] action in
             postOperation.removePostByPid(pid: pid){result in
                 if !result{
                     return
                 }
                 else{
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true){
+                        self.postArray.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.reloadData()
+                    }
                 }
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        
-        
     }
+    
+    
     
     @IBAction func gobackToPrevious(){
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)

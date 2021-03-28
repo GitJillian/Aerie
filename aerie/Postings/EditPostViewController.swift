@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditPostViewController: UIViewController {
+class EditPostViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var setDesiredLocationBtn: UIButton!
     @IBOutlet weak var descriptionField: UITextView!
@@ -17,17 +17,18 @@ class EditPostViewController: UIViewController {
     @IBOutlet weak var finishBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     var pid: String!
-    public var managePostController = ManageYourPost()
     var postOperation = PostOperation()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedElseWhere()
-        setDesiredLocationBtn.addTarget(self, action: #selector(setDesiredlocationClicked), for: .touchUpInside)
-        descriptionField.layer.borderWidth = CGFloat(1.5)
-        descriptionField.layer.borderColor = UIColor(named: "line")?.cgColor
-        descriptionField.layer.cornerRadius = CGFloat(10)
-        descriptionField.layer.masksToBounds = true
+        descriptionField.delegate = self
+        
+        setDesiredLocationBtn?.addTarget(self, action: #selector(setDesiredlocationClicked), for: .touchUpInside)
+        descriptionField?.layer.borderWidth = CGFloat(1.5)
+        descriptionField?.layer.borderColor = UIColor(named: "menuBack")?.cgColor
+        descriptionField?.layer.cornerRadius = CGFloat(10)
+        descriptionField?.layer.masksToBounds = true
         self.pid = UserDefaults.standard.value(forKey: "pid") as? String
         postOperation.getPostDocument(pid: self.pid){document in
             let budget = document[Constants.postFields.budget] as! Int
@@ -37,6 +38,10 @@ class EditPostViewController: UIViewController {
             self.descriptionField?.text = document[Constants.postFields.description] as? String
         }
         
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.adjustTextFieldWhenEditing()
     }
     
     @objc func setDesiredlocationClicked(){
@@ -49,21 +54,8 @@ class EditPostViewController: UIViewController {
 
     
     @IBAction func goBack(_ sender: Any) {
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
-        
-        self.view.window?.rootViewController = initialBoard
-        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
-        initialBoard.view.addSubview(snapshot)
-        UIView.transition(with: snapshot,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: {
-                              snapshot.layer.opacity = 0
-                          },
-                          completion: { status in
-                              snapshot.removeFromSuperview()
-                          })
+    
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func submitPostChange(_ sender: Any) {

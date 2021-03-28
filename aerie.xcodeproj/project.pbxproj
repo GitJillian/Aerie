@@ -30,6 +30,7 @@
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
 		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
 		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
+		3256F4B326111F1B00EE504F /* TestTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3256F4B226111F1B00EE504F /* TestTable.swift */; };
 		325E08FF26094B7300BA322F /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E08FE26094B7300BA322F /* UIAlertController.swift */; };
 		326CAE8C260A974D000AA0DB /* ShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CAE8B260A974D000AA0DB /* ShadowButton.swift */; };
 		32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838226065EB9006DB2EB /* PostOperation.swift */; };
@@ -454,6 +455,7 @@
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
 		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
 		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		3256F4B226111F1B00EE504F /* TestTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTable.swift; sourceTree = "<group>"; };
 		325E08FE26094B7300BA322F /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		326CAE8B260A974D000AA0DB /* ShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButton.swift; sourceTree = "<group>"; };
 		32A4838226065EB9006DB2EB /* PostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOperation.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				321E49342601AC7C0047A704 /* SearchMapController.swift */,
 				32D2FB5D2602B6B8003197E3 /* LocationManager.swift */,
 				32C2E3A9260C57DA00ED88AF /* MapViewController.swift */,
+				3256F4B226111F1B00EE504F /* TestTable.swift */,
 			);
 			path = SettingControl;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 			files = (
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
+				3256F4B326111F1B00EE504F /* TestTable.swift in Sources */,
 				32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */,
 				32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */,
 				321F67F925EC85E10098A866 /* String.swift in Sources */,
