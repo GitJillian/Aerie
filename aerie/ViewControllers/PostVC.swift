@@ -191,6 +191,10 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func chatWithUser(){
+        
+        let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let scrollView = sb.instantiateViewController(identifier: "testScroll")
+        self.present(scrollView, animated: true, completion: nil)
         //TODO: COMPLETE CHATTING CONTROLLER AND IMPLEMENT THIS
     }
     

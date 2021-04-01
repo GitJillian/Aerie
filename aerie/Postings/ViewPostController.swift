@@ -38,7 +38,7 @@ class ViewPostController: UIViewController {
                 }
             }
             self.userOperation.getUserDocument(documentName: uid){ user in
-                self.name?.text = "\(user[Constants.userFields.firstname] ?? "") \(user[Constants.userFields.lastname] ?? ""), \(user[Constants.userFields.age])"
+                self.name?.text = "\(user[Constants.userFields.firstname] ?? "") \(user[Constants.userFields.lastname] ?? ""), \(user[Constants.userFields.age] ?? 0)"
                 let currentLocation = user[Constants.userFields.locationStr] as! [String:Any]
                 self.location?.text = "\(currentLocation["title"] ?? " ")"
                 let gender = user[Constants.userFields.gender] as! String
@@ -51,9 +51,12 @@ class ViewPostController: UIViewController {
         }
         
         
+        
         // Do any additional setup after loading the view.
     }
-    
+    @IBAction func dismissView(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
