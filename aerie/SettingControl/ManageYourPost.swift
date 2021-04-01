@@ -104,7 +104,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
-            UserDefaults.standard.setValue(pid, forKey: "pid")
+            UserDefaults.standard.setValue(pid, forKey: "pidManage")
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             let editVC = sb.instantiateViewController(withIdentifier: "EditPostVC") as! EditPostViewController
             

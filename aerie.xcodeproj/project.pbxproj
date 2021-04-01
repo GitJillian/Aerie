@@ -47,6 +47,7 @@
 		32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */; };
 		32E7EE8C260E901700BC5110 /* ManagePostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */; };
 		32FBF5A025C2784400F7C55E /* UserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FBF59F25C2784400F7C55E /* UserOperation.swift */; };
+		32FDF17426157F2600EE0BD9 /* ViewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FDF17326157F2600EE0BD9 /* ViewPostController.swift */; };
 		56A449B3F5ADF01E391793B2 /* Pods_aerie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94916B736F779DD7F1B96B6A /* Pods_aerie.framework */; };
 		830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C3D8E22E7523E001FA4E7 /* Constants.swift */; };
 		8314D43322E644CC001D044A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314D43222E644CC001D044A /* AppDelegate.swift */; };
@@ -472,6 +473,7 @@
 		32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePostViewCell.swift; sourceTree = "<group>"; };
 		32FBF59F25C2784400F7C55E /* UserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOperation.swift; sourceTree = "<group>"; };
+		32FDF17326157F2600EE0BD9 /* ViewPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostController.swift; sourceTree = "<group>"; };
 		830C3D8E22E7523E001FA4E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8314D42F22E644CC001D044A /* aerie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aerie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8314D43222E644CC001D044A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */,
 				32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */,
 				320AD1FD261025C900FAF090 /* EditPostViewController.swift */,
+				32FDF17326157F2600EE0BD9 /* ViewPostController.swift */,
 			);
 			path = Postings;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				32C2E3AA260C57DA00ED88AF /* MapViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */,
+				32FDF17426157F2600EE0BD9 /* ViewPostController.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
 				324B708825FF15D000551BFD /* CheckBox.swift in Sources */,

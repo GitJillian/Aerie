@@ -29,7 +29,7 @@ class EditPostViewController: UIViewController, UITextViewDelegate {
         descriptionField?.layer.borderColor = UIColor(named: "menuBack")?.cgColor
         descriptionField?.layer.cornerRadius = CGFloat(10)
         descriptionField?.layer.masksToBounds = true
-        self.pid = UserDefaults.standard.value(forKey: "pid") as? String
+        self.pid = UserDefaults.standard.value(forKey: "pidManage") as? String
         postOperation.getPostDocument(pid: self.pid){document in
             let budget = document[Constants.postFields.budget] as! Int
             let expectedLocation = document[Constants.postFields.expectedLocation] as! [String: Any]

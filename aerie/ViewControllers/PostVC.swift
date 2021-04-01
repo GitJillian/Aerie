@@ -127,26 +127,11 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             let location = document[Constants.userFields.locationStr] as! [String: Any]
             let locationStr = location["title"] as? String
             let gender      = document[Constants.userFields.gender] as! String
-            let smokeOrNot  = document[Constants.userFields.smokeOrNot] as! Bool
-            let petFriendly = document[Constants.userFields.petFriendly] as! Bool
+            
             if gender == Constants.genderStr.female{
                 Styler.setFemaleBtn(cell.genderBtn!)
             }else{
                 Styler.setMaleBtn(cell.genderBtn!)
-            }
-            
-            if petFriendly{
-                Styler.setPetFriendlyBtn(cell.petFriendly!)
-            }
-            else{
-                Styler.setPetUnfriendlyBtn(cell.petFriendly!)
-            }
-            
-            if smokeOrNot{
-                Styler.setSmokeBtn(cell.smokeOrNot!)
-            }
-            else{
-                Styler.setNonSmokeBtn(cell.smokeOrNot!)
             }
             cell.NameLabel?.text = name
             cell.locationLabel?.text = locationStr
@@ -176,26 +161,37 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         let post = postArray[indexPath.row]
-        
+        let pid  = post.pid
+        UserDefaults.standard.setValue(pid, forKey: "pidView")
         
         //just a tester for showing description. TODO: CHANGE THAT!!!!
         let alert = UIAlertController()
         
-        alert.view.addSubview(UIView())
-        alert.pruneNegativeWidthConstraints()
+        alert.addAction(UIAlertAction(title: "View post", style: .default, handler: {[self] action in
+            self.viewPost()
+        }))
         
-        alert.addAction(UIAlertAction(title: post.description, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Chat", style: .default, handler: {[self] action in
+            self.chatWithUser()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
         
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func viewPost(){
+        
+        
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let viewPostModel = sb.instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostController
+        self.present(viewPostModel, animated: true, completion: nil)
+        //TODO: COMPLETE VIEWPOSTCONTROLLER AND IMPLEMENT THIS
+    }
+    
+    func chatWithUser(){
+        //TODO: COMPLETE CHATTING CONTROLLER AND IMPLEMENT THIS
     }
     
 }

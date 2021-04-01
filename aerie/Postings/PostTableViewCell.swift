@@ -11,8 +11,6 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var NameLabel:     UILabel!
-    @IBOutlet weak var petFriendly: UIButton!
-    @IBOutlet weak var smokeOrNot: UIButton!
     @IBOutlet weak var genderBtn: UIButton!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var avatarImage:   UIImageView!
