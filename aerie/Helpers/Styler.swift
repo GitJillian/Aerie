@@ -45,5 +45,55 @@ class Styler {
     static func setBackgroundWithColor(_ view: UIView, _ color: UIColor){
         view.backgroundColor = color
     }
+    
+    static func setFemaleBtn(_ btn: UIButton){
+        btn.backgroundColor = UIColor(red: 0.8863, green: 0.6627, blue: 0.6118, alpha: 1.0)
+        btn.setTitle(Constants.genderStr.female, for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+    }
+    
+    static func setMaleBtn(_ btn: UIButton){
+        btn.backgroundColor = UIColor(red: 0.6039, green: 0.7333, blue: 0.8784, alpha: 1.0)
+        btn.setTitle(Constants.genderStr.male, for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+    }
+    
+    static func setPetFriendlyBtn(_ btn: UIButton){
+        btn.backgroundColor = UIColor(red: 0.5098, green: 0.7176, blue: 0.6275, alpha: 1.0)
+        btn.setTitle("pet", for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+        btn.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        btn.imageEdgeInsets.left = -10
+    }
+    
+    static func setPetUnfriendlyBtn(_ btn: UIButton){
+        btn.backgroundColor = UIColor(red: 0.5098, green: 0.7176, blue: 0.6275, alpha: 1.0)
+        btn.setTitle("pet", for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+        btn.imageEdgeInsets.left = -10
+    }
+    
+    static func setSmokeBtn(_ btn: UIButton){
+        btn.backgroundColor = UIColor(red: 0.9294, green: 0.8471, blue: 0.6588, alpha: 1.0)
+        btn.setTitle("smoke", for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+        btn.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        btn.imageEdgeInsets.left = -10
+    }
+    
+    static func setNonSmokeBtn(_ btn:UIButton){
+        btn.backgroundColor = UIColor(red: 0.9294, green: 0.8471, blue: 0.6588, alpha: 1.0)
+        btn.setTitle("smoke", for: .normal)
+        btn.layer.cornerRadius = CGFloat(5)
+        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+        btn.imageEdgeInsets.left = -10
+    }
+    
+    
+    
+    
+    
+    
 
 }

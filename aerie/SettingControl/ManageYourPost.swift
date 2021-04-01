@@ -20,7 +20,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     var userOperation = UserOperation()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.isScrollEnabled = false
+        self.tableView.isScrollEnabled = true
         self.tableView.alwaysBounceVertical = false
         self.tableView.delegate   = self
         self.tableView.dataSource = self

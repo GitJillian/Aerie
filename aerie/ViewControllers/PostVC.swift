@@ -113,7 +113,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         return 145
     }
     
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
@@ -126,7 +126,28 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             let name = "\(document[Constants.userFields.firstname] ?? "first") \( document[Constants.userFields.lastname] ?? "last"), \(document[Constants.userFields.age] ?? "\(0)")"
             let location = document[Constants.userFields.locationStr] as! [String: Any]
             let locationStr = location["title"] as? String
+            let gender      = document[Constants.userFields.gender] as! String
+            let smokeOrNot  = document[Constants.userFields.smokeOrNot] as! Bool
+            let petFriendly = document[Constants.userFields.petFriendly] as! Bool
+            if gender == Constants.genderStr.female{
+                Styler.setFemaleBtn(cell.genderBtn!)
+            }else{
+                Styler.setMaleBtn(cell.genderBtn!)
+            }
             
+            if petFriendly{
+                Styler.setPetFriendlyBtn(cell.petFriendly!)
+            }
+            else{
+                Styler.setPetUnfriendlyBtn(cell.petFriendly!)
+            }
+            
+            if smokeOrNot{
+                Styler.setSmokeBtn(cell.smokeOrNot!)
+            }
+            else{
+                Styler.setNonSmokeBtn(cell.smokeOrNot!)
+            }
             cell.NameLabel?.text = name
             cell.locationLabel?.text = locationStr
             

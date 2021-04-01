@@ -266,8 +266,25 @@
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyH-kn-W2b">
-                                                                    <rect key="frame" x="92" y="57" width="46" height="30"/>
+                                                                    <rect key="frame" x="93" y="58" width="65" height="28"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yH3-qz-qsC">
+                                                                    <rect key="frame" x="180" y="58" width="65" height="28"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTY-o0-gI5">
+                                                                    <rect key="frame" x="265" y="59" width="65" height="28"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                 </button>
                                                             </subviews>
@@ -284,7 +301,10 @@
                                                             <outlet property="NameLabel" destination="8Fa-dO-0dp" id="FR7-4s-YRS"/>
                                                             <outlet property="avatarImage" destination="vJ0-gF-pyO" id="kcj-VQ-itA"/>
                                                             <outlet property="descriptionText" destination="EoK-ui-XIL" id="adt-X9-J1t"/>
+                                                            <outlet property="genderBtn" destination="EyH-kn-W2b" id="ILY-Wk-bOY"/>
                                                             <outlet property="locationLabel" destination="nAt-QE-EfI" id="dRU-Tc-5U2"/>
+                                                            <outlet property="petFriendly" destination="bTY-o0-gI5" id="jn4-YI-Vmy"/>
+                                                            <outlet property="smokeOrNot" destination="yH3-qz-qsC" id="ZnU-tY-9VU"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -1286,7 +1306,7 @@
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajf-BC-Q5t">
                                                     <rect key="frame" x="47" y="66" width="312" height="49"/>
-                                                    <color key="backgroundColor" name="background"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1302,7 +1322,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" name="background"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="ESc-GA-UEb" firstAttribute="top" secondItem="Wi1-D6-9Ik" secondAttribute="topMargin" id="06a-wB-KDz"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ruz-5F-YR2" secondAttribute="bottom" constant="41" id="0RK-9Z-a4u"/>
