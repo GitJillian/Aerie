@@ -9,8 +9,25 @@
 
 import Foundation
 import MessageKit
+
+class UserChatIconCell: UITableViewCell{
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+}
 class ChatVC: BaseVC{
     
+    @IBOutlet weak var cellHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         init_interface()
