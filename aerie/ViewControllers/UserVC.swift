@@ -154,7 +154,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.present(self.imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func showTestTable(){
+   /* @IBAction func showTestTable(){
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let initialBoard = sb.instantiateViewController(withIdentifier: "TestTable") as! TestTable
         
@@ -170,7 +170,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                           completion: { status in
                               snapshot.removeFromSuperview()
                           })
-    }
+    }*/
     
     @IBAction func showPosts(){
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)

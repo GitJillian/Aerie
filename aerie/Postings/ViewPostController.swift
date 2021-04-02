@@ -9,11 +9,14 @@
 import UIKit
 
 class ViewPostController: UIViewController {
+    @IBOutlet weak var descriptionField: UITextView!
+    @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var genderBtn: UIButton!
+    @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var expectedLocation: UILabel!
     private var pid : String!
     private var userOperation = UserOperation()
     private var postOperation = PostOperation()
@@ -27,6 +30,12 @@ class ViewPostController: UIViewController {
         self.postOperation.getPostDocument(pid: self.pid){post in
             
             let uid = post[Constants.postFields.uidField] as! String
+            let expectedlocationDict = post[Constants.postFields.expectedLocation] as! [String:Any]
+            self.expectedLocation?.text = expectedlocationDict["title"] as? String
+            let budget = post[Constants.postFields.budget] as! Int
+            self.budgetLabel?.text = "\(budget) CAD"
+            let description = post[Constants.postFields.description] as? String
+            self.descriptionField?.text = description
             let fireStorage = FireStorage()
             let path = "image/"+uid+"_avatar"
             fireStorage.loadAvatarByPath(path: path){data in
@@ -42,30 +51,37 @@ class ViewPostController: UIViewController {
                 let currentLocation = user[Constants.userFields.locationStr] as! [String:Any]
                 self.location?.text = "\(currentLocation["title"] ?? " ")"
                 let gender = user[Constants.userFields.gender] as! String
-                if gender == Constants.genderStr.female{
-                    Styler.setFemaleBtn(self.genderBtn)
-                }else{
-                    Styler.setMaleBtn(self.genderBtn)
+                self.genderLabel.text = gender
+                let petFriendly = user[Constants.userFields.petFriendly] as! Bool
+                if !petFriendly{
+                    let petButton = UIButton()
+                    petButton.setTitle("no pets", for: .normal)
+                    petButton.titleLabel?.font = .systemFont(ofSize: 12)
+                    petButton.backgroundColor = UIColor(red: 0.9294, green: 0.8471, blue: 0.6588, alpha: 1.0)
+                    petButton.layer.cornerRadius = CGFloat(5)
+                    petButton.frame = CGRect(x: 130, y: 87, width: 100, height: 30)
+                    petButton.setTitleColor(UIColor.white, for: .normal)
+                    self.headerView?.addSubview(petButton)
                 }
+                let smokeOrNot = user[Constants.userFields.smokeOrNot] as! Bool
+                if !smokeOrNot{
+                    let smokeButton = UIButton()
+                    smokeButton.setTitle("non-smoker", for: .normal)
+                    smokeButton.titleLabel?.font = .systemFont(ofSize: 12)
+                    smokeButton.backgroundColor = UIColor(red: 0.5098, green: 0.7176, blue: 0.6275, alpha: 1.0)
+                    smokeButton.layer.cornerRadius = CGFloat(5)
+                    smokeButton.setTitleColor(UIColor.white, for: .normal)
+                    if petFriendly{
+                        smokeButton.frame = CGRect(x: 130, y: 87, width: 100, height: 30)
+                    }
+                    else{
+                        smokeButton.frame = CGRect(x: 250, y: 87, width:100, height: 30)
+                    }
+                    self.headerView?.addSubview(smokeButton)
+                    
+                }
+            
             }
         }
-        
-        
-        
-        // Do any additional setup after loading the view.
-    }
-    @IBAction func dismissView(){
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
