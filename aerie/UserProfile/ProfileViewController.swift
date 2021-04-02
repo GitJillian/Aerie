@@ -21,8 +21,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var locationField: UILabel!
     private var userOperation = UserOperation()
     private var fireStorage = FireStorage()
-    @IBAction func SetYourLocationClicked(_ sender: Any) {
-    }
+    @IBOutlet weak var smokeSwitch: UISwitch!
+    @IBOutlet weak var petSwitch: UISwitch!
     
     private var imagePickerController = UIImagePickerController()
     
@@ -76,6 +76,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.locationField?.text = location["title"] as? String
             }else{
                 self.locationField?.text = ""
+            }
+            //setting is pet friendly using UISwitch
+            let petFriendlyIsSet = data[Constants.userFields.petFriendly] != nil
+            if petFriendlyIsSet{
+                let isPetFriendly = data[Constants.userFields.petFriendly] as! Bool
+                self.petSwitch?.setOn(isPetFriendly, animated: true)
+                
+            }else{
+                self.petSwitch?.setOn(true, animated: true)
+                
+            }
+            //setting is smoking allowed using UISwitch
+            let smokeIsSet = data[Constants.userFields.smokeOrNot] != nil
+            if smokeIsSet{
+                let isSmokeAllowed = data[Constants.userFields.smokeOrNot] as! Bool
+                self.smokeSwitch?.setOn(isSmokeAllowed, animated: true)
+                
+            }else{
+                self.smokeSwitch?.setOn(true, animated: true)
             }
         }
       
@@ -180,7 +199,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let age = ageComponents.year!
         data[Constants.userFields.age] = age
         data[Constants.userFields.birth] = birthday
-        
+        let isPetFriendly  = petSwitch?.isOn
+        let isSmokeing     = smokeSwitch?.isOn
+        data[Constants.userFields.petFriendly] = isPetFriendly
+        data[Constants.userFields.smokeOrNot]  = isSmokeing
         return data
     }
     

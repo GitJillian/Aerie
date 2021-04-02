@@ -56,11 +56,6 @@ class LocationViewController: UIViewController, SearchMapControllerDelegate{
                     UserDefaults.standard.setValue("userLocation", forKey: "locationType")
                    
                 }
-                else if viewController.isKind(of: SettingViewController.self){
-                    UserDefaults.standard.setValue("expectedLocation", forKey: "locationType")
-                    
-                }
-                
             }
         }
         

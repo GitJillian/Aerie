@@ -8,7 +8,7 @@
 
 
 import Foundation
-import SwiftUI
+import MessageKit
 class ChatVC: BaseVC{
     
     override func viewDidLoad() {

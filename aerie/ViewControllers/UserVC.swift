@@ -16,11 +16,10 @@ import Photos
 
 class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    @IBOutlet weak var testTableBtn: UIButton!
     
     private var signoutController = SignOutViewController()
     private var profileController = ProfileViewController()
-    private var SettingController = SettingViewController()
+    
     @IBOutlet var backImage: UIImageView!
     
     private var permissionAlert: UIAlertController!
@@ -208,27 +207,27 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         //add childs to current object
         addChild(profileController)
-        addChild(SettingController)
+        
         addChild(signoutController)
 
         //add subviews
         view.addSubview(profileController.view)
-        view.addSubview(SettingController.view)
+        
         view.addSubview(signoutController.view!)
         
         //set boundaries
         profileController.view.frame = view.bounds
-        SettingController.view.frame = view.bounds
+        
         signoutController.view.frame = view.bounds
         
         //set movements
         profileController.didMove(toParent: self)
-        SettingController.didMove(toParent: self)
+        
         signoutController.didMove(toParent: self)
         
         //hide the side menu item views as default unless the user clicks on them
         profileController.view.isHidden = true
-        SettingController.view.isHidden = true
+        
         signoutController.view.isHidden = true
     }
     

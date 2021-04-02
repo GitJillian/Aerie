@@ -16,6 +16,7 @@ class ViewPostController: UIViewController {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var expectedLocation: UILabel!
     private var pid : String!
     private var userOperation = UserOperation()
@@ -25,7 +26,10 @@ class ViewPostController: UIViewController {
         
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = avatar.frame.size.width/2
-        
+        self.descriptionField?.clipsToBounds = true
+        self.descriptionField?.layer.cornerRadius = CGFloat(10)
+        self.baseView?.clipsToBounds = true
+        self.baseView?.layer.cornerRadius = CGFloat(10)
         self.pid = UserDefaults.standard.value(forKey: "pidView") as? String
         self.postOperation.getPostDocument(pid: self.pid){post in
             
@@ -83,5 +87,7 @@ class ViewPostController: UIViewController {
             
             }
         }
-
+    }
 }
+
+
