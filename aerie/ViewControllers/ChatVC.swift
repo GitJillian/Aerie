@@ -104,7 +104,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "chat"){
            
-            let controller = (segue.destination as! UINavigationController).topViewController as! ChatViewController
+            let controller = (segue.destination as! UINavigationController).topViewController as! MessageViewController
             let row = (sender as! NSIndexPath).row
             let user = userArray[row]
             controller.otherUserObj = user

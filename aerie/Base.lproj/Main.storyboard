@@ -904,7 +904,7 @@
                                                             <outlet property="avatar" destination="WWP-tu-tnq" id="ODW-G5-uK0"/>
                                                             <outlet property="messageLabel" destination="3q6-nI-Cmf" id="Dy4-br-gvR"/>
                                                             <outlet property="nameLabel" destination="dm6-yH-NAn" id="1ah-i4-2Kz"/>
-                                                            <segue destination="rJ5-sJ-gKh" kind="show" identifier="chat" trigger="accessoryAction" id="chh-o0-KtN"/>
+                                                            <segue destination="rJ5-sJ-gKh" kind="presentation" identifier="chat" trigger="accessoryAction" modalPresentationStyle="fullScreen" id="chh-o0-KtN"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -982,18 +982,19 @@
             </objects>
             <point key="canvasLocation" x="4473.913043478261" y="878.57142857142856"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Message View Controller-->
         <scene sceneID="lHz-xK-xpR">
             <objects>
-                <viewController storyboardIdentifier="MessageView" id="kiF-AL-tuG" customClass="ChatViewController" customModule="aerie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageView" id="kiF-AL-tuG" customClass="MessageViewController" customModule="aerie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wSN-nh-tUN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="xwt-79-aO2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="XmI-Ad-bcw">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="t1j-Zo-s62">
+                            <color key="tintColor" red="0.30173325540000001" green="0.70200032000000001" blue="0.67442250250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="dissMiss" destination="kiF-AL-tuG" id="rA8-CG-pvN"/>
                             </connections>
@@ -1703,7 +1704,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="402-1m-fad"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nlX-53-Qvx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
