@@ -15,14 +15,20 @@ struct Sender: SenderType{
     var displayName: String
 }
 struct Message: MessageType{
-    var sender: SenderType
+    
+    
+    var content:String
+    var sender:   SenderType
+    //var receiver: SenderType
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
+    
 }
 
 class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate {
-    let currentUser = Sender(senderId: "self", displayName: "You")
+    
+    let currentUser = Sender(senderId: UserDefaults.standard.value(forKey: "email") as? String ?? "self", displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
     var otherUserObj: User!
     var messages = [MessageType]()
     func currentSender() -> SenderType {
@@ -30,15 +36,59 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messages[indexPath.row]
+        return messages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
     
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+    //When use press send button this method is called.
+        
+    let message = Message(content: text,
+                              sender: currentUser,
+                              //receiver: Sender(senderId: otherUserObj.email, displayName:"\(otherUserObj.firstName) \(otherUserObj.lastName))"),
+                              messageId:"123",
+                              sentDate: Date(),
+                              kind:.text(text)
+    )
+    //calling function to insert and save message
+    insertNewMessage(message)
+    save(message)
+    //clearing input field
+    inputBar.inputTextView.text = ""
+    messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: true)
+    }
+    
+    private func insertNewMessage(_ message: Message) {
+    //add the message to the messages array and reload it
+    messages.append(message)
+    messagesCollectionView.reloadData()
+    DispatchQueue.main.async {
+        self.messagesCollectionView.scrollToLastItem(animated: true)
+    }
+    }
+    
+    private func save(_ message: Message) {
+    //Preparing the data as per our firestore collection
+    
+    
+    let messageDB = MessageOperation()
+        messageDB.createNewConversation(with: otherUserObj.email, firstMessage: message){
+            result in
+            if !result{
+                print("cannot create new conversation")
+                return
+            }
+            self.messagesCollectionView.scrollToBottom()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
+        
             messageInputBar.inputTextView.becomeFirstResponder()
             //if let conversationId = conversationId {
              //   listenForMessages(id: conversationId, shouldScrollToBottom: true)
@@ -48,7 +98,10 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        maintainPositionOnKeyboardFrameChanged = true
+        messageInputBar.inputView?.frame = CGRect(x: 20, y: 600, width: messageInputBar.inputTextView.frame.size.width, height: messageInputBar.inputTextView.frame.size.height
+        )
+        messageInputBar.sendButton.setTitleColor(.darkGray, for: .normal)
         self.navigationItem.title = "\(otherUserObj.firstName) \(otherUserObj.lastName)"
         self.hideKeyboardWhenTappedElseWhere()
         messagesCollectionView.messagesDataSource = self
@@ -56,6 +109,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         messagesCollectionView.messagesDisplayDelegate = self
                
         messageInputBar.delegate = self
+        messageInputBar.autoresizesSubviews=true
         setupInputButton()
         
     }

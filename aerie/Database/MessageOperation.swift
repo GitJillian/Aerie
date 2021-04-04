@@ -11,13 +11,21 @@ import FirebaseFirestore
 
 class MessageOperation: DBOperation{
     let messageDB = Constants.dbNames.messageDB
-    public func createNewConversation(with otherUserEmail: String, name: String, firstMessage: Message, completion: @escaping(Bool)->()){
-        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String,
-              let currentName = UserDefaults.standard.value(forKey: "username") as? String else{return}
+    public func createNewConversation(with otherUserEmail: String, firstMessage: Message, completion: @escaping(Bool)->()){
+        let currentEmail:String = firstMessage.sender.senderId
+        
         let ref = super.database.collection(messageDB)
-        let messageDate = firstMessage.sentDate
-        let dateString  = Date.toString(messageDate)
-        var message     = ""
+        var data = [String:Any]()
+        
+        data["sentDate"]  = firstMessage.sentDate
+        data["content"]   = firstMessage.content
+        data["sender"]    = firstMessage.sender.senderId
+        data["messageId"] = firstMessage.messageId
+        
+        addSetDocument(documentName: "\(currentEmail)", data: data, collectionRef: ref){
+            result in
+            completion(result)
+        }
         
     }
 }

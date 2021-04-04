@@ -58,7 +58,7 @@ struct Constants {
     struct dbNames{
         static var userDB = "users"
         static var postDB = "posts"
-        static var messageDB = "messages"
+        static var messageDB = "message"
     }
     
     struct genderStr{
