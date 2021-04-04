@@ -105,10 +105,10 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
             UserDefaults.standard.setValue(pid, forKey: "pidManage")
-            let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            let editVC = sb.instantiateViewController(withIdentifier: "EditPostVC") as! EditPostViewController
             
-            self.present(editVC, animated: true, completion: nil)
+            let editVC =  EditPostViewController()
+            editVC.modalPresentationStyle = .overFullScreen
+            self.tabBarController?.present(editVC, animated: true, completion: nil)
         }
         ))
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {[self] action in

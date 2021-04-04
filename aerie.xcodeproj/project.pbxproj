@@ -31,6 +31,7 @@
 		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
 		325E08FF26094B7300BA322F /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E08FE26094B7300BA322F /* UIAlertController.swift */; };
 		326CAE8C260A974D000AA0DB /* ShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CAE8B260A974D000AA0DB /* ShadowButton.swift */; };
+		326DAE8226197CDD0065DD82 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DAE8126197CDD0065DD82 /* ChatViewController.swift */; };
 		32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838226065EB9006DB2EB /* PostOperation.swift */; };
 		32A4838D2606ED97006DB2EB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838C2606ED97006DB2EB /* Array.swift */; };
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
@@ -455,6 +456,7 @@
 		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		325E08FE26094B7300BA322F /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		326CAE8B260A974D000AA0DB /* ShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButton.swift; sourceTree = "<group>"; };
+		326DAE8126197CDD0065DD82 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		32A4838226065EB9006DB2EB /* PostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOperation.swift; sourceTree = "<group>"; };
 		32A4838C2606ED97006DB2EB /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -582,6 +584,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		326DAE7A26197CC40065DD82 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				326DAE8126197CDD0065DD82 /* ChatViewController.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
 		32A4B97326004B27005DD281 /* SettingControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +664,7 @@
 		8314D43122E644CC001D044A /* aerie */ = {
 			isa = PBXGroup;
 			children = (
+				326DAE7A26197CC40065DD82 /* Chatting */,
 				32C2E39A260AFCEB00ED88AF /* Postings */,
 				32A4B97326004B27005DD281 /* SettingControl */,
 				3214693F25EAE34200C8735C /* ViewControllers */,
@@ -1048,6 +1059,7 @@
 			files = (
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
+				326DAE8226197CDD0065DD82 /* ChatViewController.swift in Sources */,
 				32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */,
 				32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */,
 				321F67F925EC85E10098A866 /* String.swift in Sources */,

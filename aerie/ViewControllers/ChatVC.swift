@@ -101,6 +101,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         //write method to chat with user
         self.chatWithUser()
         
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,6 +133,10 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func chatWithUser(){
-        
+        let chatVC = ChatViewController()
+        chatVC.modalPresentationStyle = .overFullScreen
+        self.tabBarController?.present(chatVC, animated: true, completion: nil)
+        //self.present(chatVC, animated: true, completion: nil)
+        //navigationController?.pushViewController(chatVC, animated: true)
     }
 }
