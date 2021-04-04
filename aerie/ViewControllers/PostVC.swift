@@ -66,15 +66,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         }
     }
     
-    @IBAction func updateTable(){
-        postOperation.getAllPosts(){listOfPost in
-            //getting a list of posts and load them to table view
-            self.postArray = listOfPost
-            
-            self.tableView.reloadData()
-            
-        }
-    }
     
     //when the scroll view begins scrolling, the compose button should stay the same place
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -163,39 +154,13 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         let post = postArray[indexPath.row]
         let pid  = post.pid
         UserDefaults.standard.setValue(pid, forKey: "pidView")
-        
-        //just a tester for showing description. TODO: CHANGE THAT!!!!
-        let alert = UIAlertController()
-        
-        alert.addAction(UIAlertAction(title: "View post", style: .default, handler: {[self] action in
-            self.viewPost()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Chat", style: .default, handler: {[self] action in
-            self.chatWithUser()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
-        
+        self.viewPost()
     }
     
     func viewPost(){
-        
-        
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let viewPostModel = sb.instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostController
         self.present(viewPostModel, animated: true, completion: nil)
-        //TODO: COMPLETE VIEWPOSTCONTROLLER AND IMPLEMENT THIS
-    }
-    
-    func chatWithUser(){
         
-        let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let scrollView = sb.instantiateViewController(identifier: "testScroll")
-        self.present(scrollView, animated: true, completion: nil)
-        //TODO: COMPLETE CHATTING CONTROLLER AND IMPLEMENT THIS
     }
-    
 }

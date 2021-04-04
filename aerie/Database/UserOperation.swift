@@ -80,15 +80,16 @@ class UserOperation:DBOperation{
         }
     }
     
-    func getAllUsers(){
+    func getAllUsers(completion:@escaping([User]) ->()){
         let userCollection = super.database.collection(db_name)
         userCollection.addSnapshotListener{(querySnapShot, err) in
             guard let documents = querySnapShot?.documents else{
                 return
             }
-            self.users = documents.map {(QueryDocumentSnapshot)-> User in
-                
-                let data      = QueryDocumentSnapshot.data()
+            var users:[User] = []
+            for document in documents{
+            
+                let data      = document.data()
                 let dateOfBirth = data[self.userFields.birth] as? String ?? ""
                 let age       = data[self.userFields.age]  as? Int ?? 0
                 let email     = data[self.userFields.emailField] as? String ?? ""
@@ -102,9 +103,11 @@ class UserOperation:DBOperation{
                 let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                return User(email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+                let user = User(email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+                users.append(user)
             
             }
+            completion(users)
         }
     }
     func getUserDocument( documentName: String, completion:@escaping([String:Any])->()) {
