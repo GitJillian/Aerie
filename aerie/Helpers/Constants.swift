@@ -13,9 +13,9 @@ struct Constants {
     
     struct Storyboard {
         
-        static let homeViewController = "HomeVC"
-        static let profileViewController = "ProfileVC"
-        static let sendpostViewController = "SendPostVC"
+        static let homeViewController       = "HomeVC"
+        static let profileViewController    = "ProfileVC"
+        static let sendpostViewController   = "SendPostVC"
         static let managePostViewController = "ManagePostVC"
     }
     
@@ -58,6 +58,7 @@ struct Constants {
     struct dbNames{
         static var userDB = "users"
         static var postDB = "posts"
+        static var messageDB = "messages"
     }
     
     struct genderStr{

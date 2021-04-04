@@ -91,25 +91,33 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 126
+        return 115
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        let user = userArray[indexPath.row]
-        let uid  = user.email
-        //write method to chat with user
-        self.chatWithUser()
-        
-        
+            //when a user is selected, should let them have a conversation
+        self.performSegue(withIdentifier: "chat", sender: indexPath)
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "chat"){
+           
+            let controller = (segue.destination as! UINavigationController).topViewController as! ChatViewController
+            let row = (sender as! NSIndexPath).row
+            let user = userArray[row]
+            controller.otherUserObj = user
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserChatIconCell
         let userCell = self.userArray[indexPath.row]
         let uid = userCell.email
         
-            
+        
         let name = "\(userCell.firstName) \(userCell.lastName)"
         let message = "test message display"
             
@@ -130,13 +138,5 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             
         }
         return cell
-    }
-    
-    func chatWithUser(){
-        let chatVC = ChatViewController()
-        chatVC.modalPresentationStyle = .overFullScreen
-        self.tabBarController?.present(chatVC, animated: true, completion: nil)
-        //self.present(chatVC, animated: true, completion: nil)
-        //navigationController?.pushViewController(chatVC, animated: true)
     }
 }

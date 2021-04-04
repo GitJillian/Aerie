@@ -22,6 +22,7 @@ struct Message: MessageType{
 
 class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     let currentUser = Sender(senderId: "self", displayName: "You")
+    var otherUserObj: User!
     var messages = [MessageType]()
     func currentSender() -> SenderType {
         return currentUser
@@ -38,10 +39,17 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedElseWhere()
+        self.navigationController?.isToolbarHidden = false
+        self.navigationItem.title = "Chat"
+        print(otherUserObj.firstName)
+        //self.hideKeyboardWhenTappedElseWhere()
         messagesCollectionView.messagesDataSource      = self
         messagesCollectionView.messagesLayoutDelegate  = self
         messagesCollectionView.messagesDisplayDelegate = self
+    }
+    
+    @IBAction func dissMiss(){
+        self.dismiss(animated: true, completion: nil)
     }
 
 }
