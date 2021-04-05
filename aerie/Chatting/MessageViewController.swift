@@ -10,27 +10,15 @@ import UIKit
 import MessageKit
 import FirebaseFirestore
 import InputBarAccessoryView
-struct Sender: SenderType{
-    var senderId: String
-    var displayName: String
-}
-struct Message: MessageType{
-    
-    
-    var content:String
-    var sender:   SenderType
-    //var receiver: SenderType
-    var messageId: String
-    var sentDate: Date
-    var kind: MessageKind
-    
-}
+
 
 class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate {
     
-    let currentUser = Sender(senderId: UserDefaults.standard.value(forKey: "email") as? String ?? "self", displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
+    let currentUser = Sender(senderId: String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String),
+                             displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
     var otherUserObj: User!
     var messages = [MessageType]()
+    var messageOperation = MessageOperation()
     func currentSender() -> SenderType {
         return currentUser
     }
@@ -43,32 +31,45 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         return messages.count
     }
     
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+    return isFromCurrentSender(message: message) ? .green: .secondarySystemBackground
+    }
+    
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
     //When use press send button this method is called.
         
     let message = Message(content: text,
-                              sender: currentUser,
-                              //receiver: Sender(senderId: otherUserObj.email, displayName:"\(otherUserObj.firstName) \(otherUserObj.lastName))"),
-                              messageId:"123",
-                              sentDate: Date(),
-                              kind:.text(text)
-    )
-    //calling function to insert and save message
-    insertNewMessage(message)
-    save(message)
-    //clearing input field
-    inputBar.inputTextView.text = ""
-    messagesCollectionView.reloadData()
+                          sender: currentUser,
+                          receiver: Sender(senderId:   String.safeEmail(emailAddress: otherUserObj.email),
+                                           displayName:"\(otherUserObj.firstName) \(otherUserObj.lastName)"),
+                          messageId:UUID().uuidString,
+                          sentDate: Date(),
+                          kind:.text(text))
+        //TODO: enable other types such as emoji / photo
+        //calling function to insert and save message
+        insertNewMessage(message)
+        save(message)
+        //clearing input field
+        inputBar.inputTextView.text = ""
+        messagesCollectionView.reloadData()
         messagesCollectionView.scrollToLastItem(animated: true)
     }
     
+    private func loadConversation(otherUserEmail: String){
+        self.messages.removeAll()
+        messageOperation.getChatByUser(with: String.safeEmail(emailAddress: otherUserEmail)){listOfChats in
+            self.messages = listOfChats
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToLastItem(animated: true)
+        }
+    }
     private func insertNewMessage(_ message: Message) {
     //add the message to the messages array and reload it
     messages.append(message)
     messagesCollectionView.reloadData()
     DispatchQueue.main.async {
         self.messagesCollectionView.scrollToLastItem(animated: true)
-    }
+        }
     }
     
     private func save(_ message: Message) {
@@ -76,13 +77,12 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     
     
     let messageDB = MessageOperation()
-        messageDB.createNewConversation(with: otherUserObj.email, firstMessage: message){
+        messageDB.sendMessageToCollection(with: otherUserObj.email, message: message){
             result in
             if !result{
-                print("cannot create new conversation")
                 return
             }
-            self.messagesCollectionView.scrollToBottom()
+            self.messagesCollectionView.scrollToLastItem(animated: true)
         }
     }
     
@@ -99,9 +99,8 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     override func viewDidLoad() {
         super.viewDidLoad()
         maintainPositionOnKeyboardFrameChanged = true
-        messageInputBar.inputView?.frame = CGRect(x: 20, y: 600, width: messageInputBar.inputTextView.frame.size.width, height: messageInputBar.inputTextView.frame.size.height
-        )
         messageInputBar.sendButton.setTitleColor(.darkGray, for: .normal)
+        messageInputBar.inputTextView.placeholder = "message"
         self.navigationItem.title = "\(otherUserObj.firstName) \(otherUserObj.lastName)"
         self.hideKeyboardWhenTappedElseWhere()
         messagesCollectionView.messagesDataSource = self
@@ -111,6 +110,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         messageInputBar.delegate = self
         messageInputBar.autoresizesSubviews=true
         setupInputButton()
+        loadConversation(otherUserEmail: otherUserObj.email)
         
     }
     func setupInputButton() {

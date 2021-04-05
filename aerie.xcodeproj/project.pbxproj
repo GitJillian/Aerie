@@ -29,6 +29,8 @@
 		3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBDC25F9744800E0825B /* UIImageView.swift */; };
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
 		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
+		323FDD99261B7D8B003C26B2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FDD98261B7D8B003C26B2 /* Message.swift */; };
+		323FDDA2261B7F35003C26B2 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FDDA1261B7F35003C26B2 /* Conversation.swift */; };
 		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
 		325E08FF26094B7300BA322F /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E08FE26094B7300BA322F /* UIAlertController.swift */; };
 		326CAE8C260A974D000AA0DB /* ShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CAE8B260A974D000AA0DB /* ShadowButton.swift */; };
@@ -455,6 +457,8 @@
 		3233FBDC25F9744800E0825B /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
 		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
+		323FDD98261B7D8B003C26B2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		323FDDA1261B7F35003C26B2 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		325E08FE26094B7300BA322F /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		326CAE8B260A974D000AA0DB /* ShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButton.swift; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 				2A36469E25AFDB8900AB3C3B /* Post.swift */,
 				324B708725FF15D000551BFD /* CheckBox.swift */,
 				32D6CD7B260455A9003956A5 /* User.swift */,
+				323FDD98261B7D8B003C26B2 /* Message.swift */,
+				323FDDA1261B7F35003C26B2 /* Conversation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1075,8 +1081,10 @@
 				3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */,
 				32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */,
 				8314D44722E64515001D044A /* SignUpViewController.swift in Sources */,
+				323FDDA2261B7F35003C26B2 /* Conversation.swift in Sources */,
 				321F680925EDB9430098A866 /* TabAnimationView.swift in Sources */,
 				325E08FF26094B7300BA322F /* UIAlertController.swift in Sources */,
+				323FDD99261B7D8B003C26B2 /* Message.swift in Sources */,
 				321F680425EDB3480098A866 /* UITabBarController.swift in Sources */,
 				3233FBD625F964B900E0825B /* UIImage.swift in Sources */,
 				32D6CD7326045081003956A5 /* UIView.swift in Sources */,
