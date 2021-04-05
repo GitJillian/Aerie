@@ -14,7 +14,7 @@ import InputBarAccessoryView
 
 class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate {
     
-    let currentUser = Sender(senderId: String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String),
+    let currentUser = Sender(senderId:    UserDefaults.standard.value(forKey: "email") as! String,
                              displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
     var otherUserObj: User!
     var messages = [MessageType]()
@@ -40,7 +40,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         
     let message = Message(content: text,
                           sender: currentUser,
-                          receiver: Sender(senderId:   String.safeEmail(emailAddress: otherUserObj.email),
+                          receiver: Sender(senderId:   otherUserObj.email,
                                            displayName:"\(otherUserObj.firstName) \(otherUserObj.lastName)"),
                           messageId:UUID().uuidString,
                           sentDate: Date(),
@@ -113,6 +113,28 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         loadConversation(otherUserEmail: otherUserObj.email)
         
     }
+    
+    //used to load avatar for sender and receiver
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let sender = message.sender
+        var currentEmail: String
+        if sender.senderId == currentUser.senderId{
+            currentEmail = UserDefaults.standard.value(forKey: "email") as! String
+            
+        }else{
+            currentEmail = otherUserObj.email
+        }
+        let path = "image/\(currentEmail)_avatar"
+        let fireStorage = FireStorage()
+        fireStorage.loadAvatarByPath(path: path){data in
+            if !data.isEmpty{
+                let image = UIImage(data: data)
+                avatarView.image = image
+            }
+        }
+        
+    }
+    //set up buttons and input bar
     func setupInputButton() {
             let button = InputBarButtonItem()
             button.setSize(CGSize(width: 35, height: 35), animated: false)
