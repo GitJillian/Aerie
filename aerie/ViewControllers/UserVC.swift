@@ -70,7 +70,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         settingBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         profileBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         let uid = UserDefaults.standard.value(forKey: "uid") as! String
-        let safeemail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
+        print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
         userOperation.getUserFullName(uid: uid){name in
             UserDefaults.standard.setValue(name, forKey: "username")
             self.NameField?.text = name
@@ -80,7 +80,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         
         fireStorage.getUrlByPath(path: "image/\(uid)_avatar"){ url in
-            
+            print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
             guard let urlLink = URL(string: url)  else{
                 self.imageView?.image = UIImage(named: "ava")
                 return

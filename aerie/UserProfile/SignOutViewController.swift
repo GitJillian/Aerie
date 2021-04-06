@@ -26,6 +26,10 @@ class SignOutViewController: UIViewController{
             //if the user chooses to sign out, we should redirect the user to the ViewController view
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             let initialBoard = sb.instantiateViewController(withIdentifier: "ViewVC") as! ViewController
+            /*UserDefaults.standard.set("no name", forKey:"username")
+            UserDefaults.standard.set("no email",forKey: "email")
+            UserDefaults.standard.set("no url",  forKey: "url")
+            UserDefaults.standard.set("no uid",  forKey: "uid")*/
             self.view.window?.rootViewController = initialBoard
             self.view.window?.makeKeyAndVisible()
             //firebase account is signing out...

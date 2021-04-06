@@ -34,7 +34,8 @@ class ViewController: UIViewController, GIDSignInDelegate{
         //before we log in, the default username and email should be nothing
         UserDefaults.standard.set("no name", forKey:"username")
         UserDefaults.standard.set("no email",forKey: "email")
-        
+        UserDefaults.standard.set("no url",  forKey: "url")
+        UserDefaults.standard.set("no uid",  forKey: "uid")
         googleButton!.addTarget(self, action: #selector(signinUserUsingGoogle(_ :)), for: .touchUpInside)
         self.errorLabel?.textColor = UIColor(named:"buttonText")
         self.errorLabel?.alpha = 0
@@ -67,10 +68,12 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 // once the log in is successful, would switch to home view
                 UserDefaults.standard.set(uid, forKey: "uid")
                 UserDefaults.standard.set(currentEmail, forKey: "email")
-                
+                print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
                 userManagement.addSetUserDocument(uid: uid, data: [self.userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? "", Constants.userFields.uid: uid]){(result) in
                     if !result{
                         return
+                    }else{
+                        self.switchToHome()
                     }
                 }
             }
@@ -80,12 +83,13 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 userOperation.getUidByEmail(email: currentEmail){uid in
                     UserDefaults.standard.set(currentEmail, forKey: "email")
                     UserDefaults.standard.set(uid  , forKey: "uid")
-                    
+                    print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+                    self.switchToHome()
                 }
             }
             
+            
         }
-        self.switchToHome()
     }
 
     
@@ -118,10 +122,11 @@ class ViewController: UIViewController, GIDSignInDelegate{
             }
             else {
                 
-                var userOperation = UserOperation()
+                let userOperation = UserOperation()
                 userOperation.getUidByEmail(email: email!){uid in
                     UserDefaults.standard.set(email, forKey: "email")
                     UserDefaults.standard.set(uid  , forKey: "uid")
+                    print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
                     self.switchToHome()
                 }
                 

@@ -124,7 +124,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.normalCell, for: indexPath) as! UserChatIconCell
         let userCell = self.userArray[indexPath.row]
-        let uid = userCell.email
+        let uid = userCell.uid
         
         
         let name = "\(userCell.firstName) \(userCell.lastName)"

@@ -114,24 +114,38 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     //used to load avatar for sender and receiver
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         let sender = message.sender
-        var currentEmail: String
+        
         if sender.senderId == currentUser.senderId{
-            currentEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
+            
+            let uid = UserDefaults.standard.value(forKey: "uid") as! String
+            let path = "image/\(uid)_avatar"
+            let fireStorage = FireStorage()
+            fireStorage.loadAvatarByPath(path: path){data in
+                if !data.isEmpty{
+                    let image = UIImage(data: data)
+                    avatarView.image = image
+                }
+            }
             
         }else{
-            currentEmail = String.safeEmail(emailAddress: otherUserObj.email)
-        }
-        let uid = UserDefaults.standard.value(forKey: "uid") as! String
-        let path = "image/\(uid)_avatar"
-        let fireStorage = FireStorage()
-        fireStorage.loadAvatarByPath(path: path){data in
-            if !data.isEmpty{
-                let image = UIImage(data: data)
-                avatarView.image = image
+            
+           let userOperation = UserOperation()
+            userOperation.getUidByEmail(email: otherUserObj.email){
+                uid in
+                
+                let path = "image/\(uid)_avatar"
+                let fireStorage = FireStorage()
+                fireStorage.loadAvatarByPath(path: path){data in
+                    if !data.isEmpty{
+                        let image = UIImage(data: data)
+                        avatarView.image = image
+                    }
+                }
+                
             }
         }
-        
     }
+    
     //set up buttons and input bar
     func setupInputButton() {
             let button = InputBarButtonItem()
@@ -193,8 +207,8 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             }
             
             
-            firestorage.uploadToCloud(pngData: imageData, refPath: path){result in
-                if result{
+            firestorage.uploadToCloud(pngData: imageData, refPath: path){result1 in
+                if result1{
                     
                     firestorage.getURLByPath2(path: path){
                         url in
@@ -211,14 +225,13 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
                                           messageId: messageID,
                                           sentDate:  Date(),
                                           kind:      .photo(media))
-                        let messageOperation = MessageOperation()
-                        messageOperation.sendMessageToCollection(with: self.otherUserObj.email, message: message){result  in
-                            if result{
-                                self.insertNewMessage(message)
-                                self.save(message)
-                                self.messagesCollectionView.scrollToLastItem(animated: true)
-                                self.imagePickerController.dismiss(animated: true, completion: nil)
-                            }
+                        
+                        self.imagePickerController.dismiss(animated: true){
+                        self.insertNewMessage(message)
+                                
+                        self.save(message)
+                        self.messagesCollectionView.scrollToLastItem(animated: true)
+                            
                         }
                     }
                 }
