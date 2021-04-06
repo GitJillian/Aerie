@@ -68,7 +68,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 // once the log in is successful, would switch to home view
                 UserDefaults.standard.set(uid, forKey: "uid")
                 UserDefaults.standard.set(currentEmail, forKey: "email")
-                print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+                
                 userManagement.addSetUserDocument(uid: uid, data: [self.userField.emailField: currentEmail , userField.firstname: user.profile.givenName ?? "", userField.lastname: user.profile.familyName ?? "", Constants.userFields.uid: uid]){(result) in
                     if !result{
                         return
@@ -83,7 +83,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 userOperation.getUidByEmail(email: currentEmail){uid in
                     UserDefaults.standard.set(currentEmail, forKey: "email")
                     UserDefaults.standard.set(uid  , forKey: "uid")
-                    print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+                    
                     self.switchToHome()
                 }
             }
@@ -126,7 +126,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 userOperation.getUidByEmail(email: email!){uid in
                     UserDefaults.standard.set(email, forKey: "email")
                     UserDefaults.standard.set(uid  , forKey: "uid")
-                    print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+                    
                     self.switchToHome()
                 }
                 

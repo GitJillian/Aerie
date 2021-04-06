@@ -123,6 +123,26 @@ class UserOperation:DBOperation{
         }
     }
     
+    func getUserById(documentName: String, completion:@escaping(User) -> ()){
+        let userCollection = database.collection(Constants.dbNames.userDB)
+        getDocument(documentName: documentName, collectionRef: userCollection){(data) in
+        
+            let uid       = data[self.userFields.uid] as? String ?? ""
+            let dateOfBirth = data[self.userFields.birth] as? String ?? ""
+            let age       = data[self.userFields.age]  as? Int ?? 0
+            let email     = data[self.userFields.emailField] as? String ?? ""
+            let gender    = data[self.userFields.gender] as? String ?? "male"
+            let firstName = data[self.userFields.firstname] as? String ?? ""
+            let lastName  = data[self.userFields.lastname] as? String ?? ""
+            let petFriendly = data[self.userFields.petFriendly] as? Bool ?? false
+            let smokeOrNot  = data[self.userFields.smokeOrNot] as? Bool ?? false
+            let location    = data[self.userFields.locationStr] as? [String:Any] ?? [String:Any]()
+            
+            let user = User(uid:uid, email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+            completion(user)
+        }
+    }
+    
     func getUserDocument( documentName: String, completion:@escaping([String:Any])->()) {
         let userCollection = database.collection(Constants.dbNames.userDB)
         getDocument(documentName: documentName, collectionRef: userCollection){(data) in

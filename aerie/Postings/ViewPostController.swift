@@ -18,7 +18,7 @@ class ViewPostController: UIViewController {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var expectedLocation: UILabel!
-    private var pid : String!
+    var pid : String!
     private var userOperation = UserOperation()
     private var postOperation = PostOperation()
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class ViewPostController: UIViewController {
         self.descriptionField?.layer.cornerRadius = CGFloat(10)
         self.baseView?.clipsToBounds = true
         self.baseView?.layer.cornerRadius = CGFloat(10)
-        self.pid = UserDefaults.standard.value(forKey: "pidView") as? String
+        //self.pid = UserDefaults.standard.value(forKey: "pidView") as? String
         self.postOperation.getPostDocument(pid: self.pid){post in
             
             let uid = post[Constants.postFields.uidField] as! String

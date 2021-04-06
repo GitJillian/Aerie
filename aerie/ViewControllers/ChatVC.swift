@@ -61,8 +61,8 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
                 users.remove(at: index)
             }
             
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 91) )
-            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 91)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 81) )
+            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 81)
             self.userArray = users
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
@@ -72,10 +72,18 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     @objc func updateTableAutomatic(_ sender: AnyObject){
         userOperation.getAllUsers(){listOfUser in
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 91) )
-            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 91)
-            self.userArray = listOfUser
-            self.scrollView.refreshControl?.endRefreshing()
+            var users = listOfUser
+            let uid = UserDefaults.standard.value(forKey: "uid") as! String
+            //remove the current user itself from chat list
+            let index = users.firstIndex{ $0.uid == uid}
+            if let index = index{
+                
+                users.remove(at: index)
+            }
+            
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 81) )
+            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 81)
+            self.userArray = users
             self.tableView?.reloadData()
             
         }
@@ -100,7 +108,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -128,12 +136,10 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         
         
         let name = "\(userCell.firstName) \(userCell.lastName)"
-        let message = "test message display"
-            
-            
-          
+        let messageOperation = MessageOperation()
+        messageOperation.getLatestChat(with: userCell.email){message in
             cell.nameLabel?.text = name
-        cell.messageLabel?.text = message
+            cell.messageLabel?.text = message
             
             let fireStorage = FireStorage()
         
@@ -145,7 +151,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
                     let image = UIImage(data: data)
                     cell.avatar?.image = image
                 }
-            
+            }
         }
         return cell
     }

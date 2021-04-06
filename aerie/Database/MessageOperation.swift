@@ -13,6 +13,7 @@ import MessageKit
 class MessageOperation: DBOperation{
     let messageDB = Constants.dbNames.messageDB
     
+    //send message to the other user, updates your personal message db and the other users' db accordingly
     public func sendMessageToCollection(with receiver:String, message: Message, completion: @escaping(Bool)->()){
         let senderEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
         let receiverEmail = String.safeEmail(emailAddress: receiver)
@@ -35,7 +36,7 @@ class MessageOperation: DBOperation{
         }
     }
     
-    
+    //load message by the other user
     public func getChatByUser(with otherEmail: String, completion:@escaping([Message]) -> ()){
         let currentEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as!  String)
         let receiverEmail = String.safeEmail(emailAddress: otherEmail)
@@ -55,6 +56,30 @@ class MessageOperation: DBOperation{
                     messages.append(message)
                 }
                 completion(messages)
+            }
+        }
+    }
+    
+    //fetch last message from a specified user
+    public func getLatestChat(with otherEmail: String, completion:@escaping(String)->()){
+        let receiverEmail = String.safeEmail(emailAddress: otherEmail)
+        getChatByUser(with: receiverEmail){messages in
+            if messages.count == 0{
+                completion("")
+            }else{
+                let lastMessage = messages.last
+                let receiveremail = lastMessage?.receiver.senderId
+                var message     = ""
+                if receiveremail != otherEmail{
+                    message += "you:"
+                }
+                if  lastMessage?.kind.messageKindString == "photo"{
+                    message += "[Photo]"
+                }
+                else if lastMessage?.kind.messageKindString == "text"{
+                    message += lastMessage!.content
+                }
+                completion(message)
             }
         }
     }

@@ -108,7 +108,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.normalCell, for: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
         let postCell = self.postArray[indexPath.row]
         let uid = postCell.uid
         let userOperation = UserOperation()
@@ -143,7 +143,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         }
         return cell
     }
-    
 
     
     // Override to support conditional editing of the table view.
@@ -156,14 +155,33 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         tableView.deselectRow(at: indexPath, animated: true)
         let post = postArray[indexPath.row]
         let pid  = post.pid
-        UserDefaults.standard.setValue(pid, forKey: "pidView")
-        self.viewPost()
+        //UserDefaults.standard.setValue(pid, forKey: "pidView")
+        let alert = UIAlertController()
+        alert.addAction(UIAlertAction(title: "View Post", style: .default, handler:{ [self] action in
+            let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+            let viewPostModel = sb.instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostController
+            viewPostModel.pid = pid
+            self.present(viewPostModel, animated: true, completion: nil)
+        }
+        ))
+        alert.addAction(UIAlertAction(title: "Chat", style: .default, handler:
+                                        {[self] action in
+           
+                                            
+                                            let userOperation = UserOperation()
+                                            userOperation.getUserById(documentName: post.uid){user in
+                                                let sb: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                                let chatNav = sb.instantiateViewController(identifier: "chatnav") as ChatNavigationVC
+                                                let messageViewController = chatNav.topViewController as! MessageViewController
+                                                
+                                                messageViewController.otherUserObj = user
+                                                chatNav.modalPresentationStyle = .fullScreen
+                                                self.present(chatNav, animated: true, completion: nil)
+                                            }
+                                        }
+    ))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func viewPost(){
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let viewPostModel = sb.instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostController
-        self.present(viewPostModel, animated: true, completion: nil)
-        
-    }
 }
