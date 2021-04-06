@@ -42,7 +42,6 @@
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
 		32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */; };
 		32C2E3A6260C282D00ED88AF /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */; };
-		32C2E3AA260C57DA00ED88AF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A9260C57DA00ED88AF /* MapViewController.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
 		32D6CD7326045081003956A5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7226045081003956A5 /* UIView.swift */; };
 		32D6CD7C260455A9003956A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6CD7B260455A9003956A5 /* User.swift */; };
@@ -336,20 +335,6 @@
 			remoteGlobalIDString = 5C0371EE948D0357B8EE0E34ABB44BF0;
 			remoteInfo = GoogleDataTransport;
 		};
-		322984D125C3419100E31EF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
-			remoteInfo = GoogleMaps;
-		};
-		322984D325C3419100E31EF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0C1885900810601510E0C632060FAF26;
-			remoteInfo = GooglePlaces;
-		};
 		322984D525C3419100E31EF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -378,6 +363,13 @@
 			remoteGlobalIDString = 3B8CAC3956E59F928387D0C6310E3B37;
 			remoteInfo = "gRPC-C++-gRPCCertificates-Cpp";
 		};
+		3246E78C261C44CE00A1790E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B0B214D775196BA7CA8E17E53048A493;
+			remoteInfo = SDWebImage;
+		};
 		328F934425F4A79F008F6CF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -398,20 +390,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 15A68A8F33BD9EB9AFD02465B0418BCF;
 			remoteInfo = MessageKit;
-		};
-		32A4B97D26004B27005DD281 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DD5B759AAB8D741C6874A6ADBB63976;
-			remoteInfo = "MessageKit-MessageKit";
-		};
-		32A4B97F26004B27005DD281 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2AC31332A83859CC324D01A72D3B450D;
-			remoteInfo = WARangeSlider;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -470,7 +448,6 @@
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
-		32C2E3A9260C57DA00ED88AF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		32D6CD7226045081003956A5 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		32D6CD7B260455A9003956A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -562,11 +539,10 @@
 				32A4B97A26004B27005DD281 /* InputBarAccessoryView.framework */,
 				2AE0B41E25A7E14B00FF1F15 /* leveldb.framework */,
 				32A4B97C26004B27005DD281 /* MessageKit.framework */,
-				32A4B97E26004B27005DD281 /* MessageKit.bundle */,
 				2AE0B42025A7E14B00FF1F15 /* nanopb.framework */,
 				2AE0B42225A7E14B00FF1F15 /* Pods_aerie.framework */,
 				2A29F6C825A807B600D039B8 /* FBLPromises.framework */,
-				32A4B98026004B27005DD281 /* WARangeSlider.framework */,
+				3246E78D261C44CE00A1790E /* SDWebImage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -608,7 +584,6 @@
 				32A4B98426004D6C005DD281 /* LocationViewController.swift */,
 				321E49342601AC7C0047A704 /* SearchMapController.swift */,
 				32D2FB5D2602B6B8003197E3 /* LocationManager.swift */,
-				32C2E3A9260C57DA00ED88AF /* MapViewController.swift */,
 			);
 			path = SettingControl;
 			sourceTree = "<group>";
@@ -752,8 +727,6 @@
 				2AE0B44F25A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45125A7E15800FF1F15 /* PBXTargetDependency */,
 				322984D025C3419100E31EF9 /* PBXTargetDependency */,
-				322984D225C3419100E31EF9 /* PBXTargetDependency */,
-				322984D425C3419100E31EF9 /* PBXTargetDependency */,
 				322984D625C3419100E31EF9 /* PBXTargetDependency */,
 				2AE0B45325A7E15800FF1F15 /* PBXTargetDependency */,
 				2AE0B45525A7E15800FF1F15 /* PBXTargetDependency */,
@@ -950,6 +923,13 @@
 			remoteRef = 321E49312601A6B10047A704 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		3246E78D261C44CE00A1790E /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = 3246E78C261C44CE00A1790E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		328F934525F4A79F008F6CF2 /* FirebaseStorage.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -969,20 +949,6 @@
 			fileType = wrapper.framework;
 			path = MessageKit.framework;
 			remoteRef = 32A4B97B26004B27005DD281 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		32A4B97E26004B27005DD281 /* MessageKit.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MessageKit.bundle;
-			remoteRef = 32A4B97D26004B27005DD281 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		32A4B98026004B27005DD281 /* WARangeSlider.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = WARangeSlider.framework;
-			remoteRef = 32A4B97F26004B27005DD281 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1103,7 +1069,6 @@
 				32D6CD7C260455A9003956A5 /* User.swift in Sources */,
 				32C2E3A6260C282D00ED88AF /* SendPostViewController.swift in Sources */,
 				321F67FD25EC89EC0098A866 /* UIViewController.swift in Sources */,
-				32C2E3AA260C57DA00ED88AF /* MapViewController.swift in Sources */,
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */,
 				32FDF17426157F2600EE0BD9 /* ViewPostController.swift in Sources */,
@@ -1213,16 +1178,6 @@
 			isa = PBXTargetDependency;
 			name = GoogleDataTransport;
 			targetProxy = 322984CF25C3419100E31EF9 /* PBXContainerItemProxy */;
-		};
-		322984D225C3419100E31EF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GoogleMaps;
-			targetProxy = 322984D125C3419100E31EF9 /* PBXContainerItemProxy */;
-		};
-		322984D425C3419100E31EF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GooglePlaces;
-			targetProxy = 322984D325C3419100E31EF9 /* PBXContainerItemProxy */;
 		};
 		322984D625C3419100E31EF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

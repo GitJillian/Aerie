@@ -45,7 +45,7 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
     
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cells.normalCell)
         return table
     }()
     
@@ -79,7 +79,7 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.normalCell, for: indexPath)
         cell.textLabel?.text = locations[indexPath.row].title
         cell.textLabel?.numberOfLines = 0
         cell.backgroundColor = .secondarySystemBackground

@@ -97,4 +97,9 @@ struct Constants {
         static var budget      = "budget"
         static var expectedLocation  = "expectedLocation"
     }
+    
+    struct cells {
+        static var normalCell = "cell"
+        static var manageCell = "manageCell"
+    }
 }

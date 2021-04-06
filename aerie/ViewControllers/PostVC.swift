@@ -108,7 +108,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.normalCell, for: indexPath) as! PostTableViewCell
         let postCell = self.postArray[indexPath.row]
         let uid = postCell.uid
         let userOperation = UserOperation()

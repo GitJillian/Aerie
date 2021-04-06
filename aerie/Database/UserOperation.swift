@@ -22,7 +22,6 @@ class UserOperation:DBOperation{
                 return
             }
             
-            print("\(documents.count)")
             completion(documents.count > 0)
         }
        
@@ -115,7 +114,6 @@ class UserOperation:DBOperation{
                 let smokeOrNot  = data[self.userFields.smokeOrNot] as? Bool ?? false
                 let location    = data[self.userFields.locationStr] as? [String:Any] ?? [String:Any]()
                 
-                // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
                 let user = User(uid:uid, email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
                 users.append(user)
             

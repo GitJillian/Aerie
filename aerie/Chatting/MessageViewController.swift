@@ -195,10 +195,10 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             
             firestorage.uploadToCloud(pngData: imageData, refPath: path){result in
                 if result{
-                    print("successfully upload to cloud")
+                    
                     firestorage.getURLByPath2(path: path){
                         url in
-                        print("successfully upload your picture")
+                        
                         let media = Media(url:url,
                                       image: nil,
                                       placeholderImage: UIImage(named:
@@ -218,14 +218,10 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
                                 self.save(message)
                                 self.messagesCollectionView.scrollToLastItem(animated: true)
                                 self.imagePickerController.dismiss(animated: true, completion: nil)
-                            }else{
-                                print("I cannot load your image")
                             }
                         }
                     }
-                }else{
-                    print("cannot load your image")
                 }
+            }
         }
     }
-}

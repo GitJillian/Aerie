@@ -62,7 +62,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
         guard let currentEmail = user.profile.email else{return}
         userManagement.isUserExist(email: currentEmail){ [self] userExist in
             if !userExist{
-                print("user does not exist")
+               
                 let uid = UUID().uuidString
                 // once the log in is successful, would switch to home view
                 UserDefaults.standard.set(uid, forKey: "uid")
@@ -75,8 +75,8 @@ class ViewController: UIViewController, GIDSignInDelegate{
                 }
             }
             else{
-                print("userExists")
-                var userOperation = UserOperation()
+                
+                let userOperation = UserOperation()
                 userOperation.getUidByEmail(email: currentEmail){uid in
                     UserDefaults.standard.set(currentEmail, forKey: "email")
                     UserDefaults.standard.set(uid  , forKey: "uid")

@@ -2,8 +2,8 @@
 //  ManagePostViewCell.swift
 //  aerie
 //
-//  Created by jillianli on 2021/3/26.
-//  Copyright © 2021 Christopher Ching. All rights reserved.
+//  Created by Gitjillian on 2021/3/26.
+//  Copyright © 2021 Yejing Li. All rights reserved.
 //
 
 import UIKit

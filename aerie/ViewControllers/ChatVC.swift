@@ -57,6 +57,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             //remove the current user itself from chat list
             let index = users.firstIndex{ $0.uid == uid}
             if let index = index{
+                
                 users.remove(at: index)
             }
             
@@ -121,7 +122,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserChatIconCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.normalCell, for: indexPath) as! UserChatIconCell
         let userCell = self.userArray[indexPath.row]
         let uid = userCell.email
         
