@@ -47,12 +47,12 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
         
-        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
         
-        userOperation.getUserDocument(documentName: email){ data in
+        userOperation.getUserDocument(documentName: uid){ data in
             let isGenderExist = data[Constants.userFields.gender] != nil
             if isGenderExist{
-                self.userOperation.getUserGender(email: email){genderStr in
+                self.userOperation.getUserGender(uid: uid){genderStr in
                     if genderStr == Constants.genderStr.female{
                         self.femmeBtn.isSelected = true
                         self.hommeBtn.isSelected = false
@@ -200,8 +200,8 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     @IBAction func sendPost(){
         //if all fields looks correct
         if validateFields(){
-            let email = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
-            let pid = "post_\(email)_\(Date())"
+            let uid = UserDefaults.standard.value(forKey: "uid") as! String
+            let pid = UUID().uuidString
             let userData = getUpdatedUserProfile()
             
             var postData = Dictionary<String, Any>()
@@ -209,7 +209,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
             let description : String = descriptionTextField?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             
             postData[Constants.postFields.pidField] = pid
-            postData[Constants.postFields.uidField] = UserDefaults.standard.value(forKey: "email") as! String
+            postData[Constants.postFields.uidField] = uid
             postData[Constants.postFields.timeStamp] = Date()
             postData[Constants.postFields.description] = description
             postData[Constants.postFields.budget]   = Int(budget ?? "0")
@@ -224,7 +224,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
                     if result{
                         
                         let userOperation = UserOperation()
-                        userOperation.updateUserDocument(userEmail: UserDefaults.standard.value(forKey: "email") as! String, data: userData){result in
+                        userOperation.updateUserDocument(uid: uid, data: userData){result in
                             if result{
                                 alert.title = "Successfully post."
                             }else{

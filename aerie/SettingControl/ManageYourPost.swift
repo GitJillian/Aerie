@@ -37,9 +37,9 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadDataToTable(){
-        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
         
-        postOperation.getPostsByUser(uid:email){listOfPost in
+        postOperation.getPostsByUser(uid:uid){listOfPost in
             
             self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 115 )
             

@@ -14,11 +14,18 @@ class UserOperation:DBOperation{
     
     var db_name = Constants.dbNames.userDB
     //check whether a user exists in user collection and return a bool value
-    func isUserExist(documentName: String, completion:@escaping(Bool)->()){
+    func isUserExist(email: String, completion:@escaping(Bool)->()){
         let userCollection = super.database.collection(db_name)
-        isDocumentExist(documentName: documentName, collection: userCollection){(result) in
-            completion(result)
+        userCollection.whereField("email", isEqualTo: email).getDocuments(){querySnapshot, err in
+            guard let documents = querySnapshot?.documents else{
+                completion(false)
+                return
+            }
+            
+            print("\(documents.count)")
+            completion(documents.count > 0)
         }
+       
     }
     
     func isUserFieldExist(documentName: String,fieldName: String, completion:@escaping(Bool)->()){
@@ -30,55 +37,62 @@ class UserOperation:DBOperation{
     
     
     //this is used to set or add Document data with given userEmail as its unique id. Note: this operation will overwrite the whole data
-    func addSetUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool)->()){
+    func addSetUserDocument(uid:String, data: Dictionary<String, Any>, completion:@escaping(Bool)->()){
         let userCollection = super.database.collection(db_name)
-        addSetDocument(documentName: userEmail, data: data, collectionRef: userCollection ){(result) in
+        addSetDocument(documentName: uid, data: data, collectionRef: userCollection ){(result) in
             completion(result)
         }
     }
     
     //this is used to update existing user fields without changing the whole data
-    func updateUserDocument(userEmail:String, data: Dictionary<String, Any>, completion:@escaping(Bool) ->()){
+    func updateUserDocument(uid:String, data: Dictionary<String, Any>, completion:@escaping(Bool) ->()){
         let userCollection = super.database.collection(db_name)
-        updateDocument(documentName: userEmail, data: data, collectionRef: userCollection){ result in
+        updateDocument(documentName: uid, data: data, collectionRef: userCollection){ result in
             completion(result)
         }
     }
-
     
-    func getUserFirstName(email:String, completion: @escaping(String) -> ()){
-        getUserDocument(documentName: email) { (data) in
+    func getUidByEmail(email: String, completion: @escaping(String)-> ()){
+        let userCollection = super.database.collection(db_name)
+        isUserExist(email:email){result in
+            if result{
+                userCollection.whereField("email", isEqualTo: email).getDocuments(){
+                    querySnapShot, err in
+                    let document = querySnapShot?.documents[0]
+                    completion(document?[Constants.userFields.uid] as! String)
+                }
+            }
+        }
+    }
+    
+    func getUserFirstName(uid:String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: uid) { (data) in
             let firstName = data[self.userFields.firstname] as! String
             completion(firstName.capitalizingFirstLetter())
         }
     }
     
-    func getUserLastName(email:String, completion: @escaping(String) -> ()){
-        getUserDocument(documentName: email) { (data) in
+    func getUserLastName(uid:String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: uid) { (data) in
             let lastName = data[self.userFields.lastname] as! String
             completion(lastName.capitalizingFirstLetter())
         }
     }
     
-    func getUserFullName(email: String, completion: @escaping(String) -> ()){
-        getUserDocument(documentName: email) { (data) in
+    func getUserFullName(uid:String, completion: @escaping(String) -> ()){
+        getUserDocument(documentName: uid) { (data) in
             let firstName = data[self.userFields.firstname] as! String
             let lastName = data[self.userFields.lastname] as! String
             completion(firstName.capitalizingFirstLetter()+" "+lastName.capitalizingFirstLetter())
         }
     }
     
-    func getUserGender(email: String, completion: @escaping(String) ->()){
-        getUserDocument(documentName: email){ data in
+    func getUserGender(uid:String, completion: @escaping(String) ->()){
+        getUserDocument(documentName: uid){ data in
             completion(data[self.userFields.gender] as! String)
         }
     }
     
-    func getUserBirthDate(email: String, completion:@escaping(String) -> ()){
-        getUserDocument(documentName: email){ data in
-            completion(data[self.userFields.birth] as! String)
-        }
-    }
     
     func getAllUsers(completion:@escaping([User]) ->()){
         let userCollection = super.database.collection(db_name)
@@ -90,6 +104,7 @@ class UserOperation:DBOperation{
             for document in documents{
             
                 let data      = document.data()
+                let uid       = data[self.userFields.uid] as? String ?? ""
                 let dateOfBirth = data[self.userFields.birth] as? String ?? ""
                 let age       = data[self.userFields.age]  as? Int ?? 0
                 let email     = data[self.userFields.emailField] as? String ?? ""
@@ -99,11 +114,9 @@ class UserOperation:DBOperation{
                 let petFriendly = data[self.userFields.petFriendly] as? Bool ?? false
                 let smokeOrNot  = data[self.userFields.smokeOrNot] as? Bool ?? false
                 let location    = data[self.userFields.locationStr] as? [String:Any] ?? [String:Any]()
-                let expectedRentUpper = data[self.userFields.expectedRentUpper] as? Int ?? 0
-                let expectedRentLower = data[self.userFields.expectedRentLower] as? Int ?? 0
                 
                 // TODO: FIX OBJECTIDENTIFIER ERROR TOMORROW
-                let user = User(email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+                let user = User(uid:uid, email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
                 users.append(user)
             
             }

@@ -114,12 +114,14 @@ class SignUpViewController: UIViewController{
                     
                     let userManagement = UserOperation()
                     
-                    
-                    userManagement.addSetUserDocument(userEmail: email, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email ]){(result) in
+                    let uid = UUID().uuidString
+                    userManagement.addSetUserDocument(uid: uid, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email, uid: uid ]){(result) in
                         if !result{
                             self.showError(Constants.errorMessages.errorToSaveDate)
                         }
-                        self.SwitchToHomePage(email:email)
+                        UserDefaults.standard.set(uid,   forKey: "uid")
+                        UserDefaults.standard.set(email, forKey: "email")
+                        self.SwitchToHomePage()
                     }
                 }
             }
@@ -131,13 +133,13 @@ class SignUpViewController: UIViewController{
         errorLabel.alpha = 1
     }
     
-    func SwitchToHomePage(email: String) {
+    func SwitchToHomePage() {
         
         
         if let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as?  HomeViewController{
             
                 //setting user default like a global variable since it is light weight and used through the whole project
-                UserDefaults.standard.set(email, forKey: "email")
+                
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()
             

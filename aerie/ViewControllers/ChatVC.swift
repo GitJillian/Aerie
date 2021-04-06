@@ -53,8 +53,9 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func loadDataToTable(){
         userOperation.getAllUsers(){listOfUser in
             var users = listOfUser
-            let userEmail = UserDefaults.standard.value(forKey: "email") as! String
-            let index = users.firstIndex{ $0.email == userEmail}
+            let uid = UserDefaults.standard.value(forKey: "uid") as! String
+            //remove the current user itself from chat list
+            let index = users.firstIndex{ $0.uid == uid}
             if let index = index{
                 users.remove(at: index)
             }
@@ -134,6 +135,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         cell.messageLabel?.text = message
             
             let fireStorage = FireStorage()
+        
         let path = "image/"+String.safeEmail(emailAddress: uid)+"_avatar"
             fireStorage.loadAvatarByPath(path: path){data in
                 if data.isEmpty{

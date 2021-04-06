@@ -129,6 +129,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             cell.locationLabel?.text = locationStr
             
             let fireStorage = FireStorage()
+            
             let path = "image/"+String.safeEmail(emailAddress: postCell.uid)+"_avatar"
             
             fireStorage.loadAvatarByPath(path: path){data in

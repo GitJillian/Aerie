@@ -28,10 +28,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func awakeFromNib() {
         self.view.layoutIfNeeded()
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        userOperation.isUserFieldExist(documentName: email, fieldName: Constants.userFields.gender){isGenderExist in
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
+        userOperation.isUserFieldExist(documentName: uid, fieldName: Constants.userFields.gender){isGenderExist in
             if isGenderExist{
-                self.userOperation.getUserGender(email: email){genderStr in
+                self.userOperation.getUserGender(uid:uid){genderStr in
                     if genderStr == Constants.genderStr.female{
                         self.femmeBtn.isSelected = true
                         self.hommeBtn.isSelected = false
@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         femmeBtn?.alternateButton = [hommeBtn!]
         hommeBtn?.alternateButton = [femmeBtn!]
         self.hideKeyboardWhenTappedElseWhere()
-        userOperation.getUserDocument(documentName: UserDefaults.standard.value(forKey: "email") as! String){ data in
+        userOperation.getUserDocument(documentName: UserDefaults.standard.value(forKey: "uid") as! String){ data in
             let firstName = data[Constants.userFields.firstname] as! String
             let lastName  = data[Constants.userFields.lastname]  as! String
             
@@ -117,7 +117,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
         
             //setting image view to the avatar in firebase storage
-        let avatar_path = self.fireStorage.storageRef.child("image/" + String.safeEmail(emailAddress: email) + "_avatar")
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
+        let avatar_path = self.fireStorage.storageRef.child("image/" + String.safeEmail(emailAddress: uid) + "_avatar")
             avatar_path.getData(maxSize: 15*1024*1024){data, err in
                 if let err = err{
                     print(err)
@@ -208,7 +209,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // once submit profile button is clicked, we should update the user's profile via firebase
     @IBAction func submitProfile(){
-        let email = UserDefaults.standard.value(forKey: "email") as? String
+        let uid = UserDefaults.standard.value(forKey: "uid") as? String
         let error = validateFields()
         if error != nil{
             let alertNameField = UIAlertController(title: error, message: nil, preferredStyle: .alert)
@@ -217,14 +218,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         else{
             let data = self.getUpdatedData()
-            userOperation.updateUserDocument(userEmail: email!, data: data){ [self] result in
+            userOperation.updateUserDocument(uid: uid!, data: data){ [self] result in
                 if !result{
                     self.updateDataAlert = UIAlertController(title: Constants.errorMessages.errorToSaveDate, message: "Please retry", preferredStyle: .alert)
                     self.updateDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(self.updateDataAlert, animated: true, completion: nil)
                 }
                 
-            userOperation.getUserFullName(email: email!){ fullname in
+                userOperation.getUserFullName(uid: uid!){ fullname in
                     UserDefaults.standard.setValue(fullname, forKey: "username")
                 }
                 

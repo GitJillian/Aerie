@@ -69,9 +69,9 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         profileBtn.layer.shadowColor  = UIColor.darkGray.cgColor
         settingBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         profileBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        let email = UserDefaults.standard.value(forKey: "email") as! String
-        let safeemail = String.safeEmail(emailAddress: email)
-        userOperation.getUserFullName(email: email){name in
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
+        let safeemail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
+        userOperation.getUserFullName(uid: uid){name in
             UserDefaults.standard.setValue(name, forKey: "username")
             self.NameField?.text = name
         }
@@ -79,7 +79,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.addChildControllers()
         
         
-        fireStorage.getUrlByPath(path: "image/\(safeemail)_avatar"){ url in
+        fireStorage.getUrlByPath(path: "image/\(uid)_avatar"){ url in
             
             guard let urlLink = URL(string: url)  else{
                 self.imageView?.image = UIImage(named: "ava")
@@ -201,8 +201,8 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         let firestorage = FireStorage()
         //we need to get the user email so as to upload the file with correct path and name
-        let email = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
-        let path  = "image/" + email + "_avatar"
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
+        let path  = "image/" + uid + "_avatar"
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else{
             return

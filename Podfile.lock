@@ -356,7 +356,9 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
-  - WARangeSlider (1.1.1)
+  - SDWebImage (5.11.0):
+    - SDWebImage/Core (= 5.11.0)
+  - SDWebImage/Core (5.11.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -367,7 +369,7 @@ DEPENDENCIES:
   - FloatingPanel
   - GoogleSignIn
   - MessageKit
-  - WARangeSlider
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
@@ -396,7 +398,7 @@ SPEC REPOS:
     - MessageKit
     - nanopb
     - PromisesObjC
-    - WARangeSlider
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -424,8 +426,8 @@ SPEC CHECKSUMS:
   MessageKit: a8efaf55b021672b19ffdd5a85ce1c2f3b53058e
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
+  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
 
-PODFILE CHECKSUM: 53a55d7f2e7c272bb69d8ee49860f9ea9a2295e7
+PODFILE CHECKSUM: 0e51dcc40df0ec63e12cf19f9b193d94a7700829
 
 COCOAPODS: 1.10.0

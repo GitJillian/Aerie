@@ -12,7 +12,7 @@ protocol UserSerializable{
     init?(dictionary: [String: Any])
 }
 struct User{
-    
+    var uid  : String
     var email: String
     var gender: String
     var firstName: String
@@ -20,20 +20,17 @@ struct User{
     var dateOfBirth: String
     var age: Int
     var location: [String:Any]
-    var expectedRentUpper: Int
-    var expectedRentLower: Int
     var petFriendly: Bool
     var smokeOrNot: Bool
     var dictionary: [String: Any]{
-        return[Constants.userFields.emailField: email,
+        return[Constants.userFields.uid       : uid,
+               Constants.userFields.emailField: email,
                Constants.userFields.gender    : gender,
                Constants.userFields.firstname : firstName,
                Constants.userFields.lastname  : lastName,
                Constants.userFields.birth     : dateOfBirth,
                Constants.userFields.age       : age,
                Constants.userFields.locationStr:location,
-               Constants.userFields.expectedRentUpper: expectedRentUpper,
-               Constants.userFields.expectedRentLower: expectedRentLower,
                Constants.userFields.petFriendly: petFriendly,
                Constants.userFields.smokeOrNot: smokeOrNot,
         ]
@@ -51,12 +48,11 @@ extension User: UserSerializable {
         let petFriendly = dictionary[Constants.userFields.petFriendly] as? Bool ,
         let smokeOrNot  = dictionary[Constants.userFields.smokeOrNot] as? Bool ,
         let location    = dictionary[Constants.userFields.locationStr] as? [String:Any] ,
-        let expectedRentUpper = dictionary[Constants.userFields.expectedRentUpper] as? Int ,
-        let expectedRentLower = dictionary[Constants.userFields.expectedRentLower] as? Int
+        let uid         = dictionary[Constants.userFields.uid]        as? String
         else{
             return nil
             
         }
-        self.init(email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location, expectedRentUpper: expectedRentUpper, expectedRentLower: expectedRentLower, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+        self.init(uid:uid,email: email, gender: gender, firstName: firstName,  lastName: lastName, dateOfBirth: dateOfBirth, age: age, location: location,  petFriendly: petFriendly, smokeOrNot: smokeOrNot)
     }
 }

@@ -116,10 +116,10 @@ class SearchMapController: UIViewController, UITextFieldDelegate, UITableViewDel
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: {action in
             
-            let email = UserDefaults.standard.value(forKey: "email") as! String
+            let uid = UserDefaults.standard.value(forKey: "uid") as! String
             
                 let userOperation = UserOperation()
-                userOperation.updateUserDocument(userEmail: email, data: [field: placeToDict]){ result in
+                userOperation.updateUserDocument(uid: uid, data: [field: placeToDict]){ result in
                     if !result{
                         return
                     }

@@ -8,7 +8,7 @@
 
 import MessageKit
 import Foundation
-import Firebase
+import FirebaseFirestore
 struct Sender: SenderType{
     var senderId:    String
     var displayName: String
@@ -59,10 +59,10 @@ extension Message{
                 kind = .text(content)
             case "photo":
                
-                let media = Media(url: nil,
+                let media = Media(url: URL(string: content),
                                       image: nil,
-                                      placeholderImage: UIImage(systemName: "plus")!,
-                                      size: .zero)
+                                      placeholderImage: UIImage(named: "ava")!,
+                                      size: CGSize(width: 150, height: 150))
                 kind = .photo(media)
                 
             default:

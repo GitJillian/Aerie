@@ -13,7 +13,7 @@ target 'aerie' do
 	pod 'Firebase/Firestore'
 	pod 'GoogleSignIn'
 	pod 'Firebase/Storage'
-	pod ‘WARangeSlider’
 	pod 'MessageKit'
 	pod 'FloatingPanel'
+	pod 'SDWebImage', '~> 5.0'
 end

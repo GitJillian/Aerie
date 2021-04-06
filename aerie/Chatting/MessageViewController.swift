@@ -10,7 +10,7 @@ import UIKit
 import MessageKit
 import FirebaseFirestore
 import InputBarAccessoryView
-
+import SDWebImage
 
 class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -64,6 +64,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             self.messagesCollectionView.scrollToLastItem(animated: true)
         }
     }
+    
     private func insertNewMessage(_ message: Message) {
     //add the message to the messages array and reload it
     messages.append(message)
@@ -89,12 +90,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     
     override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-        
-            messageInputBar.inputTextView.becomeFirstResponder()
-            //if let conversationId = conversationId {
-             //   listenForMessages(id: conversationId, shouldScrollToBottom: true)
-           // }
-      //  }
+           // messageInputBar.inputTextView.becomeFirstResponder()
     }
 
     override func viewDidLoad() {
@@ -125,7 +121,8 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         }else{
             currentEmail = String.safeEmail(emailAddress: otherUserObj.email)
         }
-        let path = "image/\(currentEmail)_avatar"
+        let uid = UserDefaults.standard.value(forKey: "uid") as! String
+        let path = "image/\(uid)_avatar"
         let fireStorage = FireStorage()
         fireStorage.loadAvatarByPath(path: path){data in
             if !data.isEmpty{
@@ -160,17 +157,8 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             }
 
             switch message.kind {
-            case .photo:
-                
-                let path  = message.content
-                let firestorage = FireStorage()
-                firestorage.loadAvatarByPath(path: path){
-                    data in
-                    if !data.isEmpty{
-                        let image = UIImage(data: data)
-                        imageView.image = image
-                    }
-                }
+            case .photo(let media):
+                imageView.sd_setImage(with: media.url, completed: nil)
             default:
                 break
             }
@@ -203,33 +191,41 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             guard let imageData = image.pngData() else{
                 return
             }
+            
+            
             firestorage.uploadToCloud(pngData: imageData, refPath: path){result in
                 if result{
-                    firestorage.getURLByPath2(path: path){url in
+                    print("successfully upload to cloud")
+                    firestorage.getURLByPath2(path: path){
+                        url in
+                        print("successfully upload your picture")
                         let media = Media(url:url,
-                                          image: image,
-                                          placeholderImage: UIImage(systemName: "plus")!,
-                                          size: .zero)
-                    let message = Message(content:   path,
+                                      image: nil,
+                                      placeholderImage: UIImage(named:
+                                        "ava")!,
+                                      size: CGSize(width: 100, height: 100))
+                        let message = Message(content:   url.absoluteString,
                                           sender:    self.currentUser,
                                           receiver:  Sender(senderId:   self.otherUserObj.email,
                                                             displayName:"\(self.otherUserObj.firstName) \(self.otherUserObj.lastName)"),
                                           messageId: messageID,
                                           sentDate:  Date(),
                                           kind:      .photo(media))
-                    let messageOperation = MessageOperation()
-                    messageOperation.sendMessageToCollection(with: self.otherUserObj.email, message: message){result  in
-                        if result{
-                            self.insertNewMessage(message)
-                            self.save(message)
-                            
-                            self.messagesCollectionView.reloadData()
-                            self.messagesCollectionView.scrollToLastItem(animated: true)
-                            self.imagePickerController.dismiss(animated: true, completion: nil)
+                        let messageOperation = MessageOperation()
+                        messageOperation.sendMessageToCollection(with: self.otherUserObj.email, message: message){result  in
+                            if result{
+                                self.insertNewMessage(message)
+                                self.save(message)
+                                self.messagesCollectionView.scrollToLastItem(animated: true)
+                                self.imagePickerController.dismiss(animated: true, completion: nil)
+                            }else{
+                                print("I cannot load your image")
+                            }
                         }
                     }
+                }else{
+                    print("cannot load your image")
                 }
-            }
         }
     }
 }

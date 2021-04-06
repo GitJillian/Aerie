@@ -68,6 +68,7 @@ struct Constants {
     }
     
     struct userFields{
+        static var uid         = "uid"
         static var age         = "age"
         static var birth       = "birthday"
         static var gender      = "gender"
@@ -78,8 +79,6 @@ struct Constants {
         static var petFriendly = "petFriendly"
         static var smokeOrNot  = "smokeOrNot"
         static var locationStr = "location"
-        static var expectedRentUpper = "expectedRentUpper"
-        static var expectedRentLower = "expectedRentLower"
         
     }
     
@@ -91,8 +90,8 @@ struct Constants {
     }
     
     struct postFields{
-        static var pidField = "pid"
-        static var uidField = "uid"
+        static var pidField    = "pid"
+        static var uidField    = "uid"
         static var description = "description"
         static var timeStamp   = "timeStamp"
         static var budget      = "budget"
