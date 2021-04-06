@@ -58,23 +58,6 @@ class MessageOperation: DBOperation{
             }
         }
     }
-    
-    public func getAllChatUsers(completion:@escaping([String]) -> ()){
-        let currentEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as!  String)
-        let ref = database.collection("\(messageDB)/\(currentEmail)")
-        ref.addSnapshotListener(){query,err in
-            if let err = err{
-                print(err.localizedDescription)
-                completion([])
-            }else{
-                var users: [String] = []
-                for document in query!.documents{
-                    let data = document.data()
-                    let uid  = data["receiverId"] as! String
-                    users.append(uid)
-                }
-                completion(users)
-            }
-        }
-    }
 }
+    
+

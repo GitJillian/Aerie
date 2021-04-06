@@ -42,8 +42,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func loadDataToTable(){
         postOperation.getAllPosts(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 146) )
-            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 146)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
@@ -56,8 +56,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     @objc func updateTableAutomatic(_ sender: AnyObject){
         postOperation.getAllPosts(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 146) )
-            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 146)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
+            self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
@@ -85,9 +85,9 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     @IBAction func ComposePost(_ sender: Any){
         
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.sendpostViewController) as! SendPostViewController
-        self.view.window?.rootViewController = initialBoard
-        self.view.window?.makeKeyAndVisible()
+        let composePostVC = sb.instantiateViewController(withIdentifier: Constants.Storyboard.sendpostViewController) as! SendPostViewController
+        composePostVC.modalPresentationStyle = .overFullScreen
+        self.present(composePostVC, animated: true, completion: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -32,7 +32,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-    return isFromCurrentSender(message: message) ? .green: .secondarySystemBackground
+        return isFromCurrentSender(message: message) ? UIColor.init(named: "hintText") as! UIColor : .secondarySystemBackground
     }
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {

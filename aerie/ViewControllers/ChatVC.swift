@@ -52,9 +52,16 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     func loadDataToTable(){
         userOperation.getAllUsers(){listOfUser in
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 127) )
-            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 127)
-            self.userArray = listOfUser
+            var users = listOfUser
+            let userEmail = UserDefaults.standard.value(forKey: "email") as! String
+            let index = users.firstIndex{ $0.email == userEmail}
+            if let index = index{
+                users.remove(at: index)
+            }
+            
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 91) )
+            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 91)
+            self.userArray = users
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
             }
@@ -63,8 +70,8 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     @objc func updateTableAutomatic(_ sender: AnyObject){
         userOperation.getAllUsers(){listOfUser in
-            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 127) )
-            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 127)
+            self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfUser.count) * 91) )
+            self.cellHeight?.constant = CGFloat(Double(listOfUser.count) * 91)
             self.userArray = listOfUser
             self.scrollView.refreshControl?.endRefreshing()
             self.tableView?.reloadData()
@@ -91,7 +98,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 115
+        return 90
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){

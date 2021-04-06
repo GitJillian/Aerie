@@ -107,9 +107,11 @@ class UserOperation:DBOperation{
                 users.append(user)
             
             }
+            self.users = users
             completion(users)
         }
     }
+    
     func getUserDocument( documentName: String, completion:@escaping([String:Any])->()) {
         let userCollection = database.collection(Constants.dbNames.userDB)
         getDocument(documentName: documentName, collectionRef: userCollection){(data) in

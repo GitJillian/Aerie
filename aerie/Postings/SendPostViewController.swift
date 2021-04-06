@@ -152,21 +152,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     }
     
     @IBAction func gobackToDiscover(){
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as! HomeViewController
-        
-        self.view.window?.rootViewController = initialBoard
-        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
-        initialBoard.view.addSubview(snapshot)
-        UIView.transition(with: snapshot,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: {
-                              snapshot.layer.opacity = 0
-                          },
-                          completion: { status in
-                              snapshot.removeFromSuperview()
-                          })
+        self.dismiss(animated: true, completion: nil)
     }
     
     func validateFields() -> Bool{
