@@ -12,13 +12,14 @@ import FirebaseFirestore
 import InputBarAccessoryView
 
 
-class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate {
+class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     let currentUser = Sender(senderId:    UserDefaults.standard.value(forKey: "email") as! String,
                              displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
     var otherUserObj: User!
     var messages = [MessageType]()
     var messageOperation = MessageOperation()
+    private var imagePickerController   = UIImagePickerController()
     func currentSender() -> SenderType {
         return currentUser
     }
@@ -32,7 +33,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.init(named: "hintText") as! UIColor : .secondarySystemBackground
+        return isFromCurrentSender(message: message) ? UIColor.init(named: "hintText")! : .secondarySystemBackground
     }
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
@@ -119,10 +120,10 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         let sender = message.sender
         var currentEmail: String
         if sender.senderId == currentUser.senderId{
-            currentEmail = UserDefaults.standard.value(forKey: "email") as! String
+            currentEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
             
         }else{
-            currentEmail = otherUserObj.email
+            currentEmail = String.safeEmail(emailAddress: otherUserObj.email)
         }
         let path = "image/\(currentEmail)_avatar"
         let fireStorage = FireStorage()
@@ -139,13 +140,96 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             let button = InputBarButtonItem()
             button.setSize(CGSize(width: 35, height: 35), animated: false)
             button.setImage(UIImage(systemName: "paperclip"), for: .normal)
-            
+            button.onTouchUpInside { [weak self] _ in
+                    self?.selectPicture()
+                }
             messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
             messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
         }
     
+    
+    
+    //dismiss the message controller itself
     @IBAction func dissMiss(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+            guard let message = message as? Message else {
+                return
+            }
 
+            switch message.kind {
+            case .photo:
+                
+                let path  = message.content
+                let firestorage = FireStorage()
+                firestorage.loadAvatarByPath(path: path){
+                    data in
+                    if !data.isEmpty{
+                        let image = UIImage(data: data)
+                        imageView.image = image
+                    }
+                }
+            default:
+                break
+            }
+        }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
+    
+    func selectPicture(){
+    //enable user to select picture
+       
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate   = self
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true)
+
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+            let firestorage = FireStorage()
+            let messageID = UUID().uuidString
+            
+            let path  = "message/\(messageID)"
+            
+            guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else{
+                return
+            }
+            guard let imageData = image.pngData() else{
+                return
+            }
+            firestorage.uploadToCloud(pngData: imageData, refPath: path){result in
+                if result{
+                    firestorage.getURLByPath2(path: path){url in
+                        let media = Media(url:url,
+                                          image: image,
+                                          placeholderImage: UIImage(systemName: "plus")!,
+                                          size: .zero)
+                    let message = Message(content:   path,
+                                          sender:    self.currentUser,
+                                          receiver:  Sender(senderId:   self.otherUserObj.email,
+                                                            displayName:"\(self.otherUserObj.firstName) \(self.otherUserObj.lastName)"),
+                                          messageId: messageID,
+                                          sentDate:  Date(),
+                                          kind:      .photo(media))
+                    let messageOperation = MessageOperation()
+                    messageOperation.sendMessageToCollection(with: self.otherUserObj.email, message: message){result  in
+                        if result{
+                            self.insertNewMessage(message)
+                            self.save(message)
+                            
+                            self.messagesCollectionView.reloadData()
+                            self.messagesCollectionView.scrollToLastItem(animated: true)
+                            self.imagePickerController.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

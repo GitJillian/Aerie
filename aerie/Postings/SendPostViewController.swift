@@ -200,7 +200,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
     @IBAction func sendPost(){
         //if all fields looks correct
         if validateFields(){
-            let email = UserDefaults.standard.value(forKey: "email") as! String
+            let email = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
             let pid = "post_\(email)_\(Date())"
             let userData = getUpdatedUserProfile()
             

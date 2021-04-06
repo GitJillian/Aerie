@@ -117,7 +117,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
         
             //setting image view to the avatar in firebase storage
-            let avatar_path = self.fireStorage.storageRef.child("image/" + email + "_avatar")
+        let avatar_path = self.fireStorage.storageRef.child("image/" + String.safeEmail(emailAddress: email) + "_avatar")
             avatar_path.getData(maxSize: 15*1024*1024){data, err in
                 if let err = err{
                     print(err)

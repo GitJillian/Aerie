@@ -41,7 +41,7 @@ class ViewPostController: UIViewController {
             let description = post[Constants.postFields.description] as? String
             self.descriptionField?.text = description
             let fireStorage = FireStorage()
-            let path = "image/"+uid+"_avatar"
+            let path = "image/"+String.safeEmail(emailAddress: uid)+"_avatar"
             fireStorage.loadAvatarByPath(path: path){data in
                 if data.isEmpty{
                     self.avatar?.image = UIImage(named:"ava")

@@ -34,6 +34,13 @@ struct Message: MessageType{
     }
 }
 
+struct Media: MediaItem {
+    var url: URL?
+    var image: UIImage?
+    var placeholderImage: UIImage
+    var size: CGSize
+}
+
 extension Message{
     init(message: Dictionary<String, Any>){
         
@@ -47,12 +54,20 @@ extension Message{
         sentDate  = ts.dateValue()
         
         switch (message["kind"] as! String){
+            
             case "text":
                 kind = .text(content)
+            case "photo":
+               
+                let media = Media(url: nil,
+                                      image: nil,
+                                      placeholderImage: UIImage(systemName: "plus")!,
+                                      size: .zero)
+                kind = .photo(media)
+                
             default:
-                kind = .text("something")
+                kind = .text("sometext")
         }//todo: initialize photo type and emoji type
-        
     }
 }
 extension MessageKind {

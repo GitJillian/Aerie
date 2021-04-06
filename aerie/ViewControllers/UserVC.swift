@@ -70,6 +70,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         settingBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         profileBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         let email = UserDefaults.standard.value(forKey: "email") as! String
+        let safeemail = String.safeEmail(emailAddress: email)
         userOperation.getUserFullName(email: email){name in
             UserDefaults.standard.setValue(name, forKey: "username")
             self.NameField?.text = name
@@ -78,7 +79,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.addChildControllers()
         
         
-        fireStorage.getUrlByPath(path: "image/" + email + "_avatar"){ url in
+        fireStorage.getUrlByPath(path: "image/\(safeemail)_avatar"){ url in
             
             guard let urlLink = URL(string: url)  else{
                 self.imageView?.image = UIImage(named: "ava")
@@ -98,24 +99,6 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     })
             task.resume()
         }
-    }
-    
-    @objc func toTestTable(){
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
-        
-        self.view.window?.rootViewController = initialBoard
-        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
-        initialBoard.view.addSubview(snapshot)
-        UIView.transition(with: snapshot,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: {
-                              snapshot.layer.opacity = 0
-                          },
-                          completion: { status in
-                              snapshot.removeFromSuperview()
-                          })
     }
     
     //this step checks whether it is allowed to access the user's photo library
@@ -218,7 +201,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         let firestorage = FireStorage()
         //we need to get the user email so as to upload the file with correct path and name
-        let email = UserDefaults.standard.value(forKey: "email") as! String
+        let email = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
         let path  = "image/" + email + "_avatar"
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else{

@@ -134,7 +134,7 @@ class ChatVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         cell.messageLabel?.text = message
             
             let fireStorage = FireStorage()
-            let path = "image/"+uid+"_avatar"
+        let path = "image/"+String.safeEmail(emailAddress: uid)+"_avatar"
             fireStorage.loadAvatarByPath(path: path){data in
                 if data.isEmpty{
                     cell.avatar?.image = UIImage(named:"ava")

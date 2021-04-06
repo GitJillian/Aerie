@@ -25,6 +25,19 @@ class FireStorage{
         })
     }
     
+    func getURLByPath2(path: String, completion:@escaping(URL) -> ()){
+        let fileRef = storageRef.child(path)
+        fileRef.downloadURL(completion: { url, err in
+            if err != nil{
+                return
+            }else{
+                
+                completion(url!)
+            }
+        })
+    }
+    
+    
     //uploads local file with fileurl to the fire storage path
     func uploadToCloud(pngData: Data, refPath: String, completion:@escaping(Bool) -> ()){
         
