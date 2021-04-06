@@ -25,7 +25,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("I am running this")
+        
         self.loadDataToTable()
         self.tableView?.isScrollEnabled = false
         self.tableView?.alwaysBounceVertical = false
@@ -130,7 +130,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             
             let fireStorage = FireStorage()
             let path = "image/"+String.safeEmail(emailAddress: postCell.uid)+"_avatar"
-            print(path)
+            
             fireStorage.loadAvatarByPath(path: path){data in
                 if data.isEmpty{
                     cell.avatarImage?.image = UIImage(named:"ava")

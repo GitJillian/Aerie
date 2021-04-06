@@ -1409,7 +1409,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
                                         <connections>
-                                            <action selector="gobackToPrevious" destination="jKA-aj-Ike" eventType="touchUpInside" id="3W0-42-nTT"/>
+                                            <action selector="goaway" destination="jKA-aj-Ike" eventType="touchUpInside" id="kPw-tu-plw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1521,7 +1521,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="g1Q-4X-jOn"/>
                     <connections>
-                        <outlet property="backBtn" destination="SNc-3N-UsF" id="vF0-Jm-W9L"/>
                         <outlet property="cellHeight" destination="Rzy-3s-EBE" id="fn7-EG-8Yt"/>
                         <outlet property="header" destination="ttH-lb-Bew" id="7Dq-SQ-0WG"/>
                         <outlet property="tableView" destination="hPx-RI-Dr3" id="uzj-v7-qO2"/>

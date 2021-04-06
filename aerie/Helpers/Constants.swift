@@ -17,6 +17,7 @@ struct Constants {
         static let profileViewController    = "ProfileVC"
         static let sendpostViewController   = "SendPostVC"
         static let managePostViewController = "ManagePostVC"
+        static let editPostController       = "EditPostVC"
     }
     
     struct Images{
@@ -93,7 +94,7 @@ struct Constants {
         static var pidField = "pid"
         static var uidField = "uid"
         static var description = "description"
-        static var timeStamp   = "timestamp"
+        static var timeStamp   = "timeStamp"
         static var budget      = "budget"
         static var expectedLocation  = "expectedLocation"
     }

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 class PostOperation:DBOperation{
     
     //check whether a post exists in post collection and return a bool value
@@ -86,7 +87,7 @@ class PostOperation:DBOperation{
     
     //get all posts
     func getAllPosts(completion: @escaping([Post])-> ()){
-        database.collection(Constants.dbNames.postDB).order(by: "").getDocuments(){ querySnapShot, error in
+        database.collection(Constants.dbNames.postDB).getDocuments(){ querySnapShot, error in
             if let error = error{
                 print("\(error.localizedDescription)")
             }else{
@@ -109,17 +110,7 @@ class PostOperation:DBOperation{
         }
     }
     
-    func getPostUpdates(completion:@escaping(QuerySnapshot) -> ()){
-        let postDB = database.collection(Constants.dbNames.postDB)
-        
-        postDB.whereField(Constants.postFields.timeStamp, isGreaterThan: Timestamp(date: Date())).addSnapshotListener{
-            querySnapShot, error in
-            guard let querySnapShot = querySnapShot, error != nil else{
-                return
-            }
-            completion(querySnapShot)
-        }
-    }
+    
     
     //remove a post using pid
     func removePostByPid(pid: String, completion:@escaping(Bool) -> ()){

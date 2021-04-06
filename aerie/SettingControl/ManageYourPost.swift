@@ -14,6 +14,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var goback: UIButton!
     
     var postArray = [Post]()
     var postOperation = PostOperation()
@@ -26,6 +27,13 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.dataSource = self
         self.hideKeyboardWhenTappedElseWhere()
         self.loadDataToTable()
+    }
+    
+    @IBAction func goaway(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as! HomeViewController
+        self.view.window?.rootViewController = initialBoard
+        self.view.window?.makeKeyAndVisible()
     }
     
     func loadDataToTable(){
@@ -106,9 +114,11 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
             UserDefaults.standard.setValue(pid, forKey: "pidManage")
             
-            let editVC =  EditPostViewController()
-            editVC.modalPresentationStyle = .overFullScreen
-            self.tabBarController?.present(editVC, animated: true, completion: nil)
+            let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+            let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.editPostController) as! EditPostViewController
+            self.present(initialBoard, animated: true, completion: nil)
+            //self.view.window?.rootViewController = initialBoard
+            //self.view.window?.makeKeyAndVisible()
         }
         ))
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {[self] action in
@@ -128,11 +138,5 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    @IBAction func gobackToPrevious(){
-        self.dismiss(animated: true, completion: nil)
-        
-    }
 }
+

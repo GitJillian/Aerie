@@ -209,7 +209,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
             let description : String = descriptionTextField?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             
             postData[Constants.postFields.pidField] = pid
-            postData[Constants.postFields.uidField] = email
+            postData[Constants.postFields.uidField] = UserDefaults.standard.value(forKey: "email") as! String
             postData[Constants.postFields.timeStamp] = Date()
             postData[Constants.postFields.description] = description
             postData[Constants.postFields.budget]   = Int(budget ?? "0")
@@ -224,7 +224,7 @@ class SendPostViewController: UIViewController,UINavigationControllerDelegate, U
                     if result{
                         
                         let userOperation = UserOperation()
-                        userOperation.updateUserDocument(userEmail: email, data: userData){result in
+                        userOperation.updateUserDocument(userEmail: UserDefaults.standard.value(forKey: "email") as! String, data: userData){result in
                             if result{
                                 alert.title = "Successfully post."
                             }else{

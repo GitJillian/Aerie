@@ -22,7 +22,7 @@ class EditPostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedElseWhere()
-        descriptionField.delegate = self
+        descriptionField?.delegate = self
         
         setDesiredLocationBtn?.addTarget(self, action: #selector(setDesiredlocationClicked), for: .touchUpInside)
         descriptionField?.layer.borderWidth = CGFloat(1.5)
@@ -54,7 +54,6 @@ class EditPostViewController: UIViewController, UITextViewDelegate {
 
     
     @IBAction func goBack(_ sender: Any) {
-    
         self.dismiss(animated: true, completion: nil)
     }
     
