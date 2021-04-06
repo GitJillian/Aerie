@@ -12,6 +12,7 @@
 		2A36469F25AFDB8900AB3C3B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36469E25AFDB8900AB3C3B /* Post.swift */; };
 		2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3646A525AFDBE100AB3C3B /* DBOperation.swift */; };
 		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
+		32041A8C261CEF9400A11E59 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32041A8B261CEF9400A11E59 /* PhotoViewerViewController.swift */; };
 		320AD1FE261025C900FAF090 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320AD1FD261025C900FAF090 /* EditPostViewController.swift */; };
 		320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809925E47AA800FBB40A /* MenuListController.swift */; };
 		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
@@ -420,6 +421,7 @@
 		2AE0B42725A7E14B00FF1F15 /* FirebaseCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseCore; path = Pods/FirebaseCore; sourceTree = "<group>"; };
 		2AE0B43B25A7E14C00FF1F15 /* FirebaseFirestore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FirebaseFirestore; path = Pods/FirebaseFirestore; sourceTree = "<group>"; };
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
+		32041A8B261CEF9400A11E59 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
 		320AD1FD261025C900FAF090 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		320F809925E47AA800FBB40A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
 		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 			children = (
 				326DAE8126197CDD0065DD82 /* MessageViewController.swift */,
 				329AFF32261CE77000B5723F /* ChatNavigationVC.swift */,
+				32041A8B261CEF9400A11E59 /* PhotoViewerViewController.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 				3229849D25C3276B00E31EF9 /* ChatVC.swift in Sources */,
 				3229849A25C3274600E31EF9 /* PostVC.swift in Sources */,
 				326DAE8226197CDD0065DD82 /* MessageViewController.swift in Sources */,
+				32041A8C261CEF9400A11E59 /* PhotoViewerViewController.swift in Sources */,
 				32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */,
 				32E73AA02602FDD0001DA6F7 /* ProfileViewController.swift in Sources */,
 				321F67F925EC85E10098A866 /* String.swift in Sources */,

@@ -12,7 +12,7 @@ import FirebaseFirestore
 import InputBarAccessoryView
 import SDWebImage
 
-class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class MessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate, InputBarAccessoryViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MessageCellDelegate{
     
     let currentUser = Sender(senderId:    UserDefaults.standard.value(forKey: "email") as! String,
                              displayName: UserDefaults.standard.value(forKey: "username") as? String ?? "self")
@@ -103,7 +103,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-               
+        messagesCollectionView.messageCellDelegate     = self
         messageInputBar.delegate = self
         messageInputBar.autoresizesSubviews=true
         setupInputButton()
@@ -184,13 +184,34 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     
     func selectPicture(){
     //enable user to select picture
-       
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate   = self
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true)
 
     }
+    
+    func didTapImage(in cell: MessageCollectionViewCell) {
+    //while tapping image, you can view image in modal controller
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
+                return
+            }
+
+        let message = messages[indexPath.section]
+
+        switch message.kind {
+            case .photo(let media):
+                guard let imageUrl = media.url else {
+                    return
+                }
+                
+                let vc = PhotoViewerViewController(with: imageUrl)
+                
+                self.present(vc, animated: true, completion: nil)
+            default:
+                break
+            }
+        }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -237,4 +258,6 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
                 }
             }
         }
+    
     }
+
