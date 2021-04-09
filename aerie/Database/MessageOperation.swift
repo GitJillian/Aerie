@@ -63,14 +63,15 @@ class MessageOperation: DBOperation{
     //fetch last message from a specified user
     public func getLatestChat(with otherEmail: String, completion:@escaping(String)->()){
         let receiverEmail = String.safeEmail(emailAddress: otherEmail)
+        let selfEmail = UserDefaults.standard.value(forKey: "email") as! String
         getChatByUser(with: receiverEmail){messages in
             if messages.count == 0{
                 completion("")
             }else{
                 let lastMessage = messages.last
-                let receiveremail = lastMessage?.receiver.senderId
+                let senderemail = lastMessage?.sender.senderId
                 var message     = ""
-                if receiveremail != otherEmail{
+                if senderemail == selfEmail{
                     message += "you:"
                 }
                 if  lastMessage?.kind.messageKindString == "photo"{

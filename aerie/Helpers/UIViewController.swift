@@ -23,14 +23,14 @@ extension UIViewController {
     
     func adjustTextFieldWhenEditing(){
     
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -190 // Move view 190 points upward
+         self.view.frame.origin.y = -150 // Move view 190 points upward
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {

@@ -31,12 +31,31 @@ class SignUpViewController: UIViewController{
     public var userField = Constants.userFields.self
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.adjustTextFieldWhenEditing()
+        self.adjustTextFieldWhenEditingNew()
         self.hideKeyboardWhenTappedElseWhere()
         // Do any additional setup after loading the view.
         init_interface()
     }
     
+    func adjustTextFieldWhenEditingNew(){
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow1(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide1(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow1(sender: NSNotification) {
+         self.view.frame.origin.y = -30 // Move view 190 points upward
+    }
+
+    @objc func keyboardWillHide1(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
+    @IBAction func hideSignUp(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     func init_interface() {
         // Hide the error label
         
@@ -115,7 +134,8 @@ class SignUpViewController: UIViewController{
                     let userManagement = UserOperation()
                     
                     let uid = UUID().uuidString
-                    userManagement.addSetUserDocument(uid: uid, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email, uid: uid ]){(result) in
+                    userManagement.addSetUserDocument(uid: uid, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email, self.userField.uid
+                                                                        : uid ]){(result) in
                         if !result{
                             self.showError(Constants.errorMessages.errorToSaveDate)
                         }

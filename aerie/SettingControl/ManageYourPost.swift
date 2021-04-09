@@ -112,10 +112,11 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {[self] action in
-            UserDefaults.standard.setValue(pid, forKey: "pidManage")
+            
             
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.editPostController) as! EditPostViewController
+            initialBoard.pid = pid
             self.present(initialBoard, animated: true, completion: nil)
             //self.view.window?.rootViewController = initialBoard
             //self.view.window?.makeKeyAndVisible()
