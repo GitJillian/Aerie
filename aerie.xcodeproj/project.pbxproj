@@ -29,6 +29,7 @@
 		3233FBDD25F9744800E0825B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBDC25F9744800E0825B /* UIImageView.swift */; };
 		3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */; };
 		3233FBED25F9E89E00E0825B /* FireStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233FBEC25F9E89D00E0825B /* FireStorage.swift */; };
+		323FB7462622856D00B12CBC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FB7452622856D00B12CBC /* FilterViewController.swift */; };
 		323FDD99261B7D8B003C26B2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FDD98261B7D8B003C26B2 /* Message.swift */; };
 		324B708825FF15D000551BFD /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B708725FF15D000551BFD /* CheckBox.swift */; };
 		325E08FF26094B7300BA322F /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E08FE26094B7300BA322F /* UIAlertController.swift */; };
@@ -36,6 +37,7 @@
 		326DAE8226197CDD0065DD82 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DAE8126197CDD0065DD82 /* MessageViewController.swift */; };
 		329AFF30261CC04400B5723F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329AFF2F261CC04400B5723F /* MapViewController.swift */; };
 		329AFF33261CE77000B5723F /* ChatNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329AFF32261CE77000B5723F /* ChatNavigationVC.swift */; };
+		329BF82B2622CADF0061AF93 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329BF82A2622CADF0061AF93 /* UserDefaults.swift */; };
 		32A4838326065EB9006DB2EB /* PostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838226065EB9006DB2EB /* PostOperation.swift */; };
 		32A4838D2606ED97006DB2EB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4838C2606ED97006DB2EB /* Array.swift */; };
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
@@ -378,6 +380,13 @@
 			remoteGlobalIDString = 9CF8FA5F01F446F01AAC7331075452AD;
 			remoteInfo = FirebaseStorage;
 		};
+		329BF8322622CADF0061AF93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5865E6F7A8965A5A9078E4DA2D25185E;
+			remoteInfo = SwiftRangeSlider;
+		};
 		32A4B97926004B27005DD281 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE0B3F425A7E14A00FF1F15 /* Pods.xcodeproj */;
@@ -436,6 +445,7 @@
 		3233FBDC25F9744800E0825B /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "circle-light-cropped2.gif"; path = "aerie/circle-light-cropped2.gif"; sourceTree = "<group>"; };
 		3233FBEC25F9E89D00E0825B /* FireStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStorage.swift; sourceTree = "<group>"; };
+		323FB7452622856D00B12CBC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		323FDD98261B7D8B003C26B2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		324B708725FF15D000551BFD /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		325E08FE26094B7300BA322F /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
@@ -443,6 +453,7 @@
 		326DAE8126197CDD0065DD82 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		329AFF2F261CC04400B5723F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		329AFF32261CE77000B5723F /* ChatNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNavigationVC.swift; sourceTree = "<group>"; };
+		329BF82A2622CADF0061AF93 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		32A4838226065EB9006DB2EB /* PostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOperation.swift; sourceTree = "<group>"; };
 		32A4838C2606ED97006DB2EB /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -543,6 +554,7 @@
 				2AE0B42225A7E14B00FF1F15 /* Pods_aerie.framework */,
 				2A29F6C825A807B600D039B8 /* FBLPromises.framework */,
 				3246E78D261C44CE00A1790E /* SDWebImage.framework */,
+				329BF8332622CADF0061AF93 /* SwiftRangeSlider.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -599,6 +611,7 @@
 				32E7EE8B260E901700BC5110 /* ManagePostViewCell.swift */,
 				320AD1FD261025C900FAF090 /* EditPostViewController.swift */,
 				32FDF17326157F2600EE0BD9 /* ViewPostController.swift */,
+				323FB7452622856D00B12CBC /* FilterViewController.swift */,
 			);
 			path = Postings;
 			sourceTree = "<group>";
@@ -696,6 +709,7 @@
 				32A4838C2606ED97006DB2EB /* Array.swift */,
 				325E08FE26094B7300BA322F /* UIAlertController.swift */,
 				326CAE8B260A974D000AA0DB /* ShadowButton.swift */,
+				329BF82A2622CADF0061AF93 /* UserDefaults.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -940,6 +954,13 @@
 			remoteRef = 328F934425F4A79F008F6CF2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		329BF8332622CADF0061AF93 /* SwiftRangeSlider.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftRangeSlider.framework;
+			remoteRef = 329BF8322622CADF0061AF93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		32A4B97A26004B27005DD281 /* InputBarAccessoryView.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1063,6 +1084,7 @@
 				32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */,
 				32A4838D2606ED97006DB2EB /* Array.swift in Sources */,
 				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
+				323FB7462622856D00B12CBC /* FilterViewController.swift in Sources */,
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,
 				32A4B93025FFEFF9005DD281 /* Date.swift in Sources */,
@@ -1074,6 +1096,7 @@
 				3229849725C325B500E31EF9 /* UserVC.swift in Sources */,
 				321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */,
 				32FDF17426157F2600EE0BD9 /* ViewPostController.swift in Sources */,
+				329BF82B2622CADF0061AF93 /* UserDefaults.swift in Sources */,
 				8314D44B22E6452C001D044A /* HomeViewController.swift in Sources */,
 				830C3D8F22E7523E001FA4E7 /* Constants.swift in Sources */,
 				329AFF33261CE77000B5723F /* ChatNavigationVC.swift in Sources */,

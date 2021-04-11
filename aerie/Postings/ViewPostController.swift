@@ -30,7 +30,7 @@ class ViewPostController: UIViewController {
         self.descriptionField?.layer.cornerRadius = CGFloat(10)
         self.baseView?.clipsToBounds = true
         self.baseView?.layer.cornerRadius = CGFloat(10)
-        //self.pid = UserDefaults.standard.value(forKey: "pidView") as? String
+        
         self.postOperation.getPostDocument(pid: self.pid){post in
             
             let uid = post[Constants.postFields.uidField] as! String

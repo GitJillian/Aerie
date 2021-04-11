@@ -8,13 +8,16 @@
 
 import Foundation
 import Firebase
-class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
-    
+
+
+class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate{
+    @IBOutlet weak var filter: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Header: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
     var postArray = [Post]()
+    var filteredArray = [Post]()
     var postOperation = PostOperation()
     @IBOutlet var composeBtn : UIButton!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
@@ -25,8 +28,9 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.loadDataToTable()
+        self.searchBar?.delegate = self
         self.tableView?.isScrollEnabled = false
         self.tableView?.alwaysBounceVertical = false
         self.scrollView?.delegate  = self
@@ -42,16 +46,44 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     func loadDataToTable(){
         postOperation.getAllPosts(){listOfPost in
-            //self.scrollView = self.view as? UIScrollView
+            
             self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
             self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
-            
+            print(listOfPost.count)
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
+            self.filteredArray = listOfPost
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
             }
         }
+    }
+    
+    //present filter controller
+    @IBAction func showFilter(){
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let filterVC = sb.instantiateViewController(withIdentifier: "filterVC") as! FilterViewController
+        filterVC.modalPresentationStyle = .fullScreen
+        self.present(filterVC, animated: true, completion: nil)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+        filteredArray = searchText.isEmpty ? postArray : postArray.filter { (item : Post) -> Bool in
+            let expecetedLocation = item.expectedLocation["title"] as! String
+            return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil || (expecetedLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale:nil) != nil)
+        }
+        self.tableView?.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.showsCancelButton = false
+            searchBar.text = ""
+            searchBar.resignFirstResponder()
+            searchBar.endEditing(true)
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchBar.showsCancelButton = true
     }
     
     @objc func updateTableAutomatic(_ sender: AnyObject){
@@ -62,6 +94,9 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
+            self.searchBar.text?.removeAll()
+            self.filteredArray = listOfPost
+            print(listOfPost.count)
             self.scrollView.refreshControl?.endRefreshing()
             self.tableView?.reloadData()
         }
@@ -74,10 +109,12 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
            let  off = scrollView.contentOffset.y
            // make sure the compose button position stays here
            self.composeBtn.frame = CGRect(x: 280, y:   off + 600, width: composeBtn.frame.size.width, height: composeBtn.frame.size.height)
+        
            self.Header.frame = CGRect(x:0, y: off + 0, width: Header.frame.size.width, height: Header.frame.size.height)
         if transition.y > 0{
             self.searchBar.frame = CGRect(x:0, y: off + 105
                                           , width: searchBar.frame.size.width, height: searchBar.frame.size.height)
+          //  self.filter.frame = CGRect(x: 379, y: off + 115, width: filter.frame.size.width, height: filter.frame.size.height)
         }
     }
     
@@ -98,7 +135,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return postArray.count
+        print(filteredArray.count)
+        return filteredArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -109,7 +147,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
-        let postCell = self.postArray[indexPath.row]
+        let postCell = self.filteredArray[indexPath.row]
+        print(self.filteredArray.count)
         let uid = postCell.uid
         let userOperation = UserOperation()
         cell.descriptionText?.text = postCell.description
@@ -153,9 +192,8 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        let post = postArray[indexPath.row]
+        let post = filteredArray[indexPath.row]
         let pid  = post.pid
-        //UserDefaults.standard.setValue(pid, forKey: "pidView")
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "View Post", style: .default, handler:{ [self] action in
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
@@ -167,7 +205,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         alert.addAction(UIAlertAction(title: "Chat", style: .default, handler:
                                         {[self] action in
            
-                                            
+                                            //chatting with another user, add a message controller with navigation bar
                                             let userOperation = UserOperation()
                                             userOperation.getUserById(documentName: post.uid){user in
                                                 let sb: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
