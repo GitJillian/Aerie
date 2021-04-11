@@ -84,7 +84,9 @@ class PostOperation:DBOperation{
             completion(isSuccess, pid)
         }
     }
-    
+    //func getAllPostModels(completion: @escaping(PostModel) -> ()){
+        
+    //}
     //get all posts
     func getAllPosts(completion: @escaping([Post])-> ()){
         database.collection(Constants.dbNames.postDB).getDocuments(){ querySnapShot, error in

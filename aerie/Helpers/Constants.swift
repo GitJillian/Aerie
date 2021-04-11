@@ -65,6 +65,7 @@ struct Constants {
     struct genderStr{
         static var female = "female"
         static var male   = "male"
+        static var unisex = "unisex"
     }
     
     struct userFields{
@@ -101,5 +102,15 @@ struct Constants {
     struct cells {
         static var normalCell = "cell"
         static var manageCell = "manageCell"
+    }
+    
+    struct filter{
+        static var petFilter   = "petFilter"
+        static var smokeFilter = "smokeFilter"
+        static var priceUpper  = "priceUpper"
+        static var priceLower  = "priceLower"
+        static var ageLower    = "ageLower"
+        static var ageUpper    = "ageUpper"
+        static var genderFilter = "genderFilter"
     }
 }

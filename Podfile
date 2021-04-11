@@ -16,4 +16,5 @@ target 'aerie' do
 	pod 'MessageKit'
 	pod 'FloatingPanel'
 	pod 'SDWebImage', '~> 5.0'
+	pod ‘SwiftRangeSlider’
 end
