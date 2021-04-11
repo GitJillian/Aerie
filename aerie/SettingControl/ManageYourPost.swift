@@ -13,8 +13,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
-    @IBOutlet weak var backBtn: UIButton!
-    @IBOutlet weak var goback: UIButton!
+    
     
     var postArray = [Post]()
     var postOperation = PostOperation()
@@ -30,10 +29,11 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func goaway(){
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        /*let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as! HomeViewController
         self.view.window?.rootViewController = initialBoard
-        self.view.window?.makeKeyAndVisible()
+        self.view.window?.makeKeyAndVisible()*/
+        self.dismiss(animated: true, completion: nil)
     }
     
     func loadDataToTable(){
@@ -104,7 +104,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
         let post = postArray[indexPath.row]
         let pid  = post.pid
         
-        //just a tester for showing description. TODO: CHANGE THAT!!!!
+        
         let alert = UIAlertController()
         
         alert.view.addSubview(UIView())
@@ -115,9 +115,9 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.editPostController) as! EditPostViewController
-            initialBoard.pid = pid
-            self.present(initialBoard, animated: true, completion: nil)
+            let editVC = sb.instantiateViewController(withIdentifier: Constants.Storyboard.editPostController) as! EditPostViewController
+            editVC.pid = pid
+            self.present(editVC, animated: true, completion: nil)
             //self.view.window?.rootViewController = initialBoard
             //self.view.window?.makeKeyAndVisible()
         }

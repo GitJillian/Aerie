@@ -18,7 +18,7 @@ class ViewPostController: UIViewController {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var expectedLocation: UILabel!
-    var pid : String!
+    public  var currentPost: PostModel!
     private var userOperation = UserOperation()
     private var postOperation = PostOperation()
     override func viewDidLoad() {
@@ -31,7 +31,61 @@ class ViewPostController: UIViewController {
         self.baseView?.clipsToBounds = true
         self.baseView?.layer.cornerRadius = CGFloat(10)
         
-        self.postOperation.getPostDocument(pid: self.pid){post in
+        let expectedlocationDict = currentPost.expectedLocation as [String: Any]
+        self.expectedLocation?.text = expectedlocationDict["title"] as? String
+        let budget = currentPost.budget
+        self.budgetLabel?.text = "\(budget) CAD"
+        
+        self.descriptionField?.text = currentPost.description
+        let fireStorage = FireStorage()
+        let path = "image/"+String.safeEmail(emailAddress: currentPost.uid)+"_avatar"
+        fireStorage.loadAvatarByPath(path: path){data in
+            if data.isEmpty{
+                self.avatar?.image = UIImage(named:"ava")
+            }else{
+                let image = UIImage(data: data)
+                self.avatar?.image = image
+            }
+        }
+        
+        self.name?.text = "\(currentPost.userFullName), \(String(currentPost.userAge))"
+        
+        let currentLocation = currentPost.userLocation
+        self.location?.text = "\(currentLocation["title"] ?? " ")"
+        
+        self.genderLabel.text = currentPost.userGender
+        let petFriendly = currentPost.petFriendly
+            if !petFriendly{
+                let petButton = UIButton()
+                petButton.setTitle("no pets", for: .normal)
+                petButton.titleLabel?.font = .systemFont(ofSize: 12)
+                petButton.backgroundColor = UIColor(red: 0.9294, green: 0.8471, blue: 0.6588, alpha: 1.0)
+                petButton.layer.cornerRadius = CGFloat(5)
+                petButton.frame = CGRect(x: 130, y: 87, width: 100, height: 30)
+                petButton.setTitleColor(UIColor.white, for: .normal)
+                self.headerView?.addSubview(petButton)
+            }
+        let smokeOrNot = currentPost.smokeOrNot
+            if !smokeOrNot{
+                let smokeButton = UIButton()
+                smokeButton.setTitle("non-smoker", for: .normal)
+                smokeButton.titleLabel?.font = .systemFont(ofSize: 12)
+                smokeButton.backgroundColor = UIColor(red: 0.5098, green: 0.7176, blue: 0.6275, alpha: 1.0)
+                smokeButton.layer.cornerRadius = CGFloat(5)
+                smokeButton.setTitleColor(UIColor.white, for: .normal)
+                if petFriendly{
+                    smokeButton.frame = CGRect(x: 130, y: 87, width: 100, height: 30)
+                }
+                else{
+                    smokeButton.frame = CGRect(x: 250, y: 87, width:100, height: 30)
+                }
+                self.headerView?.addSubview(smokeButton)
+                
+            }
+        
+        
+    }
+        /*
             
             let uid = post[Constants.postFields.uidField] as! String
             let expectedlocationDict = post[Constants.postFields.expectedLocation] as! [String:Any]
@@ -86,8 +140,8 @@ class ViewPostController: UIViewController {
                 }
             
             }
-        }
-    }
+        }*/
+    
 }
 
 

@@ -73,7 +73,6 @@ struct Constants {
         static var age         = "age"
         static var birth       = "birthday"
         static var gender      = "gender"
-        static var postings    = "postings"
         static var emailField  = "email"
         static var firstname   = "firstname"
         static var lastname    = "lastname"
@@ -112,5 +111,22 @@ struct Constants {
         static var ageLower    = "ageLower"
         static var ageUpper    = "ageUpper"
         static var genderFilter = "genderFilter"
+    }
+    
+    struct postModel{
+        static var pidField = "pid"
+        static var uidField = "uid"
+        static var description = "description"
+        static var timeStamp   = "timeStamp"
+        static var budget      = "budget"
+        static var expectedLocation  = "expectedLocation"
+        static var userLocation = "location"
+        static var userEmail   = "email"
+        static var userFullName = "fullname"
+        static var userAge     = "age"
+        static var userGender  = "gender"
+        static var petFriendly = "petFriendly"
+        static var smokeOrNot  = "smokeOrNot"
+        
     }
 }

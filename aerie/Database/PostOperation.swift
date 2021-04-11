@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 class PostOperation:DBOperation{
-    
+    var postModels = [PostModel]()
     //check whether a post exists in post collection and return a bool value
     func isPostExist(pid: String, completion: @escaping(Bool) -> ()) {
         let postCollection = database.collection(Constants.dbNames.postDB)
@@ -84,9 +84,44 @@ class PostOperation:DBOperation{
             completion(isSuccess, pid)
         }
     }
-    //func getAllPostModels(completion: @escaping(PostModel) -> ()){
+    func getAllPostModels(completion: @escaping([PostModel]) -> ()){
+        database.collection(Constants.dbNames.postDB).getDocuments(){ querySnapShot, error in
+            if let error = error{
+                print("\(error.localizedDescription)")
+                            }else{
+                //var posts: [PostModel] = []
+                let documents = querySnapShot!.documents
+                for document in documents{
+                    let data = document.data()
+                    let pid  = data[Constants.postFields.pidField] as! String
+                    let uid  = data[Constants.postFields.uidField] as! String
+                    let description = data[Constants.postFields.description] as! String
+                    let timeStamp   = data[Constants.postFields.timeStamp]     as! Timestamp
+                    let timeStampDate = timeStamp.dateValue()
+                    let budget      = data[Constants.postFields.budget] as! Int
+                    let expectedLocation = data[Constants.postFields.expectedLocation] as! [String:Any]
+                    let userOperation = UserOperation()
+                    userOperation.getUserById(documentName: uid){user in
+                        let userEmail = user.email
+                        let userFullname = "\(user.firstName) \(user.lastName)"
+                        let userLocation = user.location
+                        let userAge   = user.age
+                        let userGender = user.gender
+                        let petFriendly = user.petFriendly
+                        let smokeOrNot  = user.smokeOrNot
+                        let post = PostModel(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget, expectedLocation: expectedLocation, userLocation: userLocation, userEmail: userEmail, userFullName: userFullname, userAge: userAge, userGender: userGender, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
+                        //posts.append(post)
+                        self.postModels.append(post)
+                    }
+                    
+                }
+                
+            }
+            completion(self.postModels)
+        }
         
-    //}
+    }
+    
     //get all posts
     func getAllPosts(completion: @escaping([Post])-> ()){
         database.collection(Constants.dbNames.postDB).getDocuments(){ querySnapShot, error in

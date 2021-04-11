@@ -70,7 +70,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         settingBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         profileBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         let uid = UserDefaults.standard.value(forKey: "uid") as! String
-        print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+        
         userOperation.getUserFullName(uid: uid){name in
             UserDefaults.standard.setValue(name, forKey: "username")
             self.NameField?.text = name
@@ -80,7 +80,7 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         
         
         fireStorage.getUrlByPath(path: "image/\(uid)_avatar"){ url in
-            print("uid: \(UserDefaults.standard.value(forKey: "uid"))")
+           
             guard let urlLink = URL(string: url)  else{
                 self.imageView?.image = UIImage(named: "ava")
                 return
@@ -138,21 +138,11 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     
     
     @IBAction func showPosts(){
-        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
         
-        self.view.window?.rootViewController = initialBoard
-        let snapshot = (UIApplication.shared.keyWindow?.snapshotView(afterScreenUpdates: true))!
-        initialBoard.view.addSubview(snapshot)
-        UIView.transition(with: snapshot,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: {
-                              snapshot.layer.opacity = 0
-                          },
-                          completion: { status in
-                              snapshot.removeFromSuperview()
-                          })
+        let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        let manangeVC = sb.instantiateViewController(withIdentifier: Constants.Storyboard.managePostViewController) as! ManageYourPost
+        manangeVC.modalPresentationStyle = .fullScreen
+        self.present(manangeVC, animated: true, completion: nil)
     }
     //if user clicks on 'Help Center', it shows a dialog asking the user to contact the author
     @IBAction func showContact(){
