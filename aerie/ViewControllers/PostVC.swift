@@ -16,8 +16,10 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     @IBOutlet weak var Header: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tableView: UITableView!
-    var postArray = [Post]()
-    var filteredArray = [Post]()
+    //var postArray = [Post]()
+    //var filteredArray = [Post]()
+    var postArray   = [PostModel]()
+    var filteredArray   = [PostModel]()
     var postOperation = PostOperation()
     @IBOutlet var composeBtn : UIButton!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
@@ -45,17 +47,18 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     func loadDataToTable(){
-        postOperation.getAllPosts(){listOfPost in
+        postOperation.getAllPostModels(){listOfPost in
             
             self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
             self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
-            print(listOfPost.count)
+            
             //getting a list of posts and load them to table view
             self.postArray = listOfPost
             self.filteredArray = listOfPost
+            
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
-            }
+           }
         }
     }
     
@@ -69,7 +72,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
-        filteredArray = searchText.isEmpty ? postArray : postArray.filter { (item : Post) -> Bool in
+        filteredArray = searchText.isEmpty ? postArray : postArray.filter { (item : PostModel) -> Bool in
             let expecetedLocation = item.expectedLocation["title"] as! String
             return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil || (expecetedLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale:nil) != nil)
         }
@@ -87,7 +90,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     }
     
     @objc func updateTableAutomatic(_ sender: AnyObject){
-        postOperation.getAllPosts(){listOfPost in
+        postOperation.getAllPostModels(){listOfPost in
             //self.scrollView = self.view as? UIScrollView
             self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
             self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
@@ -96,7 +99,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             self.postArray = listOfPost
             self.searchBar.text?.removeAll()
             self.filteredArray = listOfPost
-            print(listOfPost.count)
+            
             self.scrollView.refreshControl?.endRefreshing()
             self.tableView?.reloadData()
         }
@@ -114,7 +117,6 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         if transition.y > 0{
             self.searchBar.frame = CGRect(x:0, y: off + 105
                                           , width: searchBar.frame.size.width, height: searchBar.frame.size.height)
-          //  self.filter.frame = CGRect(x: 379, y: off + 115, width: filter.frame.size.width, height: filter.frame.size.height)
         }
     }
     
@@ -135,7 +137,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(filteredArray.count)
+        
         return filteredArray.count
     }
     
@@ -143,46 +145,45 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         return 145
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
         let postCell = self.filteredArray[indexPath.row]
-        print(self.filteredArray.count)
-        let uid = postCell.uid
-        let userOperation = UserOperation()
+        
+        
+        
         cell.descriptionText?.text = postCell.description
-        userOperation.getUserDocument(documentName: uid){document in
+       
             
-            let name = "\(document[Constants.userFields.firstname] ?? "first") \( document[Constants.userFields.lastname] ?? "last"), \(document[Constants.userFields.age] ?? "\(0)")"
-            let location = document[Constants.userFields.locationStr] as! [String: Any]
-            let locationStr = location["title"] as? String
-            let gender      = document[Constants.userFields.gender] as! String
+        let name = postCell.userFullName
+        let location = postCell.userLocation
+        let locationStr = location["title"] as? String
+        let gender      = postCell.userGender
+
+        
+        if gender == Constants.genderStr.female{
+            Styler.setFemaleBtn(cell.genderBtn!)
+        }
+        else{
+            Styler.setMaleBtn(cell.genderBtn!)
+        }
+        cell.NameLabel?.text = name
+        cell.locationLabel?.text = locationStr
             
-            if gender == Constants.genderStr.female{
-                Styler.setFemaleBtn(cell.genderBtn!)
+        let fireStorage = FireStorage()
+            
+        let path = "image/"+String.safeEmail(emailAddress: postCell.uid)+"_avatar"
+            
+        fireStorage.loadAvatarByPath(path: path){data in
+            if data.isEmpty{
+                cell.avatarImage?.image = UIImage(named:"ava")
             }else{
-                Styler.setMaleBtn(cell.genderBtn!)
-            }
-            cell.NameLabel?.text = name
-            cell.locationLabel?.text = locationStr
-            
-            let fireStorage = FireStorage()
-            
-            let path = "image/"+String.safeEmail(emailAddress: postCell.uid)+"_avatar"
-            
-            fireStorage.loadAvatarByPath(path: path){data in
-                if data.isEmpty{
-                    cell.avatarImage?.image = UIImage(named:"ava")
-                }else{
-                    let image = UIImage(data: data)
-                    cell.avatarImage?.image = image
+                let image = UIImage(data: data)
+                cell.avatarImage?.image = image
                 }
             }
-        }
+        
         return cell
     }
-
     
     // Override to support conditional editing of the table view.
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -193,12 +194,12 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         let post = filteredArray[indexPath.row]
-        let pid  = post.pid
+        
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "View Post", style: .default, handler:{ [self] action in
             let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             let viewPostModel = sb.instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostController
-            viewPostModel.pid = pid
+            viewPostModel.currentPost = post
             self.present(viewPostModel, animated: true, completion: nil)
         }
         ))
