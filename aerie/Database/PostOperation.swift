@@ -84,12 +84,15 @@ class PostOperation:DBOperation{
             completion(isSuccess, pid)
         }
     }
+    
     func getAllPostModels(completion: @escaping([PostModel]) -> ()){
+       
         database.collection(Constants.dbNames.postDB).getDocuments(){ querySnapShot, error in
             if let error = error{
+                completion([PostModel]())
                 print("\(error.localizedDescription)")
                             }else{
-                //var posts: [PostModel] = []
+                
                 let documents = querySnapShot!.documents
                 for document in documents{
                     let data = document.data()
@@ -110,14 +113,13 @@ class PostOperation:DBOperation{
                         let petFriendly = user.petFriendly
                         let smokeOrNot  = user.smokeOrNot
                         let post = PostModel(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget, expectedLocation: expectedLocation, userLocation: userLocation, userEmail: userEmail, userFullName: userFullname, userAge: userAge, userGender: userGender, petFriendly: petFriendly, smokeOrNot: smokeOrNot)
-                        //posts.append(post)
+                        
                         self.postModels.append(post)
                     }
-                    
                 }
-                
-            }
             completion(self.postModels)
+            }
+        self.postModels.removeAll()
         }
         
     }

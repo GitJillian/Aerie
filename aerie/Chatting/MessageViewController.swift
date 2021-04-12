@@ -46,7 +46,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
                           messageId:UUID().uuidString,
                           sentDate: Date(),
                           kind:.text(text))
-        //TODO: enable other types such as emoji / photo
+        
         //calling function to insert and save message
         insertNewMessage(message)
         save(message)
@@ -100,12 +100,12 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
         messageInputBar.inputTextView.placeholder = "message"
         self.navigationItem.title = "\(otherUserObj.firstName) \(otherUserObj.lastName)"
         self.hideKeyboardWhenTappedElseWhere()
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDataSource      = self
+        messagesCollectionView.messagesLayoutDelegate  = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate     = self
-        messageInputBar.delegate = self
-        messageInputBar.autoresizesSubviews=true
+        messageInputBar.delegate                       = self
+        messageInputBar.autoresizesSubviews            = true
         setupInputButton()
         loadConversation(otherUserEmail: otherUserObj.email)
         
@@ -150,7 +150,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     func setupInputButton() {
             let button = InputBarButtonItem()
             button.setSize(CGSize(width: 35, height: 35), animated: false)
-            button.setImage(UIImage(systemName: "paperclip"), for: .normal)
+            button.setImage(UIImage(systemName: "camera"), for: .normal)
             button.onTouchUpInside { [weak self] _ in
                     self?.selectPicture()
                 }
