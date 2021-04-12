@@ -43,6 +43,7 @@
 		32A4B93025FFEFF9005DD281 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B92F25FFEFF9005DD281 /* Date.swift */; };
 		32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98126004B5C005DD281 /* ManageYourPost.swift */; };
 		32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4B98426004D6C005DD281 /* LocationViewController.swift */; };
+		32AC71832623C96100D23B36 /* diagram in Resources */ = {isa = PBXBuildFile; fileRef = 32AC717C2623C96100D23B36 /* diagram */; };
 		32C2E3A2260AFD3600ED88AF /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */; };
 		32C2E3A6260C282D00ED88AF /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */; };
 		32D2FB5E2602B6B8003197E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D2FB5D2602B6B8003197E3 /* LocationManager.swift */; };
@@ -459,6 +460,7 @@
 		32A4B92F25FFEFF9005DD281 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32A4B98126004B5C005DD281 /* ManageYourPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageYourPost.swift; sourceTree = "<group>"; };
 		32A4B98426004D6C005DD281 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		32AC717C2623C96100D23B36 /* diagram */ = {isa = PBXFileReference; lastKnownFileType = folder; path = diagram; sourceTree = "<group>"; };
 		32C2E3A1260AFD3600ED88AF /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		32C2E3A5260C282D00ED88AF /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
 		32D2FB5D2602B6B8003197E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 		8314D42622E644CC001D044A = {
 			isa = PBXGroup;
 			children = (
+				32AC717C2623C96100D23B36 /* diagram */,
 				3233FBE425F98D4200E0825B /* circle-light-cropped2.gif */,
 				8314D43122E644CC001D044A /* aerie */,
 				8314D43022E644CC001D044A /* Products */,
@@ -982,6 +985,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32AC71832623C96100D23B36 /* diagram in Resources */,
 				3233FBE625F98D4200E0825B /* circle-light-cropped2.gif in Resources */,
 				8314D43F22E644CD001D044A /* LaunchScreen.storyboard in Resources */,
 				2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */,

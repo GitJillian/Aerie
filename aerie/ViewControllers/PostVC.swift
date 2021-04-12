@@ -74,13 +74,14 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     // if user enter something in the search bar, it should be able to search description, name, location using its string value
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
-        filteredArray = searchText.isEmpty ? filteredArray : filteredArray.filter { (item : PostModel) -> Bool in
+        filteredArray = searchText.isEmpty ? postArray : postArray.filter { (item : PostModel) -> Bool in
             let expecetedLocation = item.expectedLocation["title"] as! String
             let userLocation      = item.userLocation["title"] as! String
-            return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil)     != nil
+            return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil)  != nil
                 || expecetedLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale:nil)  != nil
                 || item.userFullName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
                 || userLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil)      != nil
+                || item.userGender == searchText.lowercased() 
         }
         self.tableView?.reloadData()
     }
