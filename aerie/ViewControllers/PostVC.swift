@@ -32,16 +32,17 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         super.viewDidLoad()
     
         self.loadDataToTable()
-        self.searchBar?.delegate = self
-        self.tableView?.isScrollEnabled = false
-        self.tableView?.alwaysBounceVertical = false
+        self.searchBar?.delegate   = self
+        
         self.scrollView?.delegate  = self
         self.tableView?.delegate   = self
         self.tableView?.dataSource = self
-        
+        self.tableView?.isScrollEnabled      = false
+        self.tableView?.alwaysBounceVertical = false
         self.hideKeyboardWhenTappedElseWhere()
         self.scrollView?.refreshControl = UIRefreshControl()
         self.scrollView?.refreshControl?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .valueChanged)
+        //self.scrollView?.refreshControl?.addTarget(self, action: #selector(detectFilter(_:)),         for: .valueChanged)
         self.scrollView?.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh posts")
         
     }
@@ -67,14 +68,19 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let filterVC = sb.instantiateViewController(withIdentifier: "filterVC") as! FilterViewController
         filterVC.modalPresentationStyle = .fullScreen
-        self.present(filterVC, animated: true, completion: nil)
+        self.present(filterVC, animated: true, completion: nil)//{
     }
     
+    // if user enter something in the search bar, it should be able to search description, name, location using its string value
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
-        filteredArray = searchText.isEmpty ? postArray : postArray.filter { (item : PostModel) -> Bool in
+        filteredArray = searchText.isEmpty ? filteredArray : filteredArray.filter { (item : PostModel) -> Bool in
             let expecetedLocation = item.expectedLocation["title"] as! String
-            return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil || (expecetedLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale:nil) != nil)
+            let userLocation      = item.userLocation["title"] as! String
+            return item.description.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil)     != nil
+                || expecetedLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale:nil)  != nil
+                || item.userFullName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+                || userLocation.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil)      != nil
         }
         self.tableView?.reloadData()
     }
@@ -89,9 +95,10 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
             searchBar.showsCancelButton = true
     }
     
+    
     @objc func updateTableAutomatic(_ sender: AnyObject){
         postOperation.getAllPostModels(){listOfPost in
-            //self.scrollView = self.view as? UIScrollView
+            
             self.scrollView?.contentSize = CGSize(width: self.view.frame.size.width,height: CGFloat(Double(listOfPost.count) * 145 + 50) )
             self.cellHeight?.constant = CGFloat(Double(listOfPost.count) * 145)
             
@@ -148,12 +155,9 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
         let postCell = self.filteredArray[indexPath.row]
-        
-        
-        
+
         cell.descriptionText?.text = postCell.description
-       
-            
+                   
         let name = postCell.userFullName
         let location = postCell.userLocation
         let locationStr = location["title"] as? String
