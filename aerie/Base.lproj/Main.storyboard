@@ -404,7 +404,6 @@
                         <outlet property="Header" destination="BzX-df-cgr" id="6af-QN-EwZ"/>
                         <outlet property="cellHeight" destination="Wuz-bw-ib9" id="WVf-MQ-rK4"/>
                         <outlet property="composeBtn" destination="PPp-C2-3tC" id="HNj-2k-TZy"/>
-                        <outlet property="filter" destination="y2x-MQ-o1j" id="QHC-db-BGM"/>
                         <outlet property="scrollView" destination="Wje-ym-tOB" id="1Rs-qe-xKS"/>
                         <outlet property="searchBar" destination="eOt-uB-2NR" id="FZn-BZ-htb"/>
                         <outlet property="tableView" destination="hce-PY-stH" id="MrK-yc-eDt"/>

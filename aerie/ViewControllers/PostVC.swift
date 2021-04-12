@@ -42,7 +42,7 @@ class PostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIScrollViewDe
         self.hideKeyboardWhenTappedElseWhere()
         self.scrollView?.refreshControl = UIRefreshControl()
         self.scrollView?.refreshControl?.addTarget(self, action: #selector(updateTableAutomatic(_:)), for: .valueChanged)
-        //self.scrollView?.refreshControl?.addTarget(self, action: #selector(detectFilter(_:)),         for: .valueChanged)
+        
         self.scrollView?.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh posts")
         
     }
