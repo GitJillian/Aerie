@@ -324,13 +324,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-ni-1yS">
-                                                        <rect key="frame" x="8" y="59" width="147" height="28"/>
+                                                        <rect key="frame" x="8" y="59" width="347" height="28"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                         <color key="textColor" red="0.22245387629999999" green="0.52934858529999995" blue="0.50951027449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2x-MQ-o1j">
-                                                        <rect key="frame" x="379" y="61" width="27" height="24"/>
+                                                        <rect key="frame" x="165" y="61" width="27" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="27" id="EGl-SV-5VB"/>
                                                             <constraint firstAttribute="height" constant="24" id="Ntd-M5-JSO"/>
@@ -347,10 +347,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="y2x-MQ-o1j" firstAttribute="leading" secondItem="EVr-ni-1yS" secondAttribute="trailing" constant="224" id="3rq-3W-cL6"/>
+                                                    <constraint firstItem="y2x-MQ-o1j" firstAttribute="leading" secondItem="EVr-ni-1yS" secondAttribute="trailing" constant="-190" id="3rq-3W-cL6"/>
                                                     <constraint firstItem="EVr-ni-1yS" firstAttribute="leading" secondItem="BzX-df-cgr" secondAttribute="leadingMargin" id="A0u-6U-g1j"/>
                                                     <constraint firstAttribute="width" constant="414" id="EBk-7v-YEG"/>
-                                                    <constraint firstAttribute="trailing" secondItem="y2x-MQ-o1j" secondAttribute="trailing" constant="8" id="Mra-Kz-8nc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="y2x-MQ-o1j" secondAttribute="trailing" constant="222" id="Mra-Kz-8nc"/>
                                                     <constraint firstAttribute="height" constant="110" id="Z7p-oo-wQQ"/>
                                                     <constraint firstItem="EVr-ni-1yS" firstAttribute="top" secondItem="BzX-df-cgr" secondAttribute="top" constant="59" id="bGM-1I-oOR"/>
                                                     <constraint firstAttribute="bottom" secondItem="y2x-MQ-o1j" secondAttribute="bottom" constant="25" id="c20-aV-Zsx"/>
