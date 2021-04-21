@@ -30,9 +30,10 @@ class UserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet var NameField: UILabel!
     
     private var contactAlert:UIAlertController!
+    
+    private var imagePickerController   = UIImagePickerController()
     private var fireStorage   = FireStorage()
     private var userOperation = UserOperation()
-    private var imagePickerController   = UIImagePickerController()
     
     // This extends the superclass.
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

@@ -210,13 +210,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailTextField" destination="hOd-UD-j8A" id="bDO-hP-4Az"/>
-                        <outlet property="errorLabel" destination="OEI-Tj-aET" id="dKU-un-lGz"/>
-                        <outlet property="firstNameTextField" destination="W7o-lU-ntH" id="YLV-5G-TJ2"/>
-                        <outlet property="lastNameTextField" destination="xUA-Bq-phl" id="R7r-Ss-xOc"/>
-                        <outlet property="passwordConfirm" destination="QBp-ke-g3N" id="gx6-xG-hUl"/>
-                        <outlet property="passwordTextField" destination="wcT-FS-D7U" id="Ctz-Lz-nZb"/>
-                        <outlet property="signUpButton" destination="6fH-K6-8Im" id="Hds-Dj-SnO"/>
+                        <outlet property="emailTextField" destination="hOd-UD-j8A" id="bRD-RR-yQ6"/>
+                        <outlet property="errorLabel" destination="OEI-Tj-aET" id="4T6-Sw-XVc"/>
+                        <outlet property="firstNameTextField" destination="W7o-lU-ntH" id="7vr-5d-hVE"/>
+                        <outlet property="lastNameTextField" destination="xUA-Bq-phl" id="jBW-u1-woI"/>
+                        <outlet property="passwordConfirm" destination="QBp-ke-g3N" id="d73-Vm-asW"/>
+                        <outlet property="passwordTextField" destination="wcT-FS-D7U" id="C9T-a6-Xhm"/>
+                        <outlet property="signUpButton" destination="6fH-K6-8Im" id="GIf-4i-obc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4xh-wZ-I30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1303,7 +1303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afT-93-iCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4473.913043478261" y="878.57142857142856"/>
+            <point key="canvasLocation" x="4472" y="879"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="lHz-xK-xpR">
@@ -1462,7 +1462,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQd-og-VJk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2751" y="155"/>
+            <point key="canvasLocation" x="3217" y="155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ewl-h1-nOx">
@@ -1479,7 +1479,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ma9-xv-zJP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="104" y="155"/>
+            <point key="canvasLocation" x="-12" y="155"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="BWd-Ut-dBQ">

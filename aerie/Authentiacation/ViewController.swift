@@ -107,7 +107,7 @@ class ViewController: UIViewController, GIDSignInDelegate{
         
         
         // Create cleaned versions of the text field
-        let email = emailTextField?.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email    = emailTextField?.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField?.text!.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         // Signing in the user

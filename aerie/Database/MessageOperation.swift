@@ -15,7 +15,7 @@ class MessageOperation: DBOperation{
     
     //send message to the other user, updates your personal message db and the other users' db accordingly
     public func sendMessageToCollection(with receiver:String, message: Message, completion: @escaping(Bool)->()){
-        let senderEmail = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
+        let senderEmail   = String.safeEmail(emailAddress: UserDefaults.standard.value(forKey: "email") as! String)
         let receiverEmail = String.safeEmail(emailAddress: receiver)
         let ref = database.collection(messageDB)
         let data = message.dict
