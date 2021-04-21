@@ -68,7 +68,12 @@ class PostOperation:DBOperation{
                         let timeStampDate = timeStamp.dateValue()
                         let budget      = data[Constants.postFields.budget] as! Int
                         let expectedLocation = data[Constants.postFields.expectedLocation] as! [String:Any]
-                        let post = Post(pid: pid, uid: uid, description: description, timestamp: timeStampDate, budget: budget, expectedLocation: expectedLocation)
+                        let post = Post(pid: pid,
+                                        uid: uid,
+                                        description: description,
+                                        timestamp: timeStampDate,
+                                        budget: budget,
+                                        expectedLocation: expectedLocation)
                         posts.append(post)
                     }
                     completion(posts)

@@ -13,8 +13,8 @@ class CheckBox: UIButton {
     
     override func awakeFromNib() {
         
-        self.layer.cornerRadius = 5
-        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius  = 5
+        self.layer.borderWidth   = 2.0
         self.layer.masksToBounds = true
     }
     

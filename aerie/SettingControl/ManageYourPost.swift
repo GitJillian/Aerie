@@ -29,10 +29,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func goaway(){
-        /*let sb:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let initialBoard = sb.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as! HomeViewController
-        self.view.window?.rootViewController = initialBoard
-        self.view.window?.makeKeyAndVisible()*/
+       
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -118,8 +115,7 @@ class ManageYourPost: UIViewController, UITableViewDelegate, UITableViewDataSour
             let editVC = sb.instantiateViewController(withIdentifier: Constants.Storyboard.editPostController) as! EditPostViewController
             editVC.pid = pid
             self.present(editVC, animated: true, completion: nil)
-            //self.view.window?.rootViewController = initialBoard
-            //self.view.window?.makeKeyAndVisible()
+            
         }
         ))
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {[self] action in

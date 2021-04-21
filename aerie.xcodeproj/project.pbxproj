@@ -13,7 +13,6 @@
 		2A7F805C25B91E0800FB1FC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F805B25B91E0800FB1FC3 /* GoogleService-Info.plist */; };
 		32041A8C261CEF9400A11E59 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32041A8B261CEF9400A11E59 /* PhotoViewerViewController.swift */; };
 		320AD1FE261025C900FAF090 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320AD1FD261025C900FAF090 /* EditPostViewController.swift */; };
-		320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F809925E47AA800FBB40A /* MenuListController.swift */; };
 		320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F80A225E4C7C200FBB40A /* SignOutViewController.swift */; };
 		3214694B25EB0EC500C8735C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214694A25EB0EC500C8735C /* BaseVC.swift */; };
 		321E49352601AC7C0047A704 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E49342601AC7C0047A704 /* SearchMapController.swift */; };
@@ -430,7 +429,6 @@
 		2AE0B43C25A7E14C00FF1F15 /* GTMSessionFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GTMSessionFetcher; path = Pods/GTMSessionFetcher; sourceTree = "<group>"; };
 		32041A8B261CEF9400A11E59 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
 		320AD1FD261025C900FAF090 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
-		320F809925E47AA800FBB40A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
 		320F80A225E4C7C200FBB40A /* SignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutViewController.swift; sourceTree = "<group>"; };
 		3214694A25EB0EC500C8735C /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		321E49342601AC7C0047A704 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
@@ -565,7 +563,6 @@
 			isa = PBXGroup;
 			children = (
 				320F80A225E4C7C200FBB40A /* SignOutViewController.swift */,
-				320F809925E47AA800FBB40A /* MenuListController.swift */,
 				32E73A9F2602FDD0001DA6F7 /* ProfileViewController.swift */,
 			);
 			path = UserProfile;
@@ -1087,7 +1084,6 @@
 				32A4B98226004B5C005DD281 /* ManageYourPost.swift in Sources */,
 				32A4B98526004D6C005DD281 /* LocationViewController.swift in Sources */,
 				32A4838D2606ED97006DB2EB /* Array.swift in Sources */,
-				320F809A25E47AA800FBB40A /* MenuListController.swift in Sources */,
 				323FB7462622856D00B12CBC /* FilterViewController.swift in Sources */,
 				2A3646A625AFDBE100AB3C3B /* DBOperation.swift in Sources */,
 				320F80A325E4C7C200FBB40A /* SignOutViewController.swift in Sources */,

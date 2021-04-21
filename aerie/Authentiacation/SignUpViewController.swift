@@ -21,11 +21,11 @@ class SignUpViewController: UIViewController{
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var passwordConfirm: UITextField!
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var passwordConfirm: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     
     public var userField = Constants.userFields.self
@@ -115,9 +115,9 @@ class SignUpViewController: UIViewController{
             
             // Create cleaned versions of the data
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let lastName  = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email     = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password  = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                                    // Create the user
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 
@@ -132,7 +132,7 @@ class SignUpViewController: UIViewController{
                     // User was created successfully, now store the first name and last name
                     
                     let userManagement = UserOperation()
-                    
+                    //create an UUID and use that as the document id
                     let uid = UUID().uuidString
                     userManagement.addSetUserDocument(uid: uid, data: [self.userField.firstname:firstName, self.userField.lastname:lastName, self.userField.emailField: email, self.userField.uid
                                                                         : uid ]){(result) in
@@ -149,6 +149,7 @@ class SignUpViewController: UIViewController{
     }
     
     func showError(_ message:String) {
+        //the error label is used to be clear
         errorLabel.text = message
         errorLabel.alpha = 1
     }

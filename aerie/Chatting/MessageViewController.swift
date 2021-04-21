@@ -58,7 +58,10 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
     
     private func loadConversation(otherUserEmail: String){
         self.messages.removeAll()
-        messageOperation.getChatByUser(with: String.safeEmail(emailAddress: otherUserEmail)){listOfChats in
+        messageOperation.getChatByUser(with:
+                                       String.safeEmail(emailAddress: otherUserEmail))
+        {
+            listOfChats in
             self.messages = listOfChats
             self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem(animated: true)
@@ -152,7 +155,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             button.setSize(CGSize(width: 35, height: 35), animated: false)
             button.setImage(UIImage(systemName: "camera"), for: .normal)
             button.onTouchUpInside { [weak self] _ in
-                    self?.selectPicture()
+                    self?.sendPicture()
                 }
             messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
             messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
@@ -182,7 +185,7 @@ class MessageViewController: MessagesViewController, MessagesDataSource, Message
             picker.dismiss(animated: true, completion: nil)
         }
     
-    func selectPicture(){
+    func sendPicture(){
     //enable user to select picture
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate   = self

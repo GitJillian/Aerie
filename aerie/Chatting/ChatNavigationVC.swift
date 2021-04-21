@@ -3,7 +3,7 @@
 //  aerie
 //
 //  Created by Gitjillian on 2021/4/6.
-//  Copyright © 2021 Christopher Ching. All rights reserved.
+//  Copyright © 2021 Yejing Li. All rights reserved.
 //
 
 import UIKit

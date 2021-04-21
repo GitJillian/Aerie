@@ -13,8 +13,8 @@ import CoreLocation
 
 class LocationViewController: UIViewController, SearchMapControllerDelegate{
     // to do: update location struct to user field
-    public var pin   = MKPointAnnotation()
-    public var panel = FloatingPanelController()
+    public var pin      = MKPointAnnotation()
+    public var panel    = FloatingPanelController()
     public var searchVC = SearchMapController()
     
     @IBOutlet var myMapView : MKMapView!

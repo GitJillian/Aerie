@@ -2,7 +2,7 @@
 //  DBOperation.swift
 //  aerie
 //
-//  Created by 液晶宝宝 on 2021/1/13.
+//  Created by GitJillian on 2021/1/13.
 //  Copyright Yejing Li. All rights reserved.
 //  Encapsulate all cloud firestore database operations, including read, write, delete, update
 
